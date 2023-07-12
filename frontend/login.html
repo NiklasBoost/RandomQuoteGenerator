@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register/Login</title>
+  <link rel="stylesheet" href="styles\style.css">
+</head>
+<body>
+  <!-- Hilfscode, um zu den Zitaten zu kommen -->
+  <button onclick="
+   window.location.href = 'Quotes.html'; 
+  ">
+    GotoQuotes
+  </button>
+  
+  <button class="signUp-button signUp-button-js">
+    sign up
+  </button>
+
+  <button class="login-button login-button-js">
+    login
+  </button>
+
+  <form class="formular formular-register">
+    <div class="form-group">
+      <label>E-Mail:</label>
+      <input class="input-e-mail-js">
+    </div>
+
+    <div class="form-group">
+      <label>Benutzername:</label>
+      <input class="input-username-js">
+    </div>
+
+    <div class="form-group">
+      <label>Passwort:</label>
+      <input class="input-password-js">
+    </div>
+
+    <div class="form-group">
+      <label>Passwort:</label>
+      <input class="input-password2-js">
+    </div>
+
+    <button type="button" class="register-button-js">
+      register me please
+    </button>
+    
+    <button class="close-button-js">
+      close
+    </button>
+  </form>
+  
+  
+  <form class="formular formular-login">
+    <div class="form-group">
+      <label>Benutzername:</label>
+      <input>
+    </div>
+    <div class="form-group">
+      <label>Passwort:</label>
+      <input>
+    </div>
+    <button>login</button>
+    <button onclick="
+      closeFormular(formular-login)
+    ">close</button>
+  </form>
+
+
+  <script src="C:\Users\nikla\Documents\Programmierprojekte\RandomQuoteGenerator\frontend\scripts\register&login.js"></script>
+</body>
+</html>

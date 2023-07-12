@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RandomQuoteGenerator</title>
+  <link rel="stylesheet" href="styles\style.css">
+
+</head>
+
+<body>
+  <div>
+    <button class="next-quote next-quote-js">
+      next Quote
+    </button>
+  </div>
+  
+  <div class="container">
+    <div id="output"></div>
+    <button class="edit-button-js">
+      edit
+    </button>
+    <button onclick="removeQuote(currentQIndex)" class="remove-button add-remove-button">
+      -
+    </button>
+  </div>
+  <div class="container">
+    <input placeholder="your Quote" class="input-field" onkeyup="
+      if(event.key === 'Enter') {
+        addQuote()
+        console.log(allQuotes);
+      }  
+    ">
+      
+    <button onclick="addQuote()" class="add-button add-remove-button">
+      +
+    </button>
+  </div>
+
+  <!--Das ist nur ein Hilfscode, um die Array Inhalte nachzuvollziehen-->
+  <button onclick="console.log(allQuotes)" class="help-button">
+    show all Quotes
+  </button>
+
+  <script src="scripts/Quotesscript.js"></script>
+</body>
+
+</html>
