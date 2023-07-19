@@ -51,20 +51,20 @@ function sendRegisterDataToDatabase() {
   if (mailTest && passwordTest) {
     // console.log('Daten werden ans Backend geliefert'); 
 
-    fetch('/register', {
+    fetch('http://localhost:3000/register', {
       method: 'POST',
       headers: {
         'Content-Typ': 'application/json'
       },
       body: JSON.stringify(data)
     })
-    .then(function(response) {
+    .then((response) => {
       return response.json();
     })
-    .then(function(result) {
+    .then((result) => {
       console.log(result);
     })
-    .catch(function(error){
+    .catch((error) => {
       console.error('Fehler beim Senden der Daten:', error);
     });
 
