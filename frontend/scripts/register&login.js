@@ -9,32 +9,6 @@ document.querySelector('.login-button-js')
   });
 
 
-// //  JUST FOR TESTING  
-// const justTest = {
-//   name: 'It is a test'
-// };
-
-// // JUST FOR TESTING
-// document.querySelector('.js-just-test-connection')
-//   .addEventListener('click', () => {
-//     fetch('http://localhost:1200/', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(justTest)
-//     })
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((result) => {
-//       console.log('Response Body:' + result);
-//     })
-//     .catch((error) => {
-//       console.error('Fehler beim Senden der Daten:', error);
-//     });
-//   });
-
 function openFormular(form) {
   const register = document.querySelector('.formular-register');
   const login = document.querySelector('.formular-login');
