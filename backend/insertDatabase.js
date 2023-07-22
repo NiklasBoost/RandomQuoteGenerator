@@ -1,44 +1,38 @@
-const http = require('http');
-const db = require('./databaseConnection.js');
-
+const dbPool = require('./databaseConnection.js');
 
 const databaseFunctions = {
-  connectToDatabase() {
-    // Verbindung zur Datenbank herstellen
-    db.connection.connect((err) => {
-      if (err) {
-        console.error('Fehler beim Herstellen der Verbindung zur Datenbank: ' + err.stack);
-        return;
-      }
-      console.log('Verbindung zur Datenbank hergestellt.');
-    });
-  },
-  insertData() {
-    // Datenobjekt zum Einfügen
-    const data = {
-      Email: '',
-      Benutzername: '',
-      Password: ''
-    };
 
-    // Daten in die Datenbank einfügen
-    db.connection.query('INSERT INTO benutzernamen SET ?', data, (err, results) => {
-      if (err) {
-        console.error('Fehler beim Einfügen der Daten: ' + err.stack);
-        return;
-      }
-      console.log('Daten erfolgreich eingefügt. ID: ' + results.insertId);
+  insertData: async function(data) {
+    return new Promise((resolve, reject) => {
+      dbPool.getConnection((err, connection) => {
+        if (err) {
+          reject('Fehler beim Abrufen einer Verbindung aus dem Pool: ' + err.stack);
+        } else {
+          connection.query('INSERT INTO benutzernamen SET ?', data, (err, results) => {
+            if (err) {
+              reject('Fehler beim Einfügen der Daten: ' + err.stack);
+            } else {
+              console.log('Daten erfolgreich eingefügt. ID: ' + results.insertId);
+              // Die Verbindung wird wieder in den Pool zurückgegeben
+              connection.release();
+              resolve();
+            }
+          });
+        }
+      });
     });
   },
-  disconnectFromDatabase() {
-    // Verbindung zur Datenbank schließen
-    db.connection.end((err) => {
-      if (err) {
-        console.error('Fehler beim Schließen der Verbindung zur Datenbank: ' + err.stack);
-        return;
-      }
-      console.log('Verbindung zur Datenbank geschlossen.');
-    });
+}
+
+async function runDatabaseFunctions(data) {
+  try {
+    await databaseFunctions.insertData(data);
+    console.log('Datenbankoperationen abgeschlossen.');
+  } catch (error) {
+    console.error('Fehler beim Ausführen der Datenbankfunktionen: ' + error);
   }
-};
+}
 
+module.exports = {
+  runDatabaseFunctions
+};

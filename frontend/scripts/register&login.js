@@ -9,26 +9,31 @@ document.querySelector('.login-button-js')
   });
 
 
-// JUST FOR TESTING
-document.querySelector('.js-just-test-connection')
-  .addEventListener('click', () => {
-    fetch('http://localhost:3000/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify('Just tests')
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      console.log('Response Body:' + result);
-    })
-    .catch((error) => {
-      console.error('Fehler beim Senden der Daten:', error);
-    });
-  });
+// //  JUST FOR TESTING  
+// const justTest = {
+//   name: 'It is a test'
+// };
+
+// // JUST FOR TESTING
+// document.querySelector('.js-just-test-connection')
+//   .addEventListener('click', () => {
+//     fetch('http://localhost:1200/', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(justTest)
+//     })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((result) => {
+//       console.log('Response Body:' + result);
+//     })
+//     .catch((error) => {
+//       console.error('Fehler beim Senden der Daten:', error);
+//     });
+//   });
 
 function openFormular(form) {
   const register = document.querySelector('.formular-register');
@@ -38,12 +43,13 @@ function openFormular(form) {
   } else if(form === 'login'){
     login.style.display = "block";
   }
+  console.log('hello');
 }
 
 document.querySelector('.close-button-js')
-  .addEventListener('click', () => {
-    closeFormular();
-  });
+.addEventListener('click', () => {
+  closeFormular();
+});
 
 function closeFormular(form) {
   const formular = document.querySelector('.form');
@@ -51,16 +57,18 @@ function closeFormular(form) {
 }
 
 document.querySelector('.register-button-js')
-  .addEventListener('click', () => {
-    sendRegisterDataToDatabase();
-  });
+.addEventListener('click', () => {
+  sendRegisterDataToDatabase();
+});
 
 function sendRegisterDataToDatabase() {
+  
+  console.log('Hello');
+  
   const eMail = document.querySelector('.input-e-mail-js').value;
   const username = document.querySelector('.input-username-js').value;
   const password = document.querySelector('.input-password-js').value;
-  const password2 = document.querySelector('.input-password2-js').value;
-
+  
   const data = {
     Email: eMail,
     Benutzername:username,
@@ -68,14 +76,15 @@ function sendRegisterDataToDatabase() {
   }
   const mailTest = checkMail();
   const passwordTest = checkPassword();
- 
+  
+  
   if (mailTest && passwordTest) {
-    // console.log('Daten werden ans Backend geliefert'); 
-
-    fetch('http://localhost:3000/register', {
+    console.log('Daten werden ans Backend geliefert'); 
+    
+    fetch('http://localhost:3000/', {
       method: 'POST',
       headers: {
-        'Content-Typ': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
@@ -83,13 +92,14 @@ function sendRegisterDataToDatabase() {
       return response.json();
     })
     .then((result) => {
+      window.location.href = 'Quotes.html'; 
       console.log(result);
     })
     .catch((error) => {
       console.error('Fehler beim Senden der Daten:', error);
     });
-
   }
+  
 }
 
 function checkMail() {
