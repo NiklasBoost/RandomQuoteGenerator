@@ -50,14 +50,30 @@ function removeQuote(aIndex) {
   output.textContent = allQuotes[currentQIndex];
 }
 
+let editButton = false;
+
 document.querySelector('.edit-button-js')
   .addEventListener('click', () => {
-    editQuote();
+    if (editButton === false) {
+      editQuote();
+      document.querySelector('.edit-button-js').innerHTML = 'save it';
+      editButton = true;
+    } else if (editButton === true) {
+      saveChanges();
+      document.querySelector('.edit-button-js').innerHTML = 'edit';
+      editButton = false;
+    }
   });
 
 function editQuote() {
-  console.log(allQuotes[currentQIndex]);
-  input = prompt('edit:');
-  allQuotes[currentQIndex] = input;
-  console.log(allQuotes);
+  const container = document.getElementById('output');
+  container.contentEditable = true;
+  container.focus();
+}
+
+function saveChanges() {
+  const container = document.getElementById('output');
+  container.contentEditable = false;
+  const editedQuote = container.innerHTML;
+  allQuotes[currentQIndex] = editedQuote;
 }
