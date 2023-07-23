@@ -6,20 +6,46 @@ button {
   cursor: pointer;
 }
 
+.nested-layout {
+  display: inline-block;
+}
+
+.wrapper {
+  background-color: rgba(128, 128, 128, 0.355);
+  height: 900px; 
+}
+
+.input-container,
+.searchbar-container,
+.quote-container,
+.edit-container,
+.help-code-container {
+  background-color: rgba(128, 128, 128, 0.315);
+  padding: 10px 10px;
+  margin: 20px;
+}
+
+.searchbar-container,
+.edit-container,
+.input-container,
+.help-code-container {
+  display: inline-block;
+}
+
+.searchbar-container {
+ 
+}
+
+.edit-container {
+ 
+}
+
 #output {
   font-size: 20px;
 }
 
-.container {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
 
 .help-button {
-  position: absolute;
-  top: 800px;
-  left: 800px;
   border: none;
   background-color: black;
   color: white;
