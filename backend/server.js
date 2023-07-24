@@ -10,6 +10,12 @@ app.use(cors());
 
 let signUpData;
 
+app.get('/', (req, res) => {
+  // Server reagiert auf die GET-Anfrage und gibt eine Antwort zurück
+  const response = { message: 'Erfolgreicher GET-Request' };
+  res.json(response);
+});
+
 app.post('/', (req, res) => {
   // Server reagiert auf die POST-Anfrage und gibt eine JSON-Antwort zurück
   const data = req.body;
