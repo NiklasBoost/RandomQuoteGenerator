@@ -12,12 +12,21 @@ document.querySelector('.login-button-js')
 function openFormular(form) {
   const register = document.querySelector('.formular-register');
   const login = document.querySelector('.formular-login');
+  const registerDisplay = register.style.display;
+  const loginDisplay = login.style.display;
   if (form === 'register') {
+    console.log('formular geöffnet');
+    if(loginDisplay === 'block') {
+      console.log('login formular noch offen');
+      loginDisplay = 'none';
+    }
     register.style.display = "block";
   } else if(form === 'login'){
+    if(registerDisplay === 'block') {
+      registerDisplay = 'none';
+    }
     login.style.display = "block";
   }
-  console.log('hello');
 }
 
 document.querySelector('.close-button-js')
