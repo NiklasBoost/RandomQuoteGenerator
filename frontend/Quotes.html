@@ -4,27 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RandomQuoteGenerator</title>
-  <link rel="stylesheet" href="styles\style.css">
+  <link rel="stylesheet" href="/frontend/styles/quotes.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Your Quote input + add button -->
-    <div class="input-container">
-      <input placeholder="your Quote" class="input-field" onkeyup="
-        if(event.key === 'Enter') {
-          addQuote()
-          console.log(allQuotes);
-        }  
-      ">
-      <button onclick="addQuote()" class="add-button add-remove-button">
-        +
-      </button>
-    </div>
-    
-    <!-- search bar on the top in the middle -->
-    <div class="searchbar-container">
-      <input placeholder="searchbar">
+    <div class="header">
+      <div class="placeholder-header"></div>
+      <!-- search bar on the top in the middle -->
+      <div class="searchbar-container">
+        <input placeholder="searchbar">
+      </div>
+      <div class="placeholder-header"></div>
+      <!-- edit/save button -->
+      <div class="edit-container">
+        <button class="edit-button-js">
+          edit
+        </button>
+      </div>
     </div>
     
     <!-- middle part: Quote, remove, forward (random), last quote -->
@@ -50,22 +47,30 @@
         </button>
       </div>
     </div>
+    
+    <div class="footer">
+      <!-- Your Quote input + add button -->
+      <div class="input-container">
+        <input placeholder="your Quote" class="input-field" onkeyup="
+          if(event.key === 'Enter') {
+            addQuote()
+            console.log(allQuotes);
+          }  
+        ">
+        <button onclick="addQuote()" class="add-button add-remove-button">
+          +
+        </button>
+      </div>
+      
+      <div class="placeholder-footer"></div>
 
-
-    <!-- edit/save button -->
-    <div class="edit-container">
-      <button class="edit-button-js">
-        edit
-      </button>
-    </div>
-
-
-    <!-- Helping Code, to see all Quotes in the Console -->
-    <div class="help-code-container">
-      <!--Das ist nur ein Hilfscode, um die Array Inhalte nachzuvollziehen-->
-      <button onclick="console.log(allQuotes)" class="help-button">
-        show all Quotes
-      </button>
+      <!-- Helping Code, to see all Quotes in the Console -->
+      <div class="help-code-container">
+        <!--Das ist nur ein Hilfscode, um die Array Inhalte nachzuvollziehen-->
+        <button onclick="console.log(allQuotes)" class="help-button">
+          show all Quotes
+        </button>
+      </div>
     </div>
   </div>
 
