@@ -1,0 +1,40 @@
+.footer {
+  position: absolute; 
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  .add-button {
+    background-color: greenyellow;
+    margin-left: 10px;
+    padding: 4px 9px;
+  }
+
+  .input-container {
+    flex: 1;
+  }
+  
+  .help-code-container {
+    width: 140px;
+  }
+  
+  .help-button {
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    }
+
+      .help-button:hover {
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+      .help-button:active {
+        opacity: 0.3;
+        transition: 0.3s;
+      }
+
