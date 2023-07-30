@@ -44,6 +44,7 @@ function nextQuote(output) {
     output.textContent = allQuotes[currentQIndex];
   } 
 }
+
 function removeQuote(aIndex) {
   let thisIndex = aIndex - 1
   allQuotes.splice(thisIndex);
