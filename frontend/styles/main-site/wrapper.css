@@ -1,5 +1,30 @@
 .wrapper {
   background-color: rgba(128, 128, 128, 0.355);
   height: 900px; 
+  display: flex;
+  flex-direction: column;
+
 }
 
+  .header {
+    background-color: lightblue;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .middle-part {
+    background-color: lightcoral;
+    flex: 1;
+    display: flex;
+  }
+
+  .footer {
+    background-color: lightgreen;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  

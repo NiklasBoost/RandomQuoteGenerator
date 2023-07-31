@@ -1,5 +1,9 @@
 .quote-container {
-
+  background-color: rgb(157, 157, 246);
+  width: 400px;
+  height: 300px;
+  justify-content: center; 
+  align-items: center;
 }
 
   .nested-layout {

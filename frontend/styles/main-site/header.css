@@ -1,17 +1,29 @@
-.header {
-  display: flex;
-  width: 100%;
-  margin-bottom: 50px;
-  justify-content: space-between;
-}
+
 
   .searchbar-container {
-    background-color: lightblue;
-    width: 200px;;
+    /* background-color: lightblue; */
+    width: 300px;
   }
+
+    .searchbar {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 5px 5px 15px rgba(30, 30, 30, 0.62);
+    }
 
 
   .edit-container {
-    background-color: lightpink;
-    width: 40px;
+    width: 100px;
   }
+
+    .edit-button {
+      width: 100%;
+      font-size: 25px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: none;
+      border-radius: 15px;
+      background-color: rgb(67, 114, 222);
+    }

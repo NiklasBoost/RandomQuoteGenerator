@@ -17,38 +17,40 @@
       <div class="placeholder-header"></div>
       <!-- search bar on the top in the middle -->
       <div class="searchbar-container">
-        <input class="searchbar" placeholder="search your quote">
+        <input class="searchbar" placeholder="search your quote - press enter for search!">
       </div>
 
       <!-- edit/save button -->
       <div class="edit-container">
-        <button class="edit-button-js">
+        <button class="edit-button-js edit-button">
           edit
         </button>
       </div>
     </div>
     
     <!-- middle part: Quote, remove, forward (random), last quote -->
-    <div class="quote-container">
-      <div class="nested-layout">
-        <button class="last-quote">
-          <img class="backward-arrow" src="../frontend/styles/pictures/backward_arrow.png">
-        </button>
-      </div>
-      <div class="nested-layout">
-        <div>
-          <div id="output"></div>
-        </div>
-        <div>
-          <button onclick="removeQuote(currentQIndex)" class="remove-button">
-            Remove
+    <div class="middle-part">
+      <div class="quote-container">
+        <div class="nested-layout">
+          <button class="last-quote">
+            <img class="backward-arrow" src="../frontend/styles/pictures/backward_arrow.png">
           </button>
         </div>
-      </div>
-      <div class="nested-layout">
-        <button class="next-quote next-quote-js">
-          <img class="forward-arrow" src="../frontend/styles/pictures/forward_arrow.png">
-        </button>
+        <div class="nested-layout">
+          <div>
+            <div id="output"></div>
+          </div>
+          <div>
+            <button onclick="removeQuote(currentQIndex)" class="remove-button">
+              Remove
+            </button>
+          </div>
+        </div>
+        <div class="nested-layout">
+          <button class="next-quote next-quote-js">
+            <img class="forward-arrow" src="../frontend/styles/pictures/forward_arrow.png">
+          </button>
+        </div>
       </div>
     </div>
     
