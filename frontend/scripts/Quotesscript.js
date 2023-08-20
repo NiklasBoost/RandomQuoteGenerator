@@ -2,6 +2,7 @@ let allQuotes = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
 const savedQuotes = JSON.parse(savedQuotesJSON);
+let lastQIndex; //helpcode, for don't have the same Quote twice
 
 setInterval(function() {
   if(outputDiv.innerHTML === '') {
@@ -32,13 +33,12 @@ function addQuote() {
 }
 
 function nextQuote(output) {
-  let lastIndex = allQuotes.length;
-  if (currentQIndex === lastIndex) {
-    currentQIndex = 0;
-  } else {
-    currentQIndex = Math.floor(Math.random() * allQuotes.length)
-    output.textContent = allQuotes[currentQIndex];
-  } 
+  lastQIndex = currentQIndex;
+  currentQIndex = Math.floor(Math.random() * allQuotes.length);
+  if (lastQIndex === currentQIndex) {
+    currentQIndex++;
+  }
+  output.textContent = allQuotes[currentQIndex]; 
 }
 
 function removeQuote(aIndex) {
@@ -77,6 +77,7 @@ document.querySelector('.edit-button-js')
   
 document.querySelector('.next-quote-js')
   .addEventListener('click', () => {
+    console.log('buttonhit');
     nextQuote(outputDiv);
   });
 
