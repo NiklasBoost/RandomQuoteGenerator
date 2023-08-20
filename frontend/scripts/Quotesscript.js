@@ -1,3 +1,10 @@
+class quotes {
+  constructor(quote, author) {
+    this.quote = quote;
+    this.author = author;
+  }
+}
+
 let allQuotes = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
