@@ -9,43 +9,30 @@ document.querySelector('.login-button-js')
   });
 
 
-function openFormular(form) {
-  const register = document.querySelector('.formular-register');
-  const login = document.querySelector('.formular-login');
-  const registerDisplay = register.style;
-  const loginDisplay = login.style;
-  if (form === 'register') {
-    console.log('formular geöffnet');
-    if(loginDisplay.display === 'block') {
-      console.log('login formular noch offen');
-      loginDisplay.display = 'none';
-    }
-    register.style.display = "block";
-  } else if(form === 'login'){
-    if(registerDisplay.display === 'block') {
-      registerDisplay.display = 'none';
-    }
-    login.style.display = "block";
-  }
-}
+document.querySelector('.formular-close-button-js')
+  .addEventListener('click', () => {
+    closeFormular(); 
+  });
+
 
 document.querySelector('.close-button-js')
-.addEventListener('click', () => {
-  closeFormular();
-});
+  .addEventListener('click', () => {
+    closeFormular();
+  });
 
-function closeFormular(form) {
-  const formular = document.querySelector('.form');
-  formular.style.display = "none";
-}
 
 document.querySelector('.register-button-js')
-.addEventListener('click', () => {
-  sendRegisterDataToDatabase();
-});
+  .addEventListener('click', () => {
+    sendRegisterDataToDatabase();
+  });
 
-function sendRegisterDataToDatabase() {
+document.querySelector('.goToQuotes-button-js')
+  .addEventListener('click', () => {
+    window.location.href = 'Quotes.html'; 
+  });
   
+function sendRegisterDataToDatabase() {
+    
   console.log('Hello');
   
   const eMail = document.querySelector('.input-e-mail-js').value;
@@ -98,7 +85,7 @@ function checkMail() {
 }
 
 function checkUserName() {
- //check if it is in the database
+  //check if it is in the database
 }
 
 function checkPassword() {
@@ -108,7 +95,7 @@ function checkPassword() {
   const sonderzeichenAusdruck = /[!@#$%^&*(),.?":{}|<>]/;
   const testNumber = nummerAusdruck.test(password);
   const testSonderzeichen = sonderzeichenAusdruck.test(password);
- 
+  
   if (password === password2) {
     if (password.length >= 8) {
       const lowerCasePassword = password.toLowerCase();
@@ -142,4 +129,28 @@ function checkPassword() {
     console.log('Passwortwiederholung falsch');
     return false;
   }
+}
+
+function openFormular(form) {
+  const register = document.querySelector('.formular-register');
+  const login = document.querySelector('.formular-login');
+  const registerDisplay = register.style;
+  const loginDisplay = login.style;
+  if (form === 'register') {
+    console.log('formular geöffnet');
+    if(loginDisplay.display === 'block') {
+      console.log('login formular noch offen');
+      loginDisplay.display = 'none';
+    }
+    register.style.display = "block";
+  } else if(form === 'login'){
+    if(registerDisplay.display === 'block') {
+      registerDisplay.display = 'none';
+    }
+    login.style.display = "block";
+  }
+}
+
+function closeFormular() {
+  formular.style.display = "none";
 }
