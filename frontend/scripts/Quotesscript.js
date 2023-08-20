@@ -1,4 +1,6 @@
 let allQuotes = [];
+let currentQIndex = displayQuote();
+let editButton = false;
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
 const savedQuotes = JSON.parse(savedQuotesJSON);
@@ -19,8 +21,6 @@ function displayQuote() {
   return currentQIndex;
 }
 
-let currentQIndex = displayQuote();
-
 function addQuote() {
   const newQuote1 = document.querySelector('.input-field');
   const newQuote = document.querySelector('.input-field').value;
@@ -29,11 +29,6 @@ function addQuote() {
   localStorage.setItem('quotes', allQuotesJASON);
   newQuote1.value = '';
 }
-
-document.querySelector('.next-quote-js')
-  .addEventListener('click', () => {
-    nextQuote(outputDiv);
-  });
 
 function nextQuote(output) {
   let lastIndex = allQuotes.length;
@@ -51,21 +46,6 @@ function removeQuote(aIndex) {
   output.textContent = allQuotes[currentQIndex];
 }
 
-let editButton = false;
-
-document.querySelector('.edit-button-js')
-  .addEventListener('click', () => {
-    if (editButton === false) {
-      editQuote();
-      document.querySelector('.edit-button-js').innerHTML = 'save it';
-      editButton = true;
-    } else if (editButton === true) {
-      saveChanges();
-      document.querySelector('.edit-button-js').innerHTML = 'edit';
-      editButton = false;
-    }
-  });
-
 function editQuote() {
   const container = document.getElementById('output');
   container.contentEditable = true;
@@ -78,3 +58,36 @@ function saveChanges() {
   const editedQuote = container.innerHTML;
   allQuotes[currentQIndex] = editedQuote;
 }
+
+document.querySelector('.edit-button-js')
+.addEventListener('click', () => {
+  if (editButton === false) {
+    editQuote();
+    document.querySelector('.edit-button-js').innerHTML = 'save it';
+      editButton = true;
+    } else if (editButton === true) {
+      saveChanges();
+      document.querySelector('.edit-button-js').innerHTML = 'edit';
+      editButton = false;
+    }
+  });
+  
+document.querySelector('.next-quote-js')
+  .addEventListener('click', () => {
+    nextQuote(outputDiv);
+  });
+
+document.querySelector('.add-button')
+  .addEventListener('click', () => {
+    addQuote();
+  })
+
+document.querySelector('.remove-button')
+  .addEventListener('click', () => {
+    removeQuote(currentQIndex)
+  });
+
+document.querySelector('.help-button')
+  .addEventListener('click', () => {
+    console.log(allQuotes);
+  })
