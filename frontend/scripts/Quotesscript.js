@@ -2,6 +2,7 @@ let allQuotes = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
 const savedQuotes = JSON.parse(savedQuotesJSON);
+let lastQIndex; //helpcode, for don't have the same Quote twice
 
 setInterval(function() {
   if(outputDiv.innerHTML === '') {
@@ -32,8 +33,11 @@ function addQuote() {
 }
 
 function nextQuote(output) {
-  console.log('function starts');
-  currentQIndex = Math.floor(Math.random() * allQuotes.length)
+  lastQIndex = currentQIndex;
+  currentQIndex = Math.floor(Math.random() * allQuotes.length);
+  if (lastQIndex === currentQIndex) {
+    currentQIndex++;
+  }
   output.textContent = allQuotes[currentQIndex]; 
 }
 
