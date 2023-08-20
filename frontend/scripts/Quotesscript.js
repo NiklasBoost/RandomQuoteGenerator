@@ -32,13 +32,9 @@ function addQuote() {
 }
 
 function nextQuote(output) {
-  let lastIndex = allQuotes.length;
-  if (currentQIndex === lastIndex) {
-    currentQIndex = 0;
-  } else {
-    currentQIndex = Math.floor(Math.random() * allQuotes.length)
-    output.textContent = allQuotes[currentQIndex];
-  } 
+  console.log('function starts');
+  currentQIndex = Math.floor(Math.random() * allQuotes.length)
+  output.textContent = allQuotes[currentQIndex]; 
 }
 
 function removeQuote(aIndex) {
@@ -77,6 +73,7 @@ document.querySelector('.edit-button-js')
   
 document.querySelector('.next-quote-js')
   .addEventListener('click', () => {
+    console.log('buttonhit');
     nextQuote(outputDiv);
   });
 
