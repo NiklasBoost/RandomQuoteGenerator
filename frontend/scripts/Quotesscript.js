@@ -1,6 +1,4 @@
 let allQuotes = [];
-let currentQIndex = displayQuote();
-let editButton = false;
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
 const savedQuotes = JSON.parse(savedQuotesJSON);
@@ -17,11 +15,14 @@ function displayQuote() {
   }
   let currentQIndex = 0;
   output.textContent = allQuotes[currentQIndex];
-
+  
   return currentQIndex;
 }
 
+let currentQIndex = displayQuote();
+
 function addQuote() {
+  console.log('click')
   const newQuote1 = document.querySelector('.input-field');
   const newQuote = document.querySelector('.input-field').value;
   allQuotes.push(newQuote);   
@@ -45,6 +46,8 @@ function removeQuote(aIndex) {
   allQuotes.splice(thisIndex);
   output.textContent = allQuotes[currentQIndex];
 }
+
+let editButton = false;
 
 function editQuote() {
   const container = document.getElementById('output');
