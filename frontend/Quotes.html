@@ -57,12 +57,13 @@
     <div class="footer">
       <!-- Your Quote input + add button -->
       <div class="input-container">
-        <input placeholder="your Quote" class="input-field" onkeyup="
+        <input placeholder="the quote" class="input-field-quote" onkeyup="
           if(event.key === 'Enter') {
             addQuote()
-            console.log(allQuotes);
+            console.log(allQuotesObjects);
           }  
         ">
+        <input placeholder="the author" class="input-field-author">
         <button class="add-button">
           <img class="add-button-img" src="styles/pictures/plus-symbol-button.png">
         </button>
