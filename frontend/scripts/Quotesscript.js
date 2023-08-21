@@ -7,12 +7,12 @@ class quotes {
 
 let allQuotesObjects = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
-const outputDiv = document.getElementById("output");
+const outputQuote = document.getElementById("output-quote");
 const savedQuotes = JSON.parse(savedQuotesJSON);
 let lastQIndex; //helpcode, for don't have the same Quote twice
 
 setInterval(function() {
-  if(outputDiv.innerHTML === '') {
+  if(outputQuote.innerHTML === '') {
     displayQuote();
   }
 }, 2000);
@@ -22,7 +22,7 @@ function displayQuote() {
     allQuotesObjects = savedQuotes;
   }
   let currentQIndex = 0;
-  output.textContent = allQuotesObjects[currentQIndex];
+  outputQuote.textContent = allQuotesObjects[currentQIndex];
   
   return currentQIndex;
 }
@@ -51,21 +51,19 @@ function nextQuote(output) {
 function removeQuote(aIndex) {
   let thisIndex = aIndex - 1
   allQuotesObjects.splice(thisIndex);
-  output.textContent = allQuotesObjects[currentQIndex];
+  outputQuote.textContent = allQuotesObjects[currentQIndex];
 }
 
 let editButton = false;
 
 function editQuote() {
-  const container = document.getElementById('output');
-  container.contentEditable = true;
-  container.focus();
+  outputQuote.contentEditable = true;
+  outputQuote.focus();
 }
 
 function saveChanges() {
-  const container = document.getElementById('output');
-  container.contentEditable = false;
-  const editedQuote = container.innerHTML;
+  outputQuote.contentEditable = false;
+  const editedQuote = outputQuote.innerHTML;
   allQuotesObjects[currentQIndex] = editedQuote;
 }
 
@@ -85,7 +83,7 @@ document.querySelector('.edit-button-js')
 document.querySelector('.next-quote-js')
   .addEventListener('click', () => {
     console.log('buttonhit');
-    nextQuote(outputDiv);
+    nextQuote(outputQuote);
   });
 
 document.querySelector('.add-button')
