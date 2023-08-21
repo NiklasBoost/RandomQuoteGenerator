@@ -5,7 +5,7 @@ class quotes {
   }
 }
 
-let allQuotes = [];
+let allQuotesObjects = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
 const outputDiv = document.getElementById("output");
 const savedQuotes = JSON.parse(savedQuotesJSON);
@@ -19,10 +19,10 @@ setInterval(function() {
 
 function displayQuote() {
   if (savedQuotesJSON !== null) {
-    allQuotes = savedQuotes;
+    allQuotesObjects = savedQuotes;
   }
   let currentQIndex = 0;
-  output.textContent = allQuotes[currentQIndex];
+  output.textContent = allQuotesObjects[currentQIndex];
   
   return currentQIndex;
 }
@@ -31,27 +31,27 @@ let currentQIndex = displayQuote();
 
 function addQuote() {
   console.log('click')
-  const newQuote1 = document.querySelector('.input-field');
-  const newQuote = document.querySelector('.input-field').value;
-  allQuotes.push(newQuote);   
-  const allQuotesJASON = JSON.stringify(allQuotes);
-  localStorage.setItem('quotes', allQuotesJASON);
+  const newQuote1 = document.querySelector('.input-field-quote');
+  const newQuote = document.querySelector('.input-field-quote').value;
+  allQuotesObjects.push(newQuote);   
+  const allQuotesObjectsJASON = JSON.stringify(allQuotesObjects);
+  localStorage.setItem('quotes', allQuotesObjectsJASON);
   newQuote1.value = '';
 }
 
 function nextQuote(output) {
   lastQIndex = currentQIndex;
-  currentQIndex = Math.floor(Math.random() * allQuotes.length);
+  currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
   if (lastQIndex === currentQIndex) {
     currentQIndex++;
   }
-  output.textContent = allQuotes[currentQIndex]; 
+  output.textContent = allQuotesObjects[currentQIndex]; 
 }
 
 function removeQuote(aIndex) {
   let thisIndex = aIndex - 1
-  allQuotes.splice(thisIndex);
-  output.textContent = allQuotes[currentQIndex];
+  allQuotesObjects.splice(thisIndex);
+  output.textContent = allQuotesObjects[currentQIndex];
 }
 
 let editButton = false;
@@ -66,7 +66,7 @@ function saveChanges() {
   const container = document.getElementById('output');
   container.contentEditable = false;
   const editedQuote = container.innerHTML;
-  allQuotes[currentQIndex] = editedQuote;
+  allQuotesObjects[currentQIndex] = editedQuote;
 }
 
 document.querySelector('.edit-button-js')
@@ -100,5 +100,5 @@ document.querySelector('.remove-button')
 
 document.querySelector('.help-button')
   .addEventListener('click', () => {
-    console.log(allQuotes);
+    console.log(allQuotesObjects);
   })
