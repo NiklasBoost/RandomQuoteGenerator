@@ -7,7 +7,8 @@ class quotes {
 
 let allQuotesObjects = [];
 const savedQuotesJSON = localStorage.getItem('quotes');
-const outputQuote = document.getElementById("output-quote");
+const outputQuote = document.getElementById('output-quote');
+const outputAuthor = document.getElementById('output-author');
 const savedQuotes = JSON.parse(savedQuotesJSON);
 let lastQIndex; //helpcode, for don't have the same Quote twice
 
