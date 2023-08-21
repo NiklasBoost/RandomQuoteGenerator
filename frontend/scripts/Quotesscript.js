@@ -1,4 +1,4 @@
-class quotes {
+class quoteObject {
   constructor(quote, author) {
     this.quote = quote;
     this.author = author;
@@ -34,10 +34,16 @@ function addQuote() {
   console.log('click')
   const newQuote1 = document.querySelector('.input-field-quote');
   const newQuote = document.querySelector('.input-field-quote').value;
-  allQuotesObjects.push(newQuote);   
+  const newAuthor1 = document.querySelector('.input-field-author');
+  const newAuthor = document.querySelector('.input-field-author').value;
+
+  allQuotesObjects.push(new quoteObject(newQuote, newAuthor));   
+
   const allQuotesObjectsJASON = JSON.stringify(allQuotesObjects);
   localStorage.setItem('quotes', allQuotesObjectsJASON);
+
   newQuote1.value = '';
+  newAuthor1.value = '';
 }
 
 function nextQuote(output) {
@@ -99,5 +105,8 @@ document.querySelector('.remove-button')
 
 document.querySelector('.help-button')
   .addEventListener('click', () => {
-    console.log(allQuotesObjects);
+    console.log("Inhalt des Arrays: ");
+    allQuotesObjects.forEach((quoteObj) => {
+      console.log(quoteObj);
+    });
   })
