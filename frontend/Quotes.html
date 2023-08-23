@@ -59,12 +59,11 @@
       <!-- Your Quote input + add button -->
       <div class="input-container">
         <input placeholder="the quote" class="input-field-quote" onkeyup="
-          if(event.key === 'Enter') {
-            addQuote()
-            console.log(allQuotesObjects);
-          }  
+          checkInputFieldValue();
         ">
-        <input placeholder="the author" class="input-field-author">
+        <input placeholder="the author" class="input-field-author" onkeyup="
+          checkInputFieldValue();
+        ">
         <button class="add-button">
           <img class="add-button-img" src="styles/pictures/plus-symbol-button.png">
         </button>

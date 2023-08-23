@@ -13,7 +13,7 @@ const savedQuotes = JSON.parse(savedQuotesJSON);
 let lastQIndex; //helpcode, for don't have the same Quote twice
 
 setInterval(function() {
-  if(outputQuote.innerHTML === '') {
+  if(outputQuote.innerHTML === '' || outputAuthor.innerHTML === '') {
     displayQuote();
   }
 }, 2000);
@@ -23,7 +23,8 @@ function displayQuote() {
     allQuotesObjects = savedQuotes;
   }
   let currentQIndex = 0;
-  outputQuote.textContent = allQuotesObjects[currentQIndex];
+  outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
+  outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
   
   return currentQIndex;
 }
@@ -46,32 +47,55 @@ function addQuote() {
   newAuthor1.value = '';
 }
 
-function nextQuote(output) {
-  lastQIndex = currentQIndex;
+lastQIndex = currentQIndex;
+function nextQuote() {
   currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
   if (lastQIndex === currentQIndex) {
     currentQIndex++;
   }
-  output.textContent = allQuotesObjects[currentQIndex]; 
+  outputQuote.textContent = allQuotesObjects[currentQIndex].quote; 
+  outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
 }
 
 function removeQuote(aIndex) {
   let thisIndex = aIndex - 1
   allQuotesObjects.splice(thisIndex);
-  outputQuote.textContent = allQuotesObjects[currentQIndex];
+  nextQuote();
 }
 
 let editButton = false;
 
 function editQuote() {
   outputQuote.contentEditable = true;
+  outputAuthor.contentEditable = true;
   outputQuote.focus();
+  outputAuthor.focus();
 }
 
 function saveChanges() {
   outputQuote.contentEditable = false;
+  outputAuthor.contentEditable = false;
   const editedQuote = outputQuote.innerHTML;
-  allQuotesObjects[currentQIndex] = editedQuote;
+  const editedAuthor = outputAuthor.innerHTML;
+  allQuotesObjects[currentQIndex].quote = editedQuote;
+  allQuotesObjects[currentQIndex].author = editedAuthor;
+}
+
+function checkInputFieldValue() {
+  const quoteField = document.querySelector('.input-field-quote');
+  const authorField = document.querySelector('.input-field-author');
+
+  if (quoteField.value.trim() === '') {
+    console.log('Fülle das Quotefeld zuerst aus!');
+    return;
+  } else if (authorField.value.trim() === '') {
+    console.log('Fülle das Autorenfeld zuerst aus!');
+    return;
+  } else {
+    if(event.key === 'Enter') {
+      addQuote();
+    } 
+  }
 }
 
 document.querySelector('.edit-button-js')
@@ -90,7 +114,7 @@ document.querySelector('.edit-button-js')
 document.querySelector('.next-quote-js')
   .addEventListener('click', () => {
     console.log('buttonhit');
-    nextQuote(outputQuote);
+    nextQuote();
   });
 
 document.querySelector('.add-button')
