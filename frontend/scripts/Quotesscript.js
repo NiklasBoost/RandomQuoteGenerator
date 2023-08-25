@@ -61,9 +61,16 @@ function nextQuote() {
 }
 
 function removeQuote(aIndex) {
-  let thisIndex = aIndex - 1
-  allQuotesObjects.splice(thisIndex);
-  nextQuote();
+  const arrayLenght = allQuotesObjects.length;
+  // console.log(allQuotesObjects.length);
+  if (arrayLenght <= 3) {
+    console.log('add first new quotes')
+  } else {
+    allQuotesObjects.splice(aIndex, 1);
+    // console.log(allQuotesObjects.length);
+    currentQIndex++;
+    nextQuote();
+  }
 }
 
 let editButton = false;
