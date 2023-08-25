@@ -88,16 +88,16 @@ function checkInputFieldValue() {
   const quoteField = document.querySelector('.input-field-quote');
   const authorField = document.querySelector('.input-field-author');
 
-  if (quoteField.value.trim() === '') {
-    console.log('Fülle das Quotefeld zuerst aus!');
-    return;
-  } else if (authorField.value.trim() === '') {
-    console.log('Fülle das Autorenfeld zuerst aus!');
-    return;
-  } else {
-    if(event.key === 'Enter') {
+  if(event.key === 'Enter') {
+    if (quoteField.value.trim() === '') {
+      console.log('Fülle das Quotefeld zuerst aus!');
+      return;
+    } else if (authorField.value.trim() === '') {
+      console.log('Fülle das Autorenfeld zuerst aus!');
+      return;
+    } else {
       addQuote();
-    } 
+    }
   }
 }
 
