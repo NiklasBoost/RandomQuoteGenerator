@@ -38,7 +38,8 @@
         </div>
         <div class="nested-layout">
           <div>
-            <div id="output"></div>
+            <div id="output-quote"></div>
+            <div id="output-author"></div>
           </div>
         </div>
         <div class="nested-layout">
@@ -57,11 +58,11 @@
     <div class="footer">
       <!-- Your Quote input + add button -->
       <div class="input-container">
-        <input placeholder="your Quote" class="input-field" onkeyup="
-          if(event.key === 'Enter') {
-            addQuote()
-            console.log(allQuotes);
-          }  
+        <input placeholder="the quote" class="input-field-quote" onkeyup="
+          checkInputFieldValue();
+        ">
+        <input placeholder="the author" class="input-field-author" onkeyup="
+          checkInputFieldValue();
         ">
         <button class="add-button">
           <img class="add-button-img" src="styles/pictures/plus-symbol-button.png">
