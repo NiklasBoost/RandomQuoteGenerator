@@ -23,6 +23,7 @@ function displayQuote() {
     allQuotesObjects = savedQuotes;
   }
   let currentQIndex = 0;
+  
   outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
   outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
   
@@ -47,12 +48,15 @@ function addQuote() {
   newAuthor1.value = '';
 }
 
-lastQIndex = currentQIndex;
 function nextQuote() {
+  lastQIndex = currentQIndex;
   currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
+
+  // console.log('before if-statement: ' + lastQIndex, currentQIndex);
   if (lastQIndex === currentQIndex) {
     currentQIndex++;
   }
+  // console.log('after if-statement: ' + lastQIndex, currentQIndex);
   outputQuote.textContent = allQuotesObjects[currentQIndex].quote; 
   outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
 }
