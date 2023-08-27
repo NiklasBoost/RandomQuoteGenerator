@@ -30,6 +30,7 @@ function displayQuote() {
 }
 
 let currentQIndex = displayQuote();
+let lastQIndex;
 
 function addQuote() {
   console.log('click')
@@ -48,7 +49,8 @@ function addQuote() {
 }
 
 function nextQuote() {
-  const lastQIndex = currentQIndex;
+  console.log('nextQuote function');
+  lastQIndex = currentQIndex;
   currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
 
   // console.log('before if-statement: ' + lastQIndex, currentQIndex);
@@ -58,6 +60,14 @@ function nextQuote() {
   // console.log('after if-statement: ' + lastQIndex, currentQIndex);
   outputQuote.textContent = allQuotesObjects[currentQIndex].quote; 
   outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
+  
+  console.log(currentQIndex);
+}
+
+function lastQuote() {
+  console.log('last index is: ' + lastQIndex);
+  outputQuote.textContent = allQuotesObjects[lastQIndex].quote; 
+  outputAuthor.textContent = allQuotesObjects[lastQIndex].author;
 }
 
 function removeQuote(aIndex) {
@@ -125,6 +135,11 @@ document.querySelector('.next-quote-js')
   .addEventListener('click', () => {
     console.log('buttonhit');
     nextQuote();
+  });
+
+document.querySelector('.last-quote-js')
+  .addEventListener('click', () => {
+    lastQuote();
   });
 
 document.querySelector('.add-button')
