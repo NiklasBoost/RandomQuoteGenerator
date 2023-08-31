@@ -66,7 +66,8 @@ function nextQuote() {
 
 function lastQuote() {
   console.log('last index is: ' + lastQIndex);
-  outputQuote.textContent = allQuotesObjects[lastQIndex].quote; 
+  outputQuote.textContent = allQuotesObjects[lastQIndex
+  ].quote; 
   outputAuthor.textContent = allQuotesObjects[lastQIndex].author;
 }
 
