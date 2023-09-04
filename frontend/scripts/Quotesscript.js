@@ -68,13 +68,13 @@ function nextQuote() {
 }
 
 function lastQuote() {
+
   if (pastIndexCounter > 0) {
     console.log(currentQIndex);
     console.log(pastIndex);
     outputQuote.textContent = allQuotesObjects[pastIndex].quote; 
     outputAuthor.textContent = allQuotesObjects[pastIndex].author;
     removeLastIndex();
-
   } else {
     outputQuote.textContent = 'Da ist kein letztes Zitat'; 
     outputAuthor.textContent = '- System';
