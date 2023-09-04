@@ -1,3 +1,5 @@
+import { pushIndex, removeLastIndex, pastIndexCounter, pastIndex } from "./goBack.js";
+
 class quoteObject {
   constructor(quote, author) {
     this.quote = quote;
@@ -51,6 +53,7 @@ function addQuote() {
 function nextQuote() {
   console.log('nextQuote function');
   lastQIndex = currentQIndex;
+  pushIndex(currentQIndex);
   currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
 
   // console.log('before if-statement: ' + lastQIndex, currentQIndex);
@@ -65,9 +68,17 @@ function nextQuote() {
 }
 
 function lastQuote() {
-  console.log('last index is: ' + lastQIndex);
-  outputQuote.textContent = allQuotesObjects[lastQIndex].quote; 
-  outputAuthor.textContent = allQuotesObjects[lastQIndex].author;
+  if (pastIndexCounter > 0) {
+    console.log(currentQIndex);
+    console.log(pastIndex);
+    outputQuote.textContent = allQuotesObjects[pastIndex].quote; 
+    outputAuthor.textContent = allQuotesObjects[pastIndex].author;
+    removeLastIndex();
+
+  } else {
+    outputQuote.textContent = 'Da ist kein letztes Zitat'; 
+    outputAuthor.textContent = '- System';
+  }
 }
 
 function removeQuote(aIndex) {
