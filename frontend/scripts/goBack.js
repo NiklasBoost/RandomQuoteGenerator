@@ -1,11 +1,22 @@
-const pastIndex = [];
+const pastIndexList = [];
 let pastIndexCounter;
-let goBack = false;
+let pastIndex;
 
 export function pushIndex(i) {
-  pastIndex.push(i);
-  pastIndexCounter = pastIndex.length
-  console.log(pastIndex);
+  pastIndexList.push(i);
+  pastIndexCounter = pastIndexList.length
+  pastIndex = pastIndexList[pastIndexCounter - 1];
+
+  // console.log('past Index: ' + pastIndex);
+  console.log('Past Index Array: ' + pastIndexList);
+  // console.log('Counter: ' + pastIndexCounter);
 }
 
-export {pastIndexCounter};
+export function removeLastIndex() {
+  pastIndexList.pop();
+  pastIndexCounter = pastIndexList.length
+  pastIndex = pastIndexList[pastIndexCounter - 1];
+  console.log(pastIndexList)
+}
+
+export {pastIndexCounter, pastIndex};
