@@ -1,3 +1,5 @@
+import { pushIndex, pastIndexCounter } from "./goBack.js";
+
 class quoteObject {
   constructor(quote, author) {
     this.quote = quote;
@@ -62,10 +64,16 @@ function nextQuote() {
   outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
   
   console.log(currentQIndex);
+  pushIndex(currentQIndex);
 }
 
 function lastQuote() {
-  console.log('last index is: ' + lastQIndex);
+  if (pastIndexCounter > 0) {
+    console.log(pastIndexCounter);
+  } else {
+    console.log(pastIndexCounter);
+    console.log('Da ist kein letztes Zitat');
+  }
   outputQuote.textContent = allQuotesObjects[lastQIndex].quote; 
   outputAuthor.textContent = allQuotesObjects[lastQIndex].author;
 }
