@@ -170,3 +170,11 @@ document.querySelector('.help-button')
       console.log(quoteObj);
     });
   })
+
+document.addEventListener('keydown', () => {
+  if(event.key === 'ArrowRight') {
+    nextQuote();
+  } else if(event.key === 'ArrowLeft') {
+    lastQuote();
+  }
+})
