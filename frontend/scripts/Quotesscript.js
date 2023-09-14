@@ -112,11 +112,11 @@ function saveChanges() {
   allQuotesObjects[currentQIndex].author = editedAuthor;
 }
 
-function checkInputFieldValue() {
+function checkInputFieldValue(addB) {
   const quoteField = document.querySelector('.input-field-quote');
   const authorField = document.querySelector('.input-field-author');
 
-  if(event.key === 'Enter') {
+  if(event.key === 'Enter' || addB === 'addButton') {
     if (quoteField.value.trim() === '') {
       console.log('Fülle das Quotefeld zuerst aus!');
       return;
@@ -155,7 +155,7 @@ document.querySelector('.last-quote-js')
 
 document.querySelector('.add-button')
   .addEventListener('click', () => {
-    addQuote();
+    checkInputFieldValue('addButton');
   })
 
 document.querySelector('.remove-button')
