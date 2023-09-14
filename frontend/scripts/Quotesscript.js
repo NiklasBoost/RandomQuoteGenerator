@@ -169,7 +169,17 @@ document.querySelector('.help-button')
     allQuotesObjects.forEach((quoteObj) => {
       console.log(quoteObj);
     });
-  })
+  });
+
+document.querySelector('.input-field-quote')
+  .addEventListener('keyup', () => {
+    checkInputFieldValue();
+  });
+
+document.querySelector('.input-field-author')
+  .addEventListener('keyup', () => {
+    checkInputFieldValue();
+  });
 
 document.addEventListener('keydown', () => {
   if(event.key === 'ArrowRight') {
@@ -177,4 +187,4 @@ document.addEventListener('keydown', () => {
   } else if(event.key === 'ArrowLeft') {
     lastQuote();
   }
-})
+});
