@@ -13,7 +13,7 @@ function GoToLastQuote() {
   return (
     <>
       <button className="last-quote last-quote-js">
-        <img className="backward-arrow-img" src="../frontend/styles/pictures/backward_arrow.png"></img>
+        <img className="backward-arrow-img" src="src/components/frontend/styles/pictures/backward_arrow.png"></img>
       </button>
     </>
   )
@@ -32,7 +32,7 @@ function GoToNextQuote() {
   return (
     <>
       <button className="next-quote next-quote-js">
-        <img className="forward-arrow-img" src="../frontend/styles/pictures/forward_arrow.png"></img>
+        <img className="forward-arrow-img" src="src\components\frontend\styles\pictures\forward_arrow.png"></img>
       </button>
     </>
   )
