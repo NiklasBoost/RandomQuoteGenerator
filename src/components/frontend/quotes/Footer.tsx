@@ -1,9 +1,13 @@
 export function Footer() {
   return (
-    <>
-      <InputStuff />
-      <HelpingButton />
-    </>
+    <div className="footer">
+      <div className="input-container">
+        <InputStuff />
+      </div>
+      <div className="help-code-container">
+        <HelpingButton />
+      </div>
+    </div>
   )
 }
 

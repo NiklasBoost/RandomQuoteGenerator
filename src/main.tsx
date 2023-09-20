@@ -8,8 +8,10 @@ import { Footer } from './components/frontend/quotes/Footer.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
  
   <React.StrictMode>
-    <Header />
-    <MiddlePart />
-    <Footer />
+    <div className='wrapper'>
+      <Header />
+      <MiddlePart />
+      <Footer />
+    </div>
   </React.StrictMode>,
 )
