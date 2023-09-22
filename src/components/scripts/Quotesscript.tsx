@@ -7,16 +7,19 @@ interface QuoteObject {
 }
 
 export function displayQuote(): number {
-  let allQuoteObjects: QuoteObject[] = allQuotesObjects;
-  if (savedQuotesJSON !== null) {
-    allQuoteObjects = savedQuotes as QuoteObject[];
+  if (outputQuote && outputAuthor) {
+    let allQuoteObjects: QuoteObject[] = allQuotesObjects;
+    if (savedQuotesJSON !== null) {
+      allQuoteObjects = savedQuotes as QuoteObject[];
+    }
+    let currentQIndex = 0;
+  
+    outputQuote.textContent = allQuoteObjects[currentQIndex].quote;
+    outputAuthor.textContent = allQuoteObjects[currentQIndex].author;
+  
+    return currentQIndex;
   }
-  let currentQIndex = 0;
-
-  outputQuote.textContent = allQuoteObjects[currentQIndex].quote;
-  outputAuthor.textContent = allQuoteObjects[currentQIndex].author;
-
-  return currentQIndex;
+  return -1;
 }
 
 let currentQIndex = displayQuote();
@@ -39,31 +42,35 @@ export function addQuote(): void {
 }
 
 function nextQuote(): void {
-  console.log('nextQuote function');
-  lastQIndex = currentQIndex;
-  pushIndex(currentQIndex);
-  currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
-
-  if (lastQIndex === currentQIndex) {
-    currentQIndex++;
+  if(outputQuote && outputAuthor) {
+    console.log('nextQuote function');
+    lastQIndex = currentQIndex;
+    pushIndex(currentQIndex);
+    currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
+  
+    if (lastQIndex === currentQIndex) {
+      currentQIndex++;
+    }
+  
+    outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
+    outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
+  
+    console.log(currentQIndex);
   }
-
-  outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
-  outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
-
-  console.log(currentQIndex);
 }
 
 function lastQuote(): void {
-  if (pastIndexCounter > 0) {
-    console.log(currentQIndex);
-    console.log(pastIndex);
-    outputQuote.textContent = allQuotesObjects[pastIndex].quote;
-    outputAuthor.textContent = allQuotesObjects[pastIndex].author;
-    removeLastIndex();
-  } else {
-    outputQuote.textContent = 'Da ist kein letztes Zitat';
-    outputAuthor.textContent = '- System';
+  if(outputQuote && outputAuthor) {
+    if (pastIndexCounter > 0) {
+      console.log(currentQIndex);
+      console.log(pastIndex);
+      outputQuote.textContent = allQuotesObjects[pastIndex].quote;
+      outputAuthor.textContent = allQuotesObjects[pastIndex].author;
+      removeLastIndex();
+    } else {
+      outputQuote.textContent = 'Da ist kein letztes Zitat';
+      outputAuthor.textContent = '- System';
+    }
   }
 }
 
@@ -82,16 +89,16 @@ function removeQuote(aIndex: number): void {
 let editButton = false;
 
 function editQuote(): void {
-  if (outputQuote) outputQuote.contentEditable = true;
-  if (outputAuthor) outputAuthor.contentEditable = true;
+  if (outputQuote) outputQuote.contentEditable = "true";
+  if (outputAuthor) outputAuthor.contentEditable = "true";
 
   if (outputQuote) outputQuote.focus();
   if (outputAuthor) outputAuthor.focus();
 }
 
 function saveChanges(): void {
-  if (outputQuote) outputQuote.contentEditable = false;
-  if (outputAuthor) outputAuthor.contentEditable = false;
+  if (outputQuote) outputQuote.contentEditable = "false";
+  if (outputAuthor) outputAuthor.contentEditable = "false";
 
   const editedQuote = outputQuote?.innerHTML || '';
   const editedAuthor = outputAuthor?.innerHTML || '';
@@ -99,7 +106,7 @@ function saveChanges(): void {
   allQuotesObjects[currentQIndex].author = editedAuthor;
 }
 
-function checkInputFieldValue(addB: string): void {
+function checkInputFieldValue(event: KeyboardEvent, addB: string): void {
   const quoteField = document.querySelector<HTMLInputElement>('.input-field-quote');
   const authorField = document.querySelector<HTMLInputElement>('.input-field-author');
 
