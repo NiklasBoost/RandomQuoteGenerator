@@ -1,8 +1,8 @@
-const pastIndexList: Array<Number> = [];
+const pastIndexList: Array<number> = [];
 let pastIndexCounter = 0;
-let pastIndex: Number;
+let pastIndex: number;
 
-export function pushIndex(i: Number) {
+export function pushIndex(i: number) {
   pastIndexList.push(i);
   pastIndexCounter = pastIndexList.length
   pastIndex = pastIndexList[pastIndexCounter - 1];
