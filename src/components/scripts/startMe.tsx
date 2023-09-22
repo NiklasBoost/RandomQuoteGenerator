@@ -1,22 +1,25 @@
-import { displayQuote } from "./Quotesscript";
+import { displayQuote } from "./Quotesscript.tsx";
 
 console.log('hello');
 
 class quoteObject {
-  constructor(quote, author) {
+  quote: string;
+  author: string;
+
+  constructor(quote: string, author: string) {
     this.quote = quote;
     this.author = author;
   }
 }
 
-export let allQuotesObjects = [];
-export const savedQuotesJSON = localStorage.getItem('quotes');
-export const outputQuote = document.getElementById('output-quote');
-export const outputAuthor = document.getElementById('output-author');
-export const savedQuotes = JSON.parse(savedQuotesJSON);
+export let allQuotesObjects: quoteObject[] = [];
+export const savedQuotesJSON: string | null = localStorage.getItem('quotes');
+export const outputQuote: HTMLElement | null = document.getElementById('output-quote');
+export const outputAuthor: HTMLElement | null = document.getElementById('output-author');
+export const savedQuotes: quoteObject[] = savedQuotesJSON ? JSON.parse(savedQuotesJSON) : [];
 
 setInterval(function() {
-  if(outputQuote.innerHTML === '' || outputAuthor.innerHTML === '') {
+  if(outputQuote?.innerHTML === '' || outputAuthor?.innerHTML === '') {
     displayQuote();
   }
 }, 2000);
