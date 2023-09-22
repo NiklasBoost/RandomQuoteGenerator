@@ -1,78 +1,79 @@
-import { pushIndex, removeLastIndex, pastIndexCounter, pastIndex } from "./goBack.js";
-import { allQuotesObjects, savedQuotesJSON, outputQuote, outputAuthor, savedQuotes } from "./startMe.js";
+import { pushIndex, removeLastIndex, pastIndexCounter, pastIndex } from "./goBack.tsx";
+import { allQuotesObjects, savedQuotesJSON, outputQuote, outputAuthor, savedQuotes } from "./startMe.tsx";
 
+interface QuoteObject {
+  quote: string;
+  author: string;
+}
 
-export function displayQuote() {
-  let allQuoteObjects = allQuotesObjects;
+export function displayQuote(): number {
+  let allQuoteObjects: QuoteObject[] = allQuotesObjects;
   if (savedQuotesJSON !== null) {
-    allQuoteObjects = savedQuotes;
+    allQuoteObjects = savedQuotes as QuoteObject[];
   }
   let currentQIndex = 0;
-  
-  outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
-  outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
-  
+
+  outputQuote.textContent = allQuoteObjects[currentQIndex].quote;
+  outputAuthor.textContent = allQuoteObjects[currentQIndex].author;
+
   return currentQIndex;
 }
 
 let currentQIndex = displayQuote();
-let lastQIndex;
+let lastQIndex: number;
 
-export function addQuote() {
-  console.log('click')
-  const newQuote1 = document.querySelector('.input-field-quote');
-  const newQuote = document.querySelector('.input-field-quote').value;
-  const newAuthor1 = document.querySelector('.input-field-author');
-  const newAuthor = document.querySelector('.input-field-author').value;
+export function addQuote(): void {
+  console.log('click');
+  const newQuote1 = document.querySelector<HTMLInputElement>('.input-field-quote');
+  const newQuote = newQuote1?.value || '';
+  const newAuthor1 = document.querySelector<HTMLInputElement>('.input-field-author');
+  const newAuthor = newAuthor1?.value || '';
 
-  allQuotesObjects.push(new quoteObject(newQuote, newAuthor));   
+  allQuotesObjects.push({ quote: newQuote, author: newAuthor });
 
   const allQuotesObjectsJASON = JSON.stringify(allQuotesObjects);
   localStorage.setItem('quotes', allQuotesObjectsJASON);
 
-  newQuote1.value = '';
-  newAuthor1.value = '';
+  if (newQuote1) newQuote1.value = '';
+  if (newAuthor1) newAuthor1.value = '';
 }
 
-function nextQuote() {
+function nextQuote(): void {
   console.log('nextQuote function');
   lastQIndex = currentQIndex;
   pushIndex(currentQIndex);
   currentQIndex = Math.floor(Math.random() * allQuotesObjects.length);
 
-  // console.log('before if-statement: ' + lastQIndex, currentQIndex);
   if (lastQIndex === currentQIndex) {
     currentQIndex++;
   }
-  // console.log('after if-statement: ' + lastQIndex, currentQIndex);
-  outputQuote.textContent = allQuotesObjects[currentQIndex].quote; 
+
+  outputQuote.textContent = allQuotesObjects[currentQIndex].quote;
   outputAuthor.textContent = allQuotesObjects[currentQIndex].author;
-  
+
   console.log(currentQIndex);
 }
 
-function lastQuote() {
-
+function lastQuote(): void {
   if (pastIndexCounter > 0) {
     console.log(currentQIndex);
     console.log(pastIndex);
-    outputQuote.textContent = allQuotesObjects[pastIndex].quote; 
+    outputQuote.textContent = allQuotesObjects[pastIndex].quote;
     outputAuthor.textContent = allQuotesObjects[pastIndex].author;
     removeLastIndex();
   } else {
-    outputQuote.textContent = 'Da ist kein letztes Zitat'; 
+    outputQuote.textContent = 'Da ist kein letztes Zitat';
     outputAuthor.textContent = '- System';
   }
 }
 
-function removeQuote(aIndex) {
-  const arrayLenght = allQuotesObjects.length;
-  // console.log(allQuotesObjects.length);
-  if (arrayLenght <= 3) {
-    console.log('add first new quotes')
+function removeQuote(aIndex: number): void {
+  const arrayLength = allQuotesObjects.length;
+
+  if (arrayLength <= 3) {
+    console.log('add first new quotes');
   } else {
     allQuotesObjects.splice(aIndex, 1);
-    // console.log(allQuotesObjects.length);
     currentQIndex++;
     nextQuote();
   }
@@ -80,31 +81,33 @@ function removeQuote(aIndex) {
 
 let editButton = false;
 
-function editQuote() {
-  outputQuote.contentEditable = true;
-  outputAuthor.contentEditable = true;
-  outputQuote.focus();
-  outputAuthor.focus();
+function editQuote(): void {
+  if (outputQuote) outputQuote.contentEditable = true;
+  if (outputAuthor) outputAuthor.contentEditable = true;
+
+  if (outputQuote) outputQuote.focus();
+  if (outputAuthor) outputAuthor.focus();
 }
 
-function saveChanges() {
-  outputQuote.contentEditable = false;
-  outputAuthor.contentEditable = false;
-  const editedQuote = outputQuote.innerHTML;
-  const editedAuthor = outputAuthor.innerHTML;
+function saveChanges(): void {
+  if (outputQuote) outputQuote.contentEditable = false;
+  if (outputAuthor) outputAuthor.contentEditable = false;
+
+  const editedQuote = outputQuote?.innerHTML || '';
+  const editedAuthor = outputAuthor?.innerHTML || '';
   allQuotesObjects[currentQIndex].quote = editedQuote;
   allQuotesObjects[currentQIndex].author = editedAuthor;
 }
 
-function checkInputFieldValue(addB) {
-  const quoteField = document.querySelector('.input-field-quote');
-  const authorField = document.querySelector('.input-field-author');
+function checkInputFieldValue(addB: string): void {
+  const quoteField = document.querySelector<HTMLInputElement>('.input-field-quote');
+  const authorField = document.querySelector<HTMLInputElement>('.input-field-author');
 
-  if(event.key === 'Enter' || addB === 'addButton') {
-    if (quoteField.value.trim() === '') {
+  if (event?.key === 'Enter' || addB === 'addButton') {
+    if (!quoteField || quoteField.value.trim() === '') {
       console.log('Fülle das Quotefeld zuerst aus!');
       return;
-    } else if (authorField.value.trim() === '') {
+    } else if (!authorField || authorField.value.trim() === '') {
       console.log('Fülle das Autorenfeld zuerst aus!');
       return;
     } else {
@@ -112,6 +115,7 @@ function checkInputFieldValue(addB) {
     }
   }
 }
+
 
 // document.querySelector('.edit-button-js')
 // .addEventListener('click', () => {
