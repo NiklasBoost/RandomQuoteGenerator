@@ -5,8 +5,8 @@ import { MiddlePart } from './components/quotes/MiddlePart.tsx'
 import { Footer } from './components/quotes/Footer.tsx'
 
 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
- 
   <React.StrictMode>
     <div className='wrapper'>
       <Header />

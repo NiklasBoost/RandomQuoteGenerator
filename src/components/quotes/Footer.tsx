@@ -1,3 +1,5 @@
+import { addQuote } from '../scripts/Quotesscript.js';
+
 export function Footer() {
   return (
     <div className="footer">
@@ -12,6 +14,8 @@ export function Footer() {
 }
 
 function InputStuff() {
+  
+
   return (
     <>
       <input placeholder="the quote" className="input-field-quote"></input>
