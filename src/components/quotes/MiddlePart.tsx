@@ -20,43 +20,66 @@ export function MiddlePart({ outputQuote, outputAuthor, nextQuote, lastQuote, re
   );
 }
 
-function GoToLastQuote({ lastQuote }) {
+type GoToLastQuoteProps = {
+  lastQuote: () => void;
+}
+
+function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   
   return (
     <div className="nested-layout">
-      <button className="last-quote last-quote-js">
+      <button 
+        className="last-quote last-quote-js"
+        onClick={lastQuote}>
         <img className="backward-arrow-img" src="src/components/styles/pictures/backward_arrow.png"></img>
       </button>
     </div>
   )
 }
 
-function Outputs({outputQuote, outputAuthor}) {
+type OutputsProps = {
+  outputQuote: string;
+  outputAuthor: string;
+}
+
+function Outputs({outputQuote, outputAuthor}: OutputsProps) {
 
  return (
   <div  className="nested-layout">
-    <div id="output-quote"></div>
-    <div id="output-author"></div>
+    <div id="output-quote">{outputQuote}</div>
+    <div id="output-author">{outputAuthor}</div>
   </div>
  )
 }
 
-function GoToNextQuote({ nextQuote }) {
+type GoToNextQuoteProps = {
+  nextQuote: () => void;
+}
+
+function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
  
   return (
     <div  className="nested-layout">
-      <button className="next-quote next-quote-js">
+      <button 
+        className="next-quote next-quote-js" 
+        onClick={nextQuote}>
         <img className="forward-arrow-img" src="src\components\styles\pictures\forward_arrow.png"></img>
       </button>
     </div>
   )
 }
 
-function RemoveButton({ removeQuote }) {
+type RemoveButtonProps = {
+  removeQuote: () => void;
+}
+
+function RemoveButton({ removeQuote }:RemoveButtonProps) {
  
   return (
     <div  className="nested-layout">
-      <button className="remove-button">
+      <button 
+      className="remove-button"
+      onClick={removeQuote}>
         Remove
       </button>
     </div>

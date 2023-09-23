@@ -84,7 +84,7 @@ function App() {
 
   // Function to remove a quote
   function removeQuote() {
-    if (savedQuotes.length <= 3) {
+    if (savedQuotes.length <= 1) {
       console.log('Add more quotes first');
     } else {
       const updatedQuotes = [...savedQuotes];
@@ -98,6 +98,7 @@ function App() {
 
       // Save to local storage
       localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
+      console.log(allQuotesObjects);
     }
   }
 
