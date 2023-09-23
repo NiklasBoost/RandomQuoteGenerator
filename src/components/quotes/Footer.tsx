@@ -1,4 +1,4 @@
-import { addQuote } from '../scripts/Quotesscript.js';
+
 
 export function Footer() {
   return (
