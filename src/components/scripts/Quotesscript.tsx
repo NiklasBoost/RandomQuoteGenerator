@@ -1,5 +1,5 @@
 import { pushIndex, removeLastIndex, pastIndexCounter, pastIndex } from "./goBack.tsx";
-import { allQuotesObjects, savedQuotesJSON, outputQuote, outputAuthor, savedQuotes } from "./startMe.tsx";
+
 
 interface QuoteObject {
   quote: string;

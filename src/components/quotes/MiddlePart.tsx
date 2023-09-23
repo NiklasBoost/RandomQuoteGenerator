@@ -1,4 +1,5 @@
 export function MiddlePart() {
+
   return (
     <div className="middle-part">
       <div className="quote-container">
@@ -12,8 +13,9 @@ export function MiddlePart() {
 }
 
 function GoToLastQuote() {
+  
   return (
-    <div  className="nested-layout">
+    <div className="nested-layout">
       <button className="last-quote last-quote-js">
         <img className="backward-arrow-img" src="src/components/styles/pictures/backward_arrow.png"></img>
       </button>
@@ -22,6 +24,7 @@ function GoToLastQuote() {
 }
 
 function Outputs() {
+
  return (
   <div  className="nested-layout">
     <div id="output-quote"></div>
@@ -31,6 +34,7 @@ function Outputs() {
 }
 
 function GoToNextQuote() {
+ 
   return (
     <div  className="nested-layout">
       <button className="next-quote next-quote-js">
@@ -41,6 +45,7 @@ function GoToNextQuote() {
 }
 
 function RemoveButton() {
+ 
   return (
     <div  className="nested-layout">
       <button className="remove-button">

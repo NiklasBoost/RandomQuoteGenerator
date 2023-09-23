@@ -1,8 +1,12 @@
+import { Header } from "../quotes/Header.tsx";
+import { MiddlePart } from "../quotes/MiddlePart.tsx";
+import { Footer } from "../quotes/Footer.tsx";
 import { displayQuote } from "./Quotesscript.tsx";
+import { useState, useEffect } from "react";
 
 console.log('hello');
 
-class quoteObject {
+class QuoteObject {
   quote: string;
   author: string;
 
@@ -12,16 +16,40 @@ class quoteObject {
   }
 }
 
-export let allQuotesObjects: quoteObject[] = [];
-export const savedQuotesJSON: string | null = localStorage.getItem('quotes');
-export const outputQuote: HTMLElement | null = document.getElementById('output-quote');
-export const outputAuthor: HTMLElement | null = document.getElementById('output-author');
-export const savedQuotes: quoteObject[] = savedQuotesJSON ? JSON.parse(savedQuotesJSON) : [];
+function App() {
+  const [allQuotesObjects, setAllQuotesObjects] = useState<QuoteObject[]>([]);
+  const [savedQuotesJSON, setSavedQuotesJSON] = useState<string | null>(
+    localStorage.getItem('quotes')
+  );
+  
+  const [outputQuote, setOutputQuote] = useState<string>('');
+  const [outputAuthor, setOutputAuthor] = useState<string>('');
 
-setInterval(function() {
-  if(outputQuote?.innerHTML === '' || outputAuthor?.innerHTML === '') {
-    displayQuote();
-  }
-}, 2000);
+  const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
+
+  useEffect(() => {
+    if (savedQuotesJSON !== null) {
+      const parsedQuotes = JSON.parse(savedQuotesJSON) as QuoteObject[];
+      setSavedQuotes(parsedQuotes);
+    }
+  }, [savedQuotesJSON]);
+
+  useEffect(() => {
+    if (outputQuote === '' || outputAuthor === '') {
+      displayQuote();
+    }
+  }, [outputQuote, outputAuthor]);
+  
+  return (
+    <div className='wrapper'>
+      <Header />
+      <MiddlePart />
+      <Footer />
+    </div>
+  )
+}
+
+export default App;
+
 
 
