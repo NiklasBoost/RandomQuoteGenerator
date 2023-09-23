@@ -1,18 +1,26 @@
-export function MiddlePart() {
 
+type MiddlePartProps = {
+  outputQuote: string;
+  outputAuthor: string;
+  nextQuote: () => void;
+  lastQuote: () => void;
+  removeQuote: () => void;
+};
+
+export function MiddlePart({ outputQuote, outputAuthor, nextQuote, lastQuote, removeQuote }: MiddlePartProps) {
   return (
     <div className="middle-part">
       <div className="quote-container">
-        <GoToLastQuote />
-        <Outputs />
-        <GoToNextQuote />
-        <RemoveButton />
+        <GoToLastQuote lastQuote={lastQuote} />
+        <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
+        <GoToNextQuote nextQuote={nextQuote} />
+        <RemoveButton removeQuote={removeQuote} />
       </div>
     </div>
-  )
+  );
 }
 
-function GoToLastQuote() {
+function GoToLastQuote({ lastQuote }) {
   
   return (
     <div className="nested-layout">
@@ -23,7 +31,7 @@ function GoToLastQuote() {
   )
 }
 
-function Outputs() {
+function Outputs({outputQuote, outputAuthor}) {
 
  return (
   <div  className="nested-layout">
@@ -33,7 +41,7 @@ function Outputs() {
  )
 }
 
-function GoToNextQuote() {
+function GoToNextQuote({ nextQuote }) {
  
   return (
     <div  className="nested-layout">
@@ -44,7 +52,7 @@ function GoToNextQuote() {
   )
 }
 
-function RemoveButton() {
+function RemoveButton({ removeQuote }) {
  
   return (
     <div  className="nested-layout">
