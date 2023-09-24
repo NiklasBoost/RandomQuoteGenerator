@@ -67,13 +67,25 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
         placeholder="the quote" 
         className="input-field-quote"
         value={newQuote}
-        onChange={handleNewQuoteChange}>
-      </input>
+        onChange={handleNewQuoteChange}
+        onKeyDown={(event) => {
+          console.log(event.key);
+          if(event.key === 'Enter') {
+            handleAddButtonClick();
+          }
+        }}
+      ></input>
       <input
         placeholder="the author"
         className="input-field-author"
         value={newAuthor}
-        onChange={handleNewAuthorChange}></input>
+        onChange={handleNewAuthorChange}
+        onKeyDown={(event) => {
+          if(event.key === 'Enter') {
+            handleAddButtonClick();
+          }
+        }}
+      ></input>
       <button className="add-button" onClick={handleAddButtonClick}>
         <img 
           className="add-button-img" src="src\components\styles\pictures\plus-symbol-button.png"
