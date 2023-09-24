@@ -81,26 +81,20 @@ function App() {
   // Function to navigate to the next quote
   function nextQuote() {
     setLastQIndex(currentQIndex);
-    if (lastQIndex === currentQIndex) {
-      console.log('doppelt')
-      let newIndex = currentQIndex + 1;
-      console.log(lastQIndex, currentQIndex, newIndex);
-      setCurrentQIndex(newIndex);
-      pushIndex(currentQIndex);
-      console.log(pastIndexList);
-      
-    } 
-    console.log(lastQIndex, currentQIndex);
-    pushIndex(currentQIndex);
-    console.log(pastIndexList);
+
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * savedQuotes.length);
+    } while (pastIndex === newIndex);
+
+    setCurrentQIndex(newIndex);
+    pushIndex(newIndex);
     displayQuote();
-    
-    
   }
 
   // Function to navigate to the last quote
   function lastQuote() {
-    if (pastIndexCounter > 3) {
+    if (pastIndexCounter >= 0) {
       removeLastIndex();
       setCurrentQIndex(pastIndex);
       setLastQIndex(null);
@@ -110,7 +104,7 @@ function App() {
 
   // Function to remove a quote
   function removeQuote() {
-    if (savedQuotes.length <= 1) {
+    if (savedQuotes.length <= 3) {
       console.log("Add more quotes first");
     } else {
       const updatedQuotes = [...savedQuotes];
