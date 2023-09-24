@@ -80,8 +80,6 @@ function App() {
 
   // Function to navigate to the next quote
   function nextQuote() {
-    
-
     let newIndex;
     do {
       newIndex = Math.floor(Math.random() * savedQuotes.length);
