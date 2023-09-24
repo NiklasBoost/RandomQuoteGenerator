@@ -23,7 +23,13 @@ function App() {
 
   const [currentQIndex, setCurrentQIndex] = useState(0);
   
-
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowRight") {
+      nextQuote();
+    } else if (event.key === "ArrowLeft") {
+      lastQuote();
+    }
+  };
 
   // Load saved quotes from local storage on component mount
   useEffect(() => {
@@ -35,6 +41,17 @@ function App() {
       setCurrentQIndex(0);
     }
   }, []);
+
+  useEffect(() => {
+    // Füge den Event-Listener hinzu, nachdem die Zitate geladen wurden
+    document.addEventListener("keydown", handleKeyDown);
+  
+    // Event-Listener entfernen, wenn die Komponente unmontiert wird
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [savedQuotes]);
+
 
   // Display the current quote
   useEffect(() => {
