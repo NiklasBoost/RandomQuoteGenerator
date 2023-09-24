@@ -5,14 +5,50 @@ type MiddlePartProps = {
   nextQuote: () => void;
   lastQuote: () => void;
   removeQuote: () => void;
+  isEditing: boolean; // Added the isEditing prop
+  editedQuote: string; // Added the edited quote and author props
+  editedAuthor: string;
+  setEditedQuote: (value: string) => void; // Added setters for edited quote and author
+  setEditedAuthor: (value: string) => void;
 };
 
-export function MiddlePart({ outputQuote, outputAuthor, nextQuote, lastQuote, removeQuote }: MiddlePartProps) {
+export function MiddlePart({ 
+  outputQuote, 
+  outputAuthor, 
+  nextQuote, 
+  lastQuote, 
+  removeQuote,
+  isEditing,
+  editedQuote,
+  editedAuthor,
+  setEditedQuote,
+  setEditedAuthor }: MiddlePartProps) {
+
+  const editQuote = () => {
+    setEditedQuote(outputQuote);
+    setEditedAuthor(outputAuthor);
+  }
+
   return (
     <div className="middle-part">
       <div className="quote-container">
         <GoToLastQuote lastQuote={lastQuote} />
-        <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
+        {isEditing ? (
+          <div className="edit-field">
+            <input 
+              type="text"
+              placeholder={outputQuote}
+              onChange={(e) => setEditedQuote(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder={outputAuthor}
+              onChange={(e) => setEditedAuthor(e.target.value)} 
+            />
+          </div>
+        ) : (
+          <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
+        )}
         <GoToNextQuote nextQuote={nextQuote} />
         <RemoveButton removeQuote={removeQuote} />
       </div>

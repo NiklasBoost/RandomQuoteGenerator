@@ -1,21 +1,42 @@
-
 type QuoteObject = {
   quote: string;
   author: string;
 }
 
 type HeaderProps = {
-  editButton: boolean;
-  toggleEdit: () => void;
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
+  isEditing: boolean;
+  setIsEditing: (value: boolean) => void;
+  editedQuote: string;
+  setEditedQuote: (value: string) => void;
+  editedAuthor: string;
+  setEditedAuthor: (value: string) => void;
   allQuotesObjects: QuoteObject[];
+  saveChanges: (editedQuote: string, editedAuthor: string) => void;
 };
 
-export function Header({ editButton, toggleEdit, saveChanges }: HeaderProps) {
+export function Header({ 
+  saveChanges,
+  isEditing,
+  setIsEditing,
+  editedQuote,
+  setEditedQuote,
+  editedAuthor,
+  setEditedAuthor,
+  allQuotesObjects }: HeaderProps) {
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <div className="header">
       <Searchbar />
-      <Edit editButton={editButton} toggleEdit={toggleEdit} saveChanges={saveChanges} />
+      <Edit 
+        isEditing={isEditing}
+        toggleEdit={toggleEdit} 
+        saveChanges={() => {
+          // save changes logic can be added here
+          saveChanges(editedQuote, editedAuthor);
+        }} />
     </div>
   );
 }
@@ -31,11 +52,25 @@ function Searchbar() {
   );
 }
 
-function Edit({ editButton, toggleEdit, saveChanges }) {
+type EditProps = {
+  isEditing: boolean;
+  toggleEdit: () => void;
+  saveChanges: () => void;
+}
+
+function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
   return (
     <div className="edit-container">
-      <button className="edit-button-js edit-button">
-        edit
+      <button 
+        className="edit-button-js edit-button"
+        onClick={() => {
+          if (isEditing) {
+            saveChanges(); // Call the saveChanges function when editing
+          }
+          toggleEdit(); // Toggle the edit mode
+        }}
+      >  
+        {isEditing ? 'Save' : 'Edit'}
       </button>
     </div>
   );
