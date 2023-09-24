@@ -66,7 +66,8 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
     <div className="nested-layout">
       <button 
         className="last-quote last-quote-js"
-        onClick={lastQuote}>
+        onClick={lastQuote}
+      >
         <img className="backward-arrow-img" src="src/components/styles/pictures/backward_arrow.png"></img>
       </button>
     </div>
