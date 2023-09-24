@@ -22,7 +22,7 @@ function App() {
   const [editedAuthor, setEditedAuthor] = useState('');
 
   const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [lastQIndex, setLastQIndex] = useState<number | null>(null);
+  
 
 
   // Load saved quotes from local storage on component mount
@@ -80,7 +80,7 @@ function App() {
 
   // Function to navigate to the next quote
   function nextQuote() {
-    setLastQIndex(currentQIndex);
+    
 
     let newIndex;
     do {
@@ -94,11 +94,13 @@ function App() {
 
   // Function to navigate to the last quote
   function lastQuote() {
-    if (pastIndexCounter >= 0) {
+    if (( pastIndexCounter-1 ) >= 1) {
+      console.log(pastIndexCounter)
       removeLastIndex();
       setCurrentQIndex(pastIndex);
-      setLastQIndex(null);
       displayQuote();
+    } else {
+      nextQuote();
     }
   }
 
