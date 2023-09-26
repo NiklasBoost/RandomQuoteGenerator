@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 type MiddlePartProps = {
   outputQuote: string;
@@ -28,6 +29,13 @@ export function MiddlePart({
     setEditedQuote(outputQuote);
     setEditedAuthor(outputAuthor);
   }
+  const [feedbackDom, setFeedbackDom] = useState('');
+  function changeDomFeedback() {
+    setFeedbackDom('Wurde entfernt!');
+    setTimeout(() => {
+      setFeedbackDom('');
+    }, 2500);
+  };
 
   return (
     <div className="middle-part">
@@ -50,7 +58,10 @@ export function MiddlePart({
           <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
         )}
         <GoToNextQuote nextQuote={nextQuote} />
-        <RemoveButton removeQuote={removeQuote} />
+        <RemoveButton 
+          removeQuote={removeQuote}
+          changeDomFeedback={changeDomFeedback} />
+        <div>{feedbackDom}</div>
       </div>
     </div>
   );
@@ -108,15 +119,19 @@ function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
 
 type RemoveButtonProps = {
   removeQuote: () => void;
+  changeDomFeedback: () => void;
 }
 
-function RemoveButton({ removeQuote }:RemoveButtonProps) {
+function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
  
   return (
     <div  className="nested-layout">
       <button 
       className="remove-button"
-      onClick={removeQuote}>
+      onClick={ () => {
+        removeQuote();
+        changeDomFeedback();
+      }}>
         Remove
       </button>
     </div>
