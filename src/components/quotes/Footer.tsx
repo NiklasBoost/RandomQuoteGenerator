@@ -41,6 +41,14 @@ type InputStuffProps = {
 }
 
 function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }: InputStuffProps) {
+  const [feedback, setFeedback] = useState('');
+  function tempFeedbackChange(value: string) {
+    setFeedback(value);
+    setTimeout(() => {
+      setFeedback('');
+    }, 2500);
+  };
+  
   const handleNewQuoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewQuote(event.target.value);
   };
@@ -53,9 +61,11 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
     if (newQuote.trim() === "" || newAuthor.trim() === "") {
       // Handle empty input fields, you can show an error message here
       console.log("Both quote and author must be provided.");
+      tempFeedbackChange('Beide Felder müssen ausgefüllt sein!'); 
     } else {
       addQuote(newQuote, newAuthor);
       console.log('New Quote was added: ' + newQuote + ' -' + newAuthor);
+      tempFeedbackChange('Das neue Zitat wurde hinzugefügt!');
       setNewQuote(""); // Clear the input field after adding
       setNewAuthor(""); // Clear the input field after adding
     }
@@ -63,6 +73,7 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
 
   return (
     <>
+      <div>{feedback}</div>
       <input 
         placeholder="the quote" 
         className="input-field-quote"
