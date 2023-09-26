@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type QuoteObject = {
   quote: string;
   author: string;
@@ -59,6 +61,15 @@ type EditProps = {
 }
 
 function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
+  const [feedbackDom, setFeedbackDom] = useState('');
+  function changeDomFeedback() {
+    if(isEditing) {
+      setFeedbackDom('Gespeichert!');
+      setTimeout(() => {
+        setFeedbackDom('');
+      }, 2500);
+    }
+  }
   return (
     <div className="edit-container">
       <button 
@@ -66,12 +77,14 @@ function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
         onClick={() => {
           if (isEditing) {
             saveChanges(); // Call the saveChanges function when editing
+            changeDomFeedback();
           }
           toggleEdit(); // Toggle the edit mode
         }}
       >  
         {isEditing ? 'Save' : 'Edit'}
       </button>
+      <div>{feedbackDom}</div>
     </div>
   );
 }
