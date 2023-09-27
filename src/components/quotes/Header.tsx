@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 
 type QuoteObject = {
   quote: string;
@@ -31,7 +31,8 @@ export function Header({
 
   return (
     <div className="header">
-      <Searchbar />
+      <Searchbar 
+        allQuotesObjects={allQuotesObjects}/>
       <Edit 
         isEditing={isEditing}
         toggleEdit={toggleEdit} 
@@ -43,12 +44,56 @@ export function Header({
   );
 }
 
-function Searchbar() {
+
+interface SearchbarProps {
+  allQuotesObjects: QuoteObject[];
+}
+
+
+function Searchbar({ allQuotesObjects }: SearchbarProps ) {
+  const [searchbarInput, setSearchbarInput] = useState('');
+  const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchbarInput(event.target.value);
+  };
+
+
+  function searchInput() {
+    setSearchResult([]);
+    const lowercaseInput = searchbarInput.toLowerCase();
+    
+    const resultArray = allQuotesObjects.filter((quoteObject) => {
+      const lowercaseQuote = quoteObject.quote.toLowerCase();
+      const lowercaseAuthor = quoteObject.author.toLowerCase();
+      return lowercaseQuote.includes(lowercaseInput) || lowercaseAuthor.includes(lowercaseInput);
+    });
+    setSearchResult(resultArray);  
+  }
+
+  
   return (
     <>
       <div className="placeholder-header"></div>
       <div className="searchbar-container">
-        <input className="searchbar" placeholder="search your quote - press enter for search!" />
+        <input 
+          className="searchbar"
+          placeholder="search your quote - press enter for search!"
+          value={searchbarInput}
+          onChange={handleInputChange}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              searchInput();
+            }
+          }} />
+      </div>
+      <div>
+        {searchResult.map((quoteObject, index) => (
+          <div key={index}>
+            <p>Quote: {quoteObject.quote}</p>
+            <p>Author: {quoteObject.author}</p>
+          </div>
+        ))}
       </div>
     </>
   );
