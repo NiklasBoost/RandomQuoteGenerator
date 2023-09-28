@@ -1,20 +1,5 @@
 import { useState} from "react";
-
-type QuoteObject = {
-  quote: string;
-  author: string;
-}
-
-type HeaderProps = {
-  isEditing: boolean;
-  setIsEditing: (value: boolean) => void;
-  editedQuote: string;
-  setEditedQuote: (value: string) => void;
-  editedAuthor: string;
-  setEditedAuthor: (value: string) => void;
-  allQuotesObjects: QuoteObject[];
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
-};
+import { QuoteObject, HeaderProps, SearchbarProps, EditProps } from "../../types/types";
 
 export function Header({ 
   saveChanges,
@@ -43,12 +28,6 @@ export function Header({
     </div>
   );
 }
-
-
-interface SearchbarProps {
-  allQuotesObjects: QuoteObject[];
-}
-
 
 function Searchbar({ allQuotesObjects }: SearchbarProps ) {
   const [searchbarInput, setSearchbarInput] = useState('');
@@ -99,11 +78,6 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
   );
 }
 
-type EditProps = {
-  isEditing: boolean;
-  toggleEdit: () => void;
-  saveChanges: () => void;
-}
 
 function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
   const [feedbackDom, setFeedbackDom] = useState('');

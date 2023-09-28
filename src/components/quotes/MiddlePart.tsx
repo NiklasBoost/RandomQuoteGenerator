@@ -1,17 +1,5 @@
 import { useState } from "react";
-
-type MiddlePartProps = {
-  outputQuote: string;
-  outputAuthor: string;
-  nextQuote: () => void;
-  lastQuote: () => void;
-  removeQuote: () => void;
-  isEditing: boolean; // Added the isEditing prop
-  editedQuote: string; // Added the edited quote and author props
-  editedAuthor: string;
-  setEditedQuote: (value: string) => void; // Added setters for edited quote and author
-  setEditedAuthor: (value: string) => void;
-};
+import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/types";
 
 export function MiddlePart({ 
   outputQuote, 
@@ -67,9 +55,6 @@ export function MiddlePart({
   );
 }
 
-type GoToLastQuoteProps = {
-  lastQuote: () => void;
-}
 
 function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   
@@ -85,10 +70,6 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   )
 }
 
-type OutputsProps = {
-  outputQuote: string;
-  outputAuthor: string;
-}
 
 function Outputs({outputQuote, outputAuthor}: OutputsProps) {
 
@@ -100,9 +81,6 @@ function Outputs({outputQuote, outputAuthor}: OutputsProps) {
  )
 }
 
-type GoToNextQuoteProps = {
-  nextQuote: () => void;
-}
 
 function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
  
@@ -117,10 +95,6 @@ function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
   )
 }
 
-type RemoveButtonProps = {
-  removeQuote: () => void;
-  changeDomFeedback: () => void;
-}
 
 function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
  

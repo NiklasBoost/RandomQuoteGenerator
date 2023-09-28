@@ -1,14 +1,6 @@
 import { useState } from "react";
+import { QuoteObject, FooterProps, InputStuffProps } from "../../types/types";
 
-type QuoteObject = {
-  quote: string;
-  author: string;
-}
-
-interface FooterProps {
-  addQuote: (quote: string, author: string) => void;
-  allQuotesObjects: QuoteObject[];
-}
 
 export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
   const [newQuote, setNewQuote] = useState('');
@@ -32,13 +24,6 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
   );
 }
 
-type InputStuffProps = {
-  newQuote: string;
-  newAuthor: string;
-  setNewQuote: (value: string) => void;
-  setNewAuthor: (value: string) => void;
-  addQuote: (quote: string, author: string) => void;
-}
 
 function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }: InputStuffProps) {
   const [feedback, setFeedback] = useState('');

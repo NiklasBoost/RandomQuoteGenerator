@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { Header } from "./components/quotes/Header.tsx";
 import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
 import { Footer } from "./components/quotes/Footer.tsx";
-
-type QuoteObject = {
-  quote: string;
-  author: string;
-};
+import { QuoteObject } from "./types/types.tsx";
 
 const pastIndexList: number[] = [];
 let pastIndexCounter: number;
