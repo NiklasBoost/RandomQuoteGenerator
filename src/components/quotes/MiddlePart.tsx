@@ -78,12 +78,13 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
 
 function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
   const object = allQuotesObjects[currentQIndex];
-  const fav = !!object.fav; 
+  const fav = object.fav; 
+  console.log(fav);
 
   const [isChecked, setIsChecked] = useState<boolean>(fav);
 
   useEffect(() => {
-    setIsChecked(!!fav); 
+    setIsChecked(fav); 
   }, [fav]);
 
   const handleCheckboxChange = () => {
