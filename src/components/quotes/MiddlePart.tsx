@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/types";
 
 export function MiddlePart({ 
@@ -8,10 +8,10 @@ export function MiddlePart({
   lastQuote, 
   removeQuote,
   isEditing,
-  editedQuote,
-  editedAuthor,
   setEditedQuote,
-  setEditedAuthor }: MiddlePartProps) {
+  setEditedAuthor,
+  allQuotesObjects,
+  currentQIndex }: MiddlePartProps) {
 
   const editQuote = () => {
     setEditedQuote(outputQuote);
@@ -43,7 +43,12 @@ export function MiddlePart({
             />
           </div>
         ) : (
-          <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
+          <Outputs 
+            outputQuote={outputQuote} 
+            outputAuthor={outputAuthor}
+            allQuotesObjects={allQuotesObjects} 
+            currentQIndex={currentQIndex}
+          />
         )}
         <GoToNextQuote nextQuote={nextQuote} />
         <RemoveButton 
@@ -71,12 +76,37 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
 }
 
 
-function Outputs({outputQuote, outputAuthor}: OutputsProps) {
+function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
+  const object = allQuotesObjects[currentQIndex];
+  const fav = !!object.fav; 
+
+  const [isChecked, setIsChecked] = useState<boolean>(fav);
+
+  useEffect(() => {
+    setIsChecked(!!fav); 
+  }, [fav]);
+
+  const handleCheckboxChange = () => {
+    const newValue = !isChecked; 
+    setIsChecked(newValue);
+
+
+    allQuotesObjects[currentQIndex].fav = newValue;
+  };
+
 
  return (
   <div  className="nested-layout">
     <div id="output-quote">{outputQuote}</div>
     <div id="output-author">{outputAuthor}</div>
+    <div>
+      <label>favorite?</label>
+      <input 
+        type="checkbox" 
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+      />
+    </div>
   </div>
  )
 }
