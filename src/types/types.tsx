@@ -1,6 +1,7 @@
 export type QuoteObject = {
   quote: string;
   author: string;
+  fav: boolean;
 };
 
 export type HeaderProps = {
@@ -27,6 +28,7 @@ export type EditProps = {
 export type MiddlePartProps = {
   outputQuote: string;
   outputAuthor: string;
+  allQuotesObjects: QuoteObject[];
   nextQuote: () => void;
   lastQuote: () => void;
   removeQuote: () => void;
@@ -35,6 +37,7 @@ export type MiddlePartProps = {
   editedAuthor: string;
   setEditedQuote: (value: string) => void; // Added setters for edited quote and author
   setEditedAuthor: (value: string) => void;
+  currentQIndex: number
 };
 
 
@@ -45,6 +48,8 @@ export type GoToLastQuoteProps = {
 export type OutputsProps = {
   outputQuote: string;
   outputAuthor: string;
+  allQuotesObjects: QuoteObject[];
+  currentQIndex: number;
 }
 
 export type GoToNextQuoteProps = {
