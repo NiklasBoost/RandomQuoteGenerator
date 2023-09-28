@@ -8,11 +8,12 @@ export type HeaderProps = {
   isEditing: boolean;
   setIsEditing: (value: boolean) => void;
   editedQuote: string;
-  setEditedQuote: (value: string) => void;
   editedAuthor: string;
-  setEditedAuthor: (value: string) => void;
   allQuotesObjects: QuoteObject[];
   saveChanges: (editedQuote: string, editedAuthor: string) => void;
+  feedbackDom:  string;
+  setFeedbackDom:(value: string) => void;
+  changeDomFeedback: () => void;
 };
 
 export interface SearchbarProps {
@@ -23,6 +24,9 @@ export type EditProps = {
   isEditing: boolean;
   toggleEdit: () => void;
   saveChanges: () => void;
+  feedbackDom:  string;
+  setFeedbackDom:(value: string) => void;
+  changeDomFeedback: () => void;
 }
 
 export type MiddlePartProps = {
@@ -37,7 +41,10 @@ export type MiddlePartProps = {
   editedAuthor: string;
   setEditedQuote: (value: string) => void; // Added setters for edited quote and author
   setEditedAuthor: (value: string) => void;
-  currentQIndex: number
+  saveChanges: (editedQuote: string, editedAuthor: string) => void;
+  currentQIndex: number;
+  feedbackDom:  string;
+  changeDomFeedback: () => void;
 };
 
 

@@ -6,10 +6,13 @@ export function Header({
   isEditing,
   setIsEditing,
   editedQuote,
-  setEditedQuote,
+ 
   editedAuthor,
-  setEditedAuthor,
-  allQuotesObjects }: HeaderProps) {
+
+  allQuotesObjects,
+  feedbackDom,
+  setFeedbackDom,
+  changeDomFeedback }: HeaderProps) {
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
@@ -19,6 +22,9 @@ export function Header({
       <Searchbar 
         allQuotesObjects={allQuotesObjects}/>
       <Edit 
+        feedbackDom={feedbackDom}
+        setFeedbackDom={setFeedbackDom}
+        changeDomFeedback={changeDomFeedback}
         isEditing={isEditing}
         toggleEdit={toggleEdit} 
         saveChanges={() => {
@@ -79,16 +85,8 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
 }
 
 
-function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
-  const [feedbackDom, setFeedbackDom] = useState('');
-  function changeDomFeedback() {
-    if(isEditing) {
-      setFeedbackDom('Gespeichert!');
-      setTimeout(() => {
-        setFeedbackDom('');
-      }, 2500);
-    }
-  }
+function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
+
   return (
     <div className="edit-container">
       <button 

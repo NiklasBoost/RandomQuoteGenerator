@@ -18,6 +18,7 @@ function App() {
   const [editedAuthor, setEditedAuthor] = useState('');
 
   const [currentQIndex, setCurrentQIndex] = useState(0);
+  const [feedbackDom, setFeedbackDom] = useState('');
   
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowRight") {
@@ -165,19 +166,34 @@ function App() {
     console.log(pastIndexList)
   }
 
+  function changeDomFeedback() {
+    if(isEditing) {
+      setFeedbackDom('Gespeichert!');
+      setTimeout(() => {
+        setFeedbackDom('');
+      }, 2500);
+    }
+  }
+
   return (
     <div className="wrapper">
       <Header
+        feedbackDom={feedbackDom}
+        setFeedbackDom={setFeedbackDom}
+        changeDomFeedback={changeDomFeedback}
         saveChanges={saveChanges}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         editedQuote={editedQuote}
-        setEditedQuote={setEditedQuote}
+        
         editedAuthor={editedAuthor}
-        setEditedAuthor={setEditedAuthor}
+        
         allQuotesObjects={allQuotesObjects}
       />
       <MiddlePart
+        feedbackDom={feedbackDom}
+        changeDomFeedback={changeDomFeedback}
+        saveChanges={saveChanges}
         outputQuote={outputQuote}
         outputAuthor={outputAuthor}
         allQuotesObjects={allQuotesObjects}

@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
 import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/types";
 
 export function MiddlePart({ 
+  editedQuote,
+  editedAuthor,
+  saveChanges,
   outputQuote, 
   outputAuthor, 
   nextQuote, 
@@ -11,19 +13,10 @@ export function MiddlePart({
   setEditedQuote,
   setEditedAuthor,
   allQuotesObjects,
-  currentQIndex }: MiddlePartProps) {
+  currentQIndex,
+  feedbackDom,
+  changeDomFeedback }: MiddlePartProps) {
 
-  const editQuote = () => {
-    setEditedQuote(outputQuote);
-    setEditedAuthor(outputAuthor);
-  }
-  const [feedbackDom, setFeedbackDom] = useState('');
-  function changeDomFeedback() {
-    setFeedbackDom('Wurde entfernt!');
-    setTimeout(() => {
-      setFeedbackDom('');
-    }, 2500);
-  };
 
   return (
     <div className="middle-part">
@@ -40,6 +33,12 @@ export function MiddlePart({
               type="text"
               placeholder={outputAuthor}
               onChange={(e) => setEditedAuthor(e.target.value)} 
+              onKeyDown={(event) => {
+                if(event.key === 'Enter') {
+                  saveChanges(editedQuote, editedAuthor);
+                  changeDomFeedback();
+                }
+              }}
             />
           </div>
         ) : (
@@ -77,23 +76,23 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
 
 
 function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
-  const object = allQuotesObjects[currentQIndex];
-  const fav = object.fav; 
-  console.log(fav);
+  // const object = allQuotesObjects[currentQIndex];
+  // const fav = object.fav; 
+  // console.log(fav);
 
-  const [isChecked, setIsChecked] = useState<boolean>(fav);
+  // const [isChecked, setIsChecked] = useState<boolean>(fav);
 
-  useEffect(() => {
-    setIsChecked(fav); 
-  }, [fav]);
+  // useEffect(() => {
+  //   setIsChecked(fav); 
+  // }, [fav]);
 
-  const handleCheckboxChange = () => {
-    const newValue = !isChecked; 
-    setIsChecked(newValue);
+  // const handleCheckboxChange = () => {
+  //   const newValue = !isChecked; 
+  //   setIsChecked(newValue);
 
 
-    allQuotesObjects[currentQIndex].fav = newValue;
-  };
+  //   allQuotesObjects[currentQIndex].fav = newValue;
+  // };
 
 
  return (
@@ -104,8 +103,8 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
       <label>favorite?</label>
       <input 
         type="checkbox" 
-        checked={isChecked}
-        onChange={handleCheckboxChange}
+        // checked={isChecked}
+        // onChange={handleCheckboxChange}
       />
     </div>
   </div>
