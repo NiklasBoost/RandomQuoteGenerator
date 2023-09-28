@@ -73,7 +73,6 @@ function App() {
       const quote = savedQuotes[currentQIndex];
       setOutputQuote(quote.quote);
       setOutputAuthor(quote.author);
-      
     }
   }
 
@@ -81,7 +80,7 @@ function App() {
   function addQuote(newQuote: string, newAuthor: string) {
     const updatedQuotes = [
       ...savedQuotes,
-      { quote: newQuote, author: newAuthor },
+      { quote: newQuote, author: newAuthor, fav: false },
     ];
     setSavedQuotes(updatedQuotes);
     setAllQuotesObjects(updatedQuotes);
@@ -181,6 +180,8 @@ function App() {
       <MiddlePart
         outputQuote={outputQuote}
         outputAuthor={outputAuthor}
+        allQuotesObjects={allQuotesObjects}
+        currentQIndex={currentQIndex}
         nextQuote={nextQuote}
         lastQuote={lastQuote}
         removeQuote={removeQuote}
