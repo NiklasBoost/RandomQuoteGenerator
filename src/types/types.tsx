@@ -81,3 +81,11 @@ export type InputStuffProps = {
   setNewAuthor: (value: string) => void;
   addQuote: (quote: string, author: string) => void;
 }
+
+
+export type QuoteOverviewProps = {
+  allQuotesObjects: QuoteObject[];
+  isAllQuotesVisible: boolean;
+  isFavQuotesVisible: boolean;
+  isSearchQuotesVisible: boolean;
+}
