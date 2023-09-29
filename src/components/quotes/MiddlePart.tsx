@@ -1,4 +1,4 @@
-import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/types";
+import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/middlePartTypes";
 
 export function MiddlePart({ 
   editedQuote,

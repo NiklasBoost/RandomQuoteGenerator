@@ -1,5 +1,7 @@
 import { useState} from "react";
-import { QuoteObject, HeaderProps, AllQuotesProps, SearchbarProps, EditProps } from "../../types/types";
+import { QuoteObject } from "../../types/types";
+import { HeaderProps, SearchbarProps, EditProps } from "../../types/headerTypes";
+import { AllQuotesProps } from "../../types/headerTypes";
 
 export function Header({ 
   saveChanges,

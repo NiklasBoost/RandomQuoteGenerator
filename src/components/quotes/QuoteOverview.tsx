@@ -1,4 +1,4 @@
-import { QuoteOverviewProps } from "../../types/types";
+import { QuoteOverviewProps } from "../../types/overviewTypes"
 
 
 export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible}: QuoteOverviewProps) {
