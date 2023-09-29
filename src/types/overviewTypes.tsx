@@ -5,4 +5,5 @@ export type QuoteOverviewProps = {
   isAllQuotesVisible: boolean;
   isFavQuotesVisible: boolean;
   isSearchQuotesVisible: boolean;
+  searchResult: QuoteObject[];
 }

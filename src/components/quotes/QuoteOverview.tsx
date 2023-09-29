@@ -1,7 +1,7 @@
 import { QuoteOverviewProps } from "../../types/overviewTypes"
 
 
-export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible}: QuoteOverviewProps) {
+export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible, searchResult}: QuoteOverviewProps) {
   return (
     <>
       {isAllQuotesVisible && (

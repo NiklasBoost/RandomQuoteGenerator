@@ -26,6 +26,7 @@ function App() {
   const [isAllQuotesVisible, setIsAllQuotesVisible] = useState(false);
   const [isFavQuotesVisible, setIsFavQuotesVisible] = useState(false);
   const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
+  const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
 
   function toggleQuotesContainer(stateSetter: React.Dispatch<React.SetStateAction<boolean>>) {
     stateSetter((prev) => !prev);
@@ -202,12 +203,15 @@ function App() {
         toggleQuotesContainer={toggleQuotesContainer}
         isAllQuotesVisible={isAllQuotesVisible}
         setIsAllQuotesVisible={setIsAllQuotesVisible}
+        setSearchResult={setSearchResult}
+        setIsSearchQuotesVisible={setIsSearchQuotesVisible}
       />
       <QuoteOverview
         allQuotesObjects={allQuotesObjects}
         isAllQuotesVisible={isAllQuotesVisible}
         isFavQuotesVisible={isFavQuotesVisible}
         isSearchQuotesVisible={isSearchQuotesVisible}
+        searchResult={searchResult}
       />
       <MiddlePart
         feedbackDom={feedbackDom}

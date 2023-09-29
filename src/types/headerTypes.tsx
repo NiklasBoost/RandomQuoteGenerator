@@ -13,6 +13,8 @@ export type HeaderProps = {
   toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
   isAllQuotesVisible: boolean;
   setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearchResult:  React.Dispatch<React.SetStateAction<QuoteObject[]>>;
+  setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type AllQuotesProps = {
@@ -23,6 +25,9 @@ export type AllQuotesProps = {
 
 export interface SearchbarProps {
     allQuotesObjects: QuoteObject[];
+    setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
+    toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
+    setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
   }
   
 export type EditProps = {

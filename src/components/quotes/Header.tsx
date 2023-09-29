@@ -15,7 +15,9 @@ export function Header({
   changeDomFeedback,
   toggleQuotesContainer,
   isAllQuotesVisible,
-  setIsAllQuotesVisible }: HeaderProps) {
+  setIsAllQuotesVisible,
+  setSearchResult,
+  setIsSearchQuotesVisible}: HeaderProps) {
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
@@ -28,7 +30,13 @@ export function Header({
         setIsAllQuotesVisible={setIsAllQuotesVisible}
       />
       <Searchbar 
-        allQuotesObjects={allQuotesObjects}/>
+        allQuotesObjects={allQuotesObjects}
+        setSearchResult={setSearchResult}
+        toggleQuotesContainer={toggleQuotesContainer}
+        setIsSearchQuotesVisible={setIsSearchQuotesVisible}
+      />
+        
+
       <Edit 
         feedbackDom={feedbackDom}
         setFeedbackDom={setFeedbackDom}
@@ -56,9 +64,9 @@ function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVis
   )
 }
 
-function Searchbar({ allQuotesObjects }: SearchbarProps ) {
+function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, setIsSearchQuotesVisible }: SearchbarProps ) {
   const [searchbarInput, setSearchbarInput] = useState('');
-  const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
+  
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchbarInput(event.target.value);
