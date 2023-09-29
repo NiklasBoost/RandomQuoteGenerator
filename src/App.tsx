@@ -3,6 +3,7 @@ import { Header } from "./components/quotes/Header.tsx";
 import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
 import { Footer } from "./components/quotes/Footer.tsx";
 import { QuoteObject } from "./types/types.tsx";
+import { QuoteOverview } from "./components/quotes/PopUps.tsx";
 
 const pastIndexList: number[] = [];
 let pastIndexCounter: number;
@@ -207,7 +208,11 @@ function App() {
         setEditedQuote={setEditedQuote} // Pass the setters for edited quote and author
         setEditedAuthor={setEditedAuthor}
       />
-      <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />
+      <Footer 
+        addQuote={addQuote} 
+        allQuotesObjects={allQuotesObjects} 
+      />
+      <QuoteOverview />
     </div>
   );
 }

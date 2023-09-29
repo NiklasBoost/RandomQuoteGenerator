@@ -19,6 +19,10 @@ export function Header({
 
   return (
     <div className="header">
+      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+      </button>
+
       <Searchbar 
         allQuotesObjects={allQuotesObjects}/>
       <Edit 
