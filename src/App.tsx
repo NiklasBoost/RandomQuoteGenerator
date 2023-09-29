@@ -3,7 +3,7 @@ import { Header } from "./components/quotes/Header.tsx";
 import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
 import { Footer } from "./components/quotes/Footer.tsx";
 import { QuoteObject } from "./types/types.tsx";
-import { QuoteOverview } from "./components/quotes/PopUps.tsx";
+import { QuoteOverview } from "./components/quotes/QuoteOverview.tsx";
 
 const pastIndexList: number[] = [];
 let pastIndexCounter: number;
@@ -186,11 +186,11 @@ function App() {
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         editedQuote={editedQuote}
-        
         editedAuthor={editedAuthor}
-        
         allQuotesObjects={allQuotesObjects}
       />
+      <QuoteOverview
+        allQuotesObjects={allQuotesObjects} />
       <MiddlePart
         feedbackDom={feedbackDom}
         changeDomFeedback={changeDomFeedback}
@@ -212,7 +212,6 @@ function App() {
         addQuote={addQuote} 
         allQuotesObjects={allQuotesObjects} 
       />
-      <QuoteOverview />
     </div>
   );
 }
