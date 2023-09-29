@@ -1,5 +1,5 @@
 import { useState} from "react";
-import { QuoteObject, HeaderProps, SearchbarProps, EditProps } from "../../types/types";
+import { QuoteObject, HeaderProps, AllQuotesProps, SearchbarProps, EditProps } from "../../types/types";
 
 export function Header({ 
   saveChanges,
@@ -10,13 +10,21 @@ export function Header({
   allQuotesObjects,
   feedbackDom,
   setFeedbackDom,
-  changeDomFeedback }: HeaderProps) {
+  changeDomFeedback,
+  toggleQuotesContainer,
+  isAllQuotesVisible,
+  setIsAllQuotesVisible }: HeaderProps) {
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
 
   return (
     <div className="header">
+      <AllQuotes
+        toggleQuotesContainer={toggleQuotesContainer}
+        isAllQuotesVisible={isAllQuotesVisible}
+        setIsAllQuotesVisible={setIsAllQuotesVisible}
+      />
       <Searchbar 
         allQuotesObjects={allQuotesObjects}/>
       <Edit 
@@ -31,6 +39,19 @@ export function Header({
         }} />
     </div>
   );
+}
+
+function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVisible}: AllQuotesProps) {
+  
+  return ( 
+    <button 
+      onClick={() => {
+        toggleQuotesContainer(setIsAllQuotesVisible)}
+      }
+    >
+      Alle Zitate
+    </button>
+  )
 }
 
 function Searchbar({ allQuotesObjects }: SearchbarProps ) {
@@ -52,9 +73,7 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
       return lowercaseQuote.includes(lowercaseInput) || lowercaseAuthor.includes(lowercaseInput);
     });
     setSearchResult(resultArray);  
-  }
-
-  
+  }  
   return (
     <>
       <div className="placeholder-header"></div>
@@ -67,16 +86,9 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
           onKeyPress={(event) => {
             if (event.key === 'Enter') {
               searchInput();
+              toggleQuotesContainer(setIsSearchQuotesVisible);
             }
           }} />
-      </div>
-      <div>
-        {searchResult.map((quoteObject, index) => (
-          <div key={index}>
-            <p>Quote: {quoteObject.quote}</p>
-            <p>Author: {quoteObject.author}</p>
-          </div>
-        ))}
       </div>
     </>
   );

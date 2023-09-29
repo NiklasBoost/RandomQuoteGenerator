@@ -27,9 +27,10 @@ function App() {
   const [isFavQuotesVisible, setIsFavQuotesVisible] = useState(false);
   const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
 
-  function toggleQuotesContainer(is, set) {
-    set(!is);
+  function toggleQuotesContainer(stateSetter: React.Dispatch<React.SetStateAction<boolean>>) {
+    stateSetter((prev) => !prev);
   }
+
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowRight") {
@@ -198,6 +199,9 @@ function App() {
         editedQuote={editedQuote}
         editedAuthor={editedAuthor}
         allQuotesObjects={allQuotesObjects}
+        toggleQuotesContainer={toggleQuotesContainer}
+        isAllQuotesVisible={isAllQuotesVisible}
+        setIsAllQuotesVisible={setIsAllQuotesVisible}
       />
       <QuoteOverview
         allQuotesObjects={allQuotesObjects}

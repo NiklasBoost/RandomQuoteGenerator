@@ -20,7 +20,14 @@ export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotes
       )}
       
       {isSearchQuotesVisible && (
-        <div>Hier werden die Suchergebnisse stehen</div>
+        <div>
+          {searchResult.map((quoteObject, index) => (
+            <div key={index}>
+              <p>Quote: {quoteObject.quote}</p>
+              <p>Author: {quoteObject.author}</p>
+            </div>
+          ))}
+        </div>
       )}
     </>
   )
