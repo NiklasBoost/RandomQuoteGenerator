@@ -11,8 +11,10 @@ let pastIndex: number;
 
 function App() {
   const [allQuotesObjects, setAllQuotesObjects] = useState<QuoteObject[]>([]);
+
   const [outputQuote, setOutputQuote] = useState("");
   const [outputAuthor, setOutputAuthor] = useState("");
+  
   const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
   const [isEditing, setIsEditing] = useState(false); // Add an edit mode state
   const [editedQuote, setEditedQuote] = useState('');
@@ -21,6 +23,14 @@ function App() {
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [feedbackDom, setFeedbackDom] = useState('');
   
+  const [isAllQuotesVisible, setIsAllQuotesVisible] = useState(false);
+  const [isFavQuotesVisible, setIsFavQuotesVisible] = useState(false);
+  const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
+
+  function toggleQuotesContainer(is, set) {
+    set(!is);
+  }
+
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowRight") {
       nextQuote();
@@ -190,7 +200,11 @@ function App() {
         allQuotesObjects={allQuotesObjects}
       />
       <QuoteOverview
-        allQuotesObjects={allQuotesObjects} />
+        allQuotesObjects={allQuotesObjects}
+        isAllQuotesVisible={isAllQuotesVisible}
+        isFavQuotesVisible={isFavQuotesVisible}
+        isSearchQuotesVisible={isSearchQuotesVisible}
+      />
       <MiddlePart
         feedbackDom={feedbackDom}
         changeDomFeedback={changeDomFeedback}
