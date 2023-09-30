@@ -1,6 +1,5 @@
 import { useState} from "react";
-import { QuoteObject } from "../../types/types";
-import { HeaderProps, SearchbarProps, EditProps } from "../../types/headerTypes";
+import { HeaderProps, SearchbarProps, EditProps, FavQuotesProps } from "../../types/headerTypes";
 import { AllQuotesProps } from "../../types/headerTypes";
 
 export function Header({ 
@@ -16,6 +15,8 @@ export function Header({
   toggleQuotesContainer,
   isAllQuotesVisible,
   setIsAllQuotesVisible,
+  isAllFavQuotesVisible,
+  setIsAllFavQuotesVisible,
   setSearchResult,
   setIsSearchQuotesVisible}: HeaderProps) {
   const toggleEdit = () => {
@@ -29,6 +30,11 @@ export function Header({
         isAllQuotesVisible={isAllQuotesVisible}
         setIsAllQuotesVisible={setIsAllQuotesVisible}
       />
+      <FavQuotes
+        toggleQuoteContainer={toggleQuotesContainer}
+        isAllFavQuotesVisible={isAllFavQuotesVisible}
+        setIsAllFavQuotesVisible={setIsAllFavQuotesVisible}
+        />
       <Searchbar 
         allQuotesObjects={allQuotesObjects}
         setSearchResult={setSearchResult}
@@ -61,6 +67,19 @@ function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVis
     >
       Alle Zitate
     </button>
+  )
+}
+
+function FavQuotes({toggleQuotesContainer, isAllFavQuotesVisible, setIsAllFavQuotesVisible}: FavQuotesProps) {
+  return (
+    <button
+      onClick={() => {
+        toggleQuotesContainer(setIsAllFavQuotesVisible)
+      }}  
+    >
+      Alle deine Favoriten
+    </button>
+
   )
 }
 
