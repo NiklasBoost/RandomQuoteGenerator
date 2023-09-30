@@ -18,9 +18,6 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
           addQuote={addQuote}
         />
       </div>
-      <div className="help-code-container">
-        <HelpingButton allQuotesObjects={allQuotesObjects} />
-      </div>
     </div>
   );
 }
@@ -93,14 +90,14 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
   )
 }
 
-function HelpingButton({ allQuotesObjects }: { allQuotesObjects: QuoteObject[] }) {
-  const handleClick = () => {
-    console.log(allQuotesObjects);
-  }
+// function HelpingButton({ allQuotesObjects }: { allQuotesObjects: QuoteObject[] }) {
+//   const handleClick = () => {
+//     console.log(allQuotesObjects);
+//   }
   
-  return (
-    <button className="help-button" onClick={handleClick}>
-      show all Quotes
-    </button>
-  )
-}
+//   return (
+//     <button className="help-button" onClick={handleClick}>
+//       show all Quotes
+//     </button>
+//   )
+// }
