@@ -4,6 +4,7 @@ import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
 import { Footer } from "./components/quotes/Footer.tsx";
 import { QuoteObject } from "./types/types.tsx";
 import { QuoteOverview } from "./components/quotes/QuoteOverview.tsx";
+import { SettingsModal } from "./components/quotes/settings.tsx";
 
 const pastIndexList: number[] = [];
 let pastIndexCounter: number;
@@ -29,16 +30,56 @@ function App() {
   const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
   const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
 
+  const [automaticStatus, setAutomaticStatus] = useState('Ausgeschaltet');
+
   function toggleQuotesContainer(stateSetter: React.Dispatch<React.SetStateAction<boolean>>) {
-    stateSetter((prev) => !prev);
+    stateSetter(prev => !prev);
   }
 
   useEffect(() => {
+    let quoteInterval;
+    if(automaticStatus === '1 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 60000);
+    } else if (automaticStatus === '2 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 120000);
+    } else if (automaticStatus === '5 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 300000);
+    } else if (automaticStatus === '10 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 600000);
+    } else if (automaticStatus === '20 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 1200000);
+    } else if (automaticStatus === '40 min') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 2400000);
+    } else if (automaticStatus === '1 h') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 3600000);
+    } else if (automaticStatus === '2 h') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 7200000);
+    } else if (automaticStatus === '4 h') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 14400000);
+    } else if (automaticStatus === '8 h') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 28800000);
+    } else if (automaticStatus === '1 d') {
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(nextQuote, 86400000);
+    } else if (automaticStatus === 'Ausgeschaltet') {
+      clearInterval(quoteInterval);
+    }
+  }, [automaticStatus])
+
+  useEffect(() => {
     if(isAllQuotesVisible || isFavQuotesVisible || isSearchQuotesVisible) {
-      console.log('RandomQuote verschwindet');
       toggleQuotesContainer(setIsOutputVisisble);
     } else if(!isAllQuotesVisible && !isFavQuotesVisible && !isSearchQuotesVisible) {
-      console.log('Jetzt müsste es wieder auftauchen');
       setIsOutputVisisble(true);
     }
   }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible])
@@ -224,6 +265,10 @@ function App() {
         isFavQuotesVisible={isFavQuotesVisible}
         isSearchQuotesVisible={isSearchQuotesVisible}
         searchResult={searchResult}
+      />
+      <SettingsModal
+        automaticStatus={automaticStatus}
+        setAutomaticStatus={setAutomaticStatus}
       />
       <MiddlePart
         feedbackDom={feedbackDom}

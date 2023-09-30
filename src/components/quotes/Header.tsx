@@ -53,6 +53,10 @@ export function Header({
           // save changes logic can be added here
           saveChanges(editedQuote, editedAuthor);
         }} />
+      
+      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Settings
+      </button>
     </div>
   );
 }
