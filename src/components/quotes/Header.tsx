@@ -15,8 +15,8 @@ export function Header({
   toggleQuotesContainer,
   isAllQuotesVisible,
   setIsAllQuotesVisible,
-  isAllFavQuotesVisible,
-  setIsAllFavQuotesVisible,
+  isFavQuotesVisible,
+  setIsFavQuotesVisible,
   setSearchResult,
   setIsSearchQuotesVisible}: HeaderProps) {
   const toggleEdit = () => {
@@ -31,9 +31,9 @@ export function Header({
         setIsAllQuotesVisible={setIsAllQuotesVisible}
       />
       <FavQuotes
-        toggleQuoteContainer={toggleQuotesContainer}
-        isAllFavQuotesVisible={isAllFavQuotesVisible}
-        setIsAllFavQuotesVisible={setIsAllFavQuotesVisible}
+        toggleQuotesContainer={toggleQuotesContainer}
+        isFavQuotesVisible={isFavQuotesVisible}
+        setIsFavQuotesVisible={setIsFavQuotesVisible}
         />
       <Searchbar 
         allQuotesObjects={allQuotesObjects}
@@ -70,11 +70,11 @@ function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVis
   )
 }
 
-function FavQuotes({toggleQuotesContainer, isAllFavQuotesVisible, setIsAllFavQuotesVisible}: FavQuotesProps) {
+function FavQuotes({toggleQuotesContainer, isFavQuotesVisible, setIsFavQuotesVisible}: FavQuotesProps) {
   return (
     <button
       onClick={() => {
-        toggleQuotesContainer(setIsAllFavQuotesVisible)
+        toggleQuotesContainer(setIsFavQuotesVisible)
       }}  
     >
       Alle deine Favoriten

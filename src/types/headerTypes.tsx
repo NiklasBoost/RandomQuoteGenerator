@@ -15,8 +15,8 @@ export type HeaderProps = {
   setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setSearchResult:  React.Dispatch<React.SetStateAction<QuoteObject[]>>;
   setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  isAllFavQuotesVisible: boolean;
-  setIsAllFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
+  isFavQuotesVisible: boolean;
+  setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
 };
 
 export type AllQuotesProps = {
@@ -27,8 +27,8 @@ export type AllQuotesProps = {
 
 export type FavQuotesProps = {
   toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
-  isAllFavQuotesVisible: boolean;
-  setIsAllFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
+  isFavQuotesVisible: boolean;
+  setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
 }
 
 export interface SearchbarProps {

@@ -203,8 +203,8 @@ function App() {
         toggleQuotesContainer={toggleQuotesContainer}
         isAllQuotesVisible={isAllQuotesVisible}
         setIsAllQuotesVisible={setIsAllQuotesVisible}
-        isAllFavQuotesVisible={isAllFavQuotesVisible}
-        setIsAllFavQuotesVisible={setIsAllFavQuotesVisible}
+        isFavQuotesVisible={isFavQuotesVisible}
+        setIsFavQuotesVisible={setIsFavQuotesVisible}
         setSearchResult={setSearchResult}
         setIsSearchQuotesVisible={setIsSearchQuotesVisible}
       />
