@@ -1,0 +1,50 @@
+
+<Header>
+  <button>Alle Zitate</button>
+  <button>Alle deine Favoriten</button>
+  <input> //searchbar
+  <div> //editbutton + feedback
+    <button>  
+      {isEditing ? 'Save' : 'Edit'}
+    </button>
+    <div>{feedbackDom}</div>
+  </div>
+  <button>Settings</button>
+</Header>
+<MiddlePart>
+  <div>
+    <button><img></button> //Go to last Quote
+  </div>
+  <div>
+    <div>{outputQuote}</div>
+    <div>{outputAuthor}</div>
+    <div>
+      <label>favorite?</label>
+      <input>
+    </div>
+  </div>
+  <div>
+    <button><img></button> //Go to the next Quote
+  </div>
+  <div>
+    <button>Remove</button>
+  </div>
+  <div>{feedbackDom}</div>
+</MiddlePart>
+<Footer>
+  <div>{feedback}</div>
+  <input> // Input field for the quote
+  <input> // Input field for the author
+  <button> // Add button (the img was a plus; but I am open for other ideas)
+    <img></img>
+  </button>
+</Footer>
+  
+
+
+
+
+
+
+
+
