@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { QuoteObject } from "../../types/types";
 import { FooterProps, InputStuffProps } from "../../types/footerTypes";
 
 
@@ -18,6 +17,7 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
           addQuote={addQuote}
         />
       </div>
+      
     </div>
   );
 }

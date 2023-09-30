@@ -1,4 +1,5 @@
 import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/middlePartTypes";
+import { useState, useEffect } from "react";
 
 export function MiddlePart({ 
   editedQuote,
@@ -80,23 +81,27 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
 
 
 function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
-  // const object = allQuotesObjects[currentQIndex];
-  // const fav = object.fav; 
-  // console.log(fav);
+  const object = allQuotesObjects[currentQIndex];
+  let fav: boolean;
+  const [isChecked, setIsChecked] = useState<boolean>(fav);
+  if (object) {
+    fav = object.fav; 
+  }
+  
+  useEffect(() => {
+    if(fav) {
+      setIsChecked(fav); 
+    }
+    console.log(isChecked);
+  }, [fav, currentQIndex]);
 
-  // const [isChecked, setIsChecked] = useState<boolean>(fav);
+  const handleCheckboxChange = () => {
+    const newValue = !isChecked; 
+    setIsChecked(newValue);
 
-  // useEffect(() => {
-  //   setIsChecked(fav); 
-  // }, [fav]);
-
-  // const handleCheckboxChange = () => {
-  //   const newValue = !isChecked; 
-  //   setIsChecked(newValue);
-
-
-  //   allQuotesObjects[currentQIndex].fav = newValue;
-  // };
+    allQuotesObjects[currentQIndex].fav = newValue;
+    console.log(isChecked);
+  };
 
 
  return (
@@ -105,11 +110,11 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
     <div id="output-author">{outputAuthor}</div>
     <div>
       <label>favorite?</label>
-      <input 
-        type="checkbox" 
-        // checked={isChecked}
-        // onChange={handleCheckboxChange}
-      />
+        <input 
+          type="checkbox" 
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
     </div>
   </div>
  )
