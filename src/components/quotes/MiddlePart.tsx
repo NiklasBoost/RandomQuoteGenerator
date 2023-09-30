@@ -82,28 +82,21 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
 
 function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
   const object = allQuotesObjects[currentQIndex];
-  let fav: boolean;
-  const [isChecked, setIsChecked] = useState<boolean>(fav);
-  if (object) {
-    fav = object.fav; 
+
+  function sendCheckboxState() {
+    if(object) {
+      const checked = object.fav;
+      const newValue = !checked;
+      allQuotesObjects[currentQIndex].fav = newValue;
+      return;
+    } 
+    return sendCheckboxState;
+  }
+
+  if (!object) {
+    return null;
   }
   
-  useEffect(() => {
-    if(fav) {
-      setIsChecked(fav); 
-    }
-    console.log(isChecked);
-  }, [fav, currentQIndex]);
-
-  const handleCheckboxChange = () => {
-    const newValue = !isChecked; 
-    setIsChecked(newValue);
-
-    allQuotesObjects[currentQIndex].fav = newValue;
-    console.log(isChecked);
-  };
-
-
  return (
   <div  className="nested-layout">
     <div id="output-quote">{outputQuote}</div>
@@ -112,8 +105,8 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
       <label>favorite?</label>
         <input 
           type="checkbox" 
-          checked={isChecked}
-          onChange={handleCheckboxChange}
+          checked={object.fav}
+          onChange={sendCheckboxState}
         />
     </div>
   </div>
