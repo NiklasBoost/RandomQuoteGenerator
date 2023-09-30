@@ -1,14 +1,6 @@
 import { useState } from "react";
+import { FooterProps, InputStuffProps } from "../../types/footerTypes";
 
-type QuoteObject = {
-  quote: string;
-  author: string;
-}
-
-interface FooterProps {
-  addQuote: (quote: string, author: string) => void;
-  allQuotesObjects: QuoteObject[];
-}
 
 export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
   const [newQuote, setNewQuote] = useState('');
@@ -25,20 +17,11 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
           addQuote={addQuote}
         />
       </div>
-      <div className="help-code-container">
-        <HelpingButton allQuotesObjects={allQuotesObjects} />
-      </div>
+      
     </div>
   );
 }
 
-type InputStuffProps = {
-  newQuote: string;
-  newAuthor: string;
-  setNewQuote: (value: string) => void;
-  setNewAuthor: (value: string) => void;
-  addQuote: (quote: string, author: string) => void;
-}
 
 function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }: InputStuffProps) {
   const [feedback, setFeedback] = useState('');
@@ -107,14 +90,14 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
   )
 }
 
-function HelpingButton({ allQuotesObjects }: { allQuotesObjects: QuoteObject[] }) {
-  const handleClick = () => {
-    console.log(allQuotesObjects);
-  }
+// function HelpingButton({ allQuotesObjects }: { allQuotesObjects: QuoteObject[] }) {
+//   const handleClick = () => {
+//     console.log(allQuotesObjects);
+//   }
   
-  return (
-    <button className="help-button" onClick={handleClick}>
-      show all Quotes
-    </button>
-  )
-}
+//   return (
+//     <button className="help-button" onClick={handleClick}>
+//       show all Quotes
+//     </button>
+//   )
+// }

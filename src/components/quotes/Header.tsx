@@ -1,58 +1,95 @@
 import { useState} from "react";
-
-type QuoteObject = {
-  quote: string;
-  author: string;
-}
-
-type HeaderProps = {
-  isEditing: boolean;
-  setIsEditing: (value: boolean) => void;
-  editedQuote: string;
-  setEditedQuote: (value: string) => void;
-  editedAuthor: string;
-  setEditedAuthor: (value: string) => void;
-  allQuotesObjects: QuoteObject[];
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
-};
+import { HeaderProps, SearchbarProps, EditProps, FavQuotesProps } from "../../types/headerTypes";
+import { AllQuotesProps } from "../../types/headerTypes";
 
 export function Header({ 
   saveChanges,
   isEditing,
   setIsEditing,
   editedQuote,
-  setEditedQuote,
   editedAuthor,
-  setEditedAuthor,
-  allQuotesObjects }: HeaderProps) {
+  allQuotesObjects,
+  feedbackDom,
+  setFeedbackDom,
+  changeDomFeedback,
+  toggleQuotesContainer,
+  isAllQuotesVisible,
+  setIsAllQuotesVisible,
+  isFavQuotesVisible,
+  setIsFavQuotesVisible,
+  setSearchResult,
+  setIsSearchQuotesVisible}: HeaderProps) {
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
 
   return (
     <div className="header">
+      <AllQuotes
+        toggleQuotesContainer={toggleQuotesContainer}
+        isAllQuotesVisible={isAllQuotesVisible}
+        setIsAllQuotesVisible={setIsAllQuotesVisible}
+      />
+      <FavQuotes
+        toggleQuotesContainer={toggleQuotesContainer}
+        isFavQuotesVisible={isFavQuotesVisible}
+        setIsFavQuotesVisible={setIsFavQuotesVisible}
+        />
       <Searchbar 
-        allQuotesObjects={allQuotesObjects}/>
+        allQuotesObjects={allQuotesObjects}
+        setSearchResult={setSearchResult}
+        toggleQuotesContainer={toggleQuotesContainer}
+        setIsSearchQuotesVisible={setIsSearchQuotesVisible}
+      />
+        
+
       <Edit 
+        feedbackDom={feedbackDom}
+        setFeedbackDom={setFeedbackDom}
+        changeDomFeedback={changeDomFeedback}
         isEditing={isEditing}
         toggleEdit={toggleEdit} 
         saveChanges={() => {
           // save changes logic can be added here
           saveChanges(editedQuote, editedAuthor);
         }} />
+      
+      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Settings
+      </button>
     </div>
   );
 }
 
-
-interface SearchbarProps {
-  allQuotesObjects: QuoteObject[];
+function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVisible}: AllQuotesProps) {
+  
+  return ( 
+    <button 
+      onClick={() => {
+        toggleQuotesContainer(setIsAllQuotesVisible)}
+      }
+    >
+      Alle Zitate
+    </button>
+  )
 }
 
+function FavQuotes({toggleQuotesContainer, isFavQuotesVisible, setIsFavQuotesVisible}: FavQuotesProps) {
+  return (
+    <button
+      onClick={() => {
+        toggleQuotesContainer(setIsFavQuotesVisible)
+      }}  
+    >
+      Alle deine Favoriten
+    </button>
 
-function Searchbar({ allQuotesObjects }: SearchbarProps ) {
+  )
+}
+
+function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, setIsSearchQuotesVisible }: SearchbarProps ) {
   const [searchbarInput, setSearchbarInput] = useState('');
-  const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
+  
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchbarInput(event.target.value);
@@ -69,9 +106,7 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
       return lowercaseQuote.includes(lowercaseInput) || lowercaseAuthor.includes(lowercaseInput);
     });
     setSearchResult(resultArray);  
-  }
-
-  
+  }  
   return (
     <>
       <div className="placeholder-header"></div>
@@ -84,37 +119,17 @@ function Searchbar({ allQuotesObjects }: SearchbarProps ) {
           onKeyPress={(event) => {
             if (event.key === 'Enter') {
               searchInput();
+              toggleQuotesContainer(setIsSearchQuotesVisible);
             }
           }} />
-      </div>
-      <div>
-        {searchResult.map((quoteObject, index) => (
-          <div key={index}>
-            <p>Quote: {quoteObject.quote}</p>
-            <p>Author: {quoteObject.author}</p>
-          </div>
-        ))}
       </div>
     </>
   );
 }
 
-type EditProps = {
-  isEditing: boolean;
-  toggleEdit: () => void;
-  saveChanges: () => void;
-}
 
-function Edit({isEditing, toggleEdit, saveChanges}: EditProps) {
-  const [feedbackDom, setFeedbackDom] = useState('');
-  function changeDomFeedback() {
-    if(isEditing) {
-      setFeedbackDom('Gespeichert!');
-      setTimeout(() => {
-        setFeedbackDom('');
-      }, 2500);
-    }
-  }
+function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
+
   return (
     <div className="edit-container">
       <button 

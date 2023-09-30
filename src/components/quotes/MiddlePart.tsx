@@ -1,74 +1,68 @@
-import { useState } from "react";
-
-type MiddlePartProps = {
-  outputQuote: string;
-  outputAuthor: string;
-  nextQuote: () => void;
-  lastQuote: () => void;
-  removeQuote: () => void;
-  isEditing: boolean; // Added the isEditing prop
-  editedQuote: string; // Added the edited quote and author props
-  editedAuthor: string;
-  setEditedQuote: (value: string) => void; // Added setters for edited quote and author
-  setEditedAuthor: (value: string) => void;
-};
+import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/middlePartTypes";
+import { useState, useEffect } from "react";
 
 export function MiddlePart({ 
+  editedQuote,
+  editedAuthor,
+  saveChanges,
   outputQuote, 
   outputAuthor, 
   nextQuote, 
   lastQuote, 
   removeQuote,
   isEditing,
-  editedQuote,
-  editedAuthor,
   setEditedQuote,
-  setEditedAuthor }: MiddlePartProps) {
+  setEditedAuthor,
+  allQuotesObjects,
+  currentQIndex,
+  feedbackDom,
+  changeDomFeedback,
+  isOutputVisible }: MiddlePartProps) {
 
-  const editQuote = () => {
-    setEditedQuote(outputQuote);
-    setEditedAuthor(outputAuthor);
-  }
-  const [feedbackDom, setFeedbackDom] = useState('');
-  function changeDomFeedback() {
-    setFeedbackDom('Wurde entfernt!');
-    setTimeout(() => {
-      setFeedbackDom('');
-    }, 2500);
-  };
 
   return (
-    <div className="middle-part">
-      <div className="quote-container">
-        <GoToLastQuote lastQuote={lastQuote} />
-        {isEditing ? (
-          <div className="edit-field">
-            <input 
-              type="text"
-              placeholder={outputQuote}
-              onChange={(e) => setEditedQuote(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder={outputAuthor}
-              onChange={(e) => setEditedAuthor(e.target.value)} 
-            />
+    <>
+      {isOutputVisible && (
+        <div className="middle-part">
+          <div className="quote-container">
+            <GoToLastQuote lastQuote={lastQuote} />
+            {isEditing ? (
+              <div className="edit-field">
+                <input 
+                  type="text"
+                  placeholder={outputQuote}
+                  onChange={(e) => setEditedQuote(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder={outputAuthor}
+                  onChange={(e) => setEditedAuthor(e.target.value)} 
+                  onKeyDown={(event) => {
+                    if(event.key === 'Enter') {
+                      saveChanges(editedQuote, editedAuthor);
+                      changeDomFeedback();
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <Outputs 
+                outputQuote={outputQuote} 
+                outputAuthor={outputAuthor}
+                allQuotesObjects={allQuotesObjects} 
+                currentQIndex={currentQIndex}
+              />
+            )}
+            <GoToNextQuote nextQuote={nextQuote} />
+            <RemoveButton 
+              removeQuote={removeQuote}
+              changeDomFeedback={changeDomFeedback} />
+            <div>{feedbackDom}</div>
           </div>
-        ) : (
-          <Outputs outputQuote={outputQuote} outputAuthor={outputAuthor} />
-        )}
-        <GoToNextQuote nextQuote={nextQuote} />
-        <RemoveButton 
-          removeQuote={removeQuote}
-          changeDomFeedback={changeDomFeedback} />
-        <div>{feedbackDom}</div>
-      </div>
-    </div>
-  );
-}
-
-type GoToLastQuoteProps = {
-  lastQuote: () => void;
+        </div>
+      )}    
+    </>
+  )
 }
 
 function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
@@ -85,24 +79,40 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   )
 }
 
-type OutputsProps = {
-  outputQuote: string;
-  outputAuthor: string;
-}
 
-function Outputs({outputQuote, outputAuthor}: OutputsProps) {
+function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: OutputsProps) {
+  const object = allQuotesObjects[currentQIndex];
 
+  function sendCheckboxState() {
+    if(object) {
+      const checked = object.fav;
+      const newValue = !checked;
+      allQuotesObjects[currentQIndex].fav = newValue;
+      return;
+    } 
+    return sendCheckboxState;
+  }
+
+  if (!object) {
+    return null;
+  }
+  
  return (
   <div  className="nested-layout">
     <div id="output-quote">{outputQuote}</div>
     <div id="output-author">{outputAuthor}</div>
+    <div>
+      <label>favorite?</label>
+        <input 
+          type="checkbox" 
+          checked={object.fav}
+          onChange={sendCheckboxState}
+        />
+    </div>
   </div>
  )
 }
 
-type GoToNextQuoteProps = {
-  nextQuote: () => void;
-}
 
 function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
  
@@ -117,10 +127,6 @@ function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
   )
 }
 
-type RemoveButtonProps = {
-  removeQuote: () => void;
-  changeDomFeedback: () => void;
-}
 
 function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
  
