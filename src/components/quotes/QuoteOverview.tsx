@@ -2,6 +2,9 @@ import { QuoteOverviewProps } from "../../types/overviewTypes"
 
 
 export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible, searchResult}: QuoteOverviewProps) {
+
+  const onlyFavs = allQuotesObjects.filter(item => item.fav === true);
+  
   return (
     <>
       {isAllQuotesVisible && (
@@ -16,7 +19,14 @@ export function QuoteOverview({allQuotesObjects, isAllQuotesVisible, isFavQuotes
       )}
 
       {isFavQuotesVisible && (
-        <div>Hier werden nur die Favoriten stehen</div>
+        <div>
+          {onlyFavs.map((quoteObject, index) => (
+            <div key={index}>
+              <p>Quote: {quoteObject.quote}</p>
+              <p>Author: {quoteObject.author}</p>
+            </div>
+          ))}
+        </div>
       )}
       
       {isSearchQuotesVisible && (
