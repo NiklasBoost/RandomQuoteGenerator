@@ -22,7 +22,8 @@ function App() {
 
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [feedbackDom, setFeedbackDom] = useState('');
-  
+
+  const [isOutputVisible, setIsOutputVisisble] = useState(true);
   const [isAllQuotesVisible, setIsAllQuotesVisible] = useState(false);
   const [isFavQuotesVisible, setIsFavQuotesVisible] = useState(false);
   const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
@@ -32,6 +33,15 @@ function App() {
     stateSetter((prev) => !prev);
   }
 
+  useEffect(() => {
+    if(isAllQuotesVisible || isFavQuotesVisible || isSearchQuotesVisible) {
+      console.log('RandomQuote verschwindet');
+      toggleQuotesContainer(setIsOutputVisisble);
+    } else if(!isAllQuotesVisible && !isFavQuotesVisible && !isSearchQuotesVisible) {
+      console.log('Jetzt müsste es wieder auftauchen');
+      setIsOutputVisisble(true);
+    }
+  }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible])
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowRight") {
@@ -231,6 +241,7 @@ function App() {
         editedAuthor={editedAuthor}
         setEditedQuote={setEditedQuote} // Pass the setters for edited quote and author
         setEditedAuthor={setEditedAuthor}
+        isOutputVisible={isOutputVisible}
       />
       <Footer 
         addQuote={addQuote} 

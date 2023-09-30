@@ -16,6 +16,7 @@ export type MiddlePartProps = {
   currentQIndex: number;
   feedbackDom:  string;
   changeDomFeedback: () => void;
+  isOutputVisible: boolean;
 };
 
 

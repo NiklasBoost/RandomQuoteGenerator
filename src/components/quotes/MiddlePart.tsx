@@ -15,50 +15,54 @@ export function MiddlePart({
   allQuotesObjects,
   currentQIndex,
   feedbackDom,
-  changeDomFeedback }: MiddlePartProps) {
+  changeDomFeedback,
+  isOutputVisible }: MiddlePartProps) {
 
 
   return (
-    <div className="middle-part">
-      <div className="quote-container">
-        <GoToLastQuote lastQuote={lastQuote} />
-        {isEditing ? (
-          <div className="edit-field">
-            <input 
-              type="text"
-              placeholder={outputQuote}
-              onChange={(e) => setEditedQuote(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder={outputAuthor}
-              onChange={(e) => setEditedAuthor(e.target.value)} 
-              onKeyDown={(event) => {
-                if(event.key === 'Enter') {
-                  saveChanges(editedQuote, editedAuthor);
-                  changeDomFeedback();
-                }
-              }}
-            />
+    <>
+      {isOutputVisible && (
+        <div className="middle-part">
+          <div className="quote-container">
+            <GoToLastQuote lastQuote={lastQuote} />
+            {isEditing ? (
+              <div className="edit-field">
+                <input 
+                  type="text"
+                  placeholder={outputQuote}
+                  onChange={(e) => setEditedQuote(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder={outputAuthor}
+                  onChange={(e) => setEditedAuthor(e.target.value)} 
+                  onKeyDown={(event) => {
+                    if(event.key === 'Enter') {
+                      saveChanges(editedQuote, editedAuthor);
+                      changeDomFeedback();
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <Outputs 
+                outputQuote={outputQuote} 
+                outputAuthor={outputAuthor}
+                allQuotesObjects={allQuotesObjects} 
+                currentQIndex={currentQIndex}
+              />
+            )}
+            <GoToNextQuote nextQuote={nextQuote} />
+            <RemoveButton 
+              removeQuote={removeQuote}
+              changeDomFeedback={changeDomFeedback} />
+            <div>{feedbackDom}</div>
           </div>
-        ) : (
-          <Outputs 
-            outputQuote={outputQuote} 
-            outputAuthor={outputAuthor}
-            allQuotesObjects={allQuotesObjects} 
-            currentQIndex={currentQIndex}
-          />
-        )}
-        <GoToNextQuote nextQuote={nextQuote} />
-        <RemoveButton 
-          removeQuote={removeQuote}
-          changeDomFeedback={changeDomFeedback} />
-        <div>{feedbackDom}</div>
-      </div>
-    </div>
-  );
+        </div>
+      )}    
+    </>
+  )
 }
-
 
 function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   
