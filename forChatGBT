@@ -1,15 +1,15 @@
 
 <Header>
-  <button>Alle Zitate</button>
-  <button>Alle deine Favoriten</button>
+  <button>Alle Zitate</button> // Button for showing all quotes
+  <button>Alle deine Favoriten</button> // Button for showing all favorits
   <input> //searchbar
-  <div> //editbutton + feedback
+  <div> //editbutton + feedback ('is saved')
     <button>  
       {isEditing ? 'Save' : 'Edit'}
     </button>
     <div>{feedbackDom}</div>
   </div>
-  <button>Settings</button>
+  <button>Settings</button> // Settingsbutton to a modal, with settings
 </Header>
 <MiddlePart>
   <div>
@@ -29,10 +29,10 @@
   <div>
     <button>Remove</button>
   </div>
-  <div>{feedbackDom}</div>
+  <div>{feedbackDom}</div> //feedback, when remove a quote
 </MiddlePart>
 <Footer>
-  <div>{feedback}</div>
+  <div>{feedback}</div>// Feedback, when adding a new quote
   <input> // Input field for the quote
   <input> // Input field for the author
   <button> // Add button (the img was a plus; but I am open for other ideas)
@@ -40,11 +40,4 @@
   </button>
 </Footer>
   
-
-
-
-
-
-
-
 
