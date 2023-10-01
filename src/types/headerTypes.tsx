@@ -2,7 +2,6 @@ import { QuoteObject } from "./types";
 
 export type HeaderProps = {
   isEditing: boolean;
-  setIsEditing: (value: boolean) => void;
   editedQuote: string;
   editedAuthor: string;
   allQuotesObjects: QuoteObject[];
@@ -43,6 +42,5 @@ export type EditProps = {
   toggleEdit: () => void;
   saveChanges: () => void;
   feedbackDom:  string;
-  setFeedbackDom:(value: string) => void;
   changeDomFeedback: () => void;
 }

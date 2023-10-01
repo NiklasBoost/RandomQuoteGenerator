@@ -1,4 +1,7 @@
 import { useState} from "react";
+import { Container, Row, Col, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faArrowRight, faArrowLeft, faPlus, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { HeaderProps, SearchbarProps, EditProps, FavQuotesProps } from "../../types/headerTypes";
 import { AllQuotesProps } from "../../types/headerTypes";
 
@@ -19,70 +22,62 @@ export function Header({
   setIsFavQuotesVisible,
   setSearchResult,
   setIsSearchQuotesVisible}: HeaderProps) {
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
-  };
-
+ 
   return (
-    <div className="header">
-      <AllQuotes
-        toggleQuotesContainer={toggleQuotesContainer}
-        isAllQuotesVisible={isAllQuotesVisible}
-        setIsAllQuotesVisible={setIsAllQuotesVisible}
-      />
-      <FavQuotes
-        toggleQuotesContainer={toggleQuotesContainer}
-        isFavQuotesVisible={isFavQuotesVisible}
-        setIsFavQuotesVisible={setIsFavQuotesVisible}
+    <Row className="mt-4">
+      <Col>
+        <AllQuotes
+          toggleQuotesContainer={toggleQuotesContainer}
+          isAllQuotesVisible={isAllQuotesVisible}
+          setIsAllQuotesVisible={setIsAllQuotesVisible}
         />
-      <Searchbar 
-        allQuotesObjects={allQuotesObjects}
-        setSearchResult={setSearchResult}
-        toggleQuotesContainer={toggleQuotesContainer}
-        setIsSearchQuotesVisible={setIsSearchQuotesVisible}
-      />
-        
+        <FavQuotes
+          toggleQuotesContainer={toggleQuotesContainer}
+          isFavQuotesVisible={isFavQuotesVisible}
+          setIsFavQuotesVisible={setIsFavQuotesVisible}
+        />
+      </Col>
+      <Col md={6}>
+        <Searchbar 
+          allQuotesObjects={allQuotesObjects}
+          setSearchResult={setSearchResult}
+          toggleQuotesContainer={toggleQuotesContainer}
+          setIsSearchQuotesVisible={setIsSearchQuotesVisible}
+        />
+      </Col>
+      <Col>
+        <SettingsButton/>
+      </Col>
+    </Row>
 
-      <Edit 
-        feedbackDom={feedbackDom}
-        setFeedbackDom={setFeedbackDom}
-        changeDomFeedback={changeDomFeedback}
-        isEditing={isEditing}
-        toggleEdit={toggleEdit} 
-        saveChanges={() => {
-          // save changes logic can be added here
-          saveChanges(editedQuote, editedAuthor);
-        }} />
-      
-      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Settings
-      </button>
-    </div>
+   
   );
 }
 
 function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVisible}: AllQuotesProps) {
   
   return ( 
-    <button 
+    <Button 
+      className="mx-1" variant="primary"
       onClick={() => {
         toggleQuotesContainer(setIsAllQuotesVisible)}
       }
     >
-      Alle Zitate
-    </button>
+      Deine Zitate
+    </Button>
   )
 }
 
 function FavQuotes({toggleQuotesContainer, isFavQuotesVisible, setIsFavQuotesVisible}: FavQuotesProps) {
   return (
-    <button
+    <Button
       onClick={() => {
         toggleQuotesContainer(setIsFavQuotesVisible)
       }}  
+      variant="primary"
     >
-      Alle deine Favoriten
-    </button>
+      Deine Favoriten
+    </Button>
 
   )
 }
@@ -107,44 +102,36 @@ function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, s
     });
     setSearchResult(resultArray);  
   }  
-  return (
-    <>
-      <div className="placeholder-header"></div>
-      <div className="searchbar-container">
-        <input 
-          className="searchbar"
-          placeholder="search your quote - press enter for search!"
-          value={searchbarInput}
-          onChange={handleInputChange}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') {
-              searchInput();
-              toggleQuotesContainer(setIsSearchQuotesVisible);
-            }
-          }} />
-      </div>
-    </>
-  );
-}
-
-
-function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
-
-  return (
-    <div className="edit-container">
-      <button 
-        className="edit-button-js edit-button"
-        onClick={() => {
-          if (isEditing) {
-            saveChanges(); // Call the saveChanges function when editing
-            changeDomFeedback();
+  return (    
+    <InputGroup>
+      <FormControl
+        className="searchbar"
+        placeholder="Suche nach Zitaten - einfach Enter drücken"
+        value={searchbarInput}
+        onChange={handleInputChange}
+        onKeyPress={(event) => {
+          if (event.key === 'Enter') {
+            searchInput();
+            toggleQuotesContainer(setIsSearchQuotesVisible);
           }
-          toggleEdit(); // Toggle the edit mode
-        }}
-      >  
-        {isEditing ? 'Save' : 'Edit'}
-      </button>
-      <div>{feedbackDom}</div>
-    </div>
+        }} />
+    </InputGroup>
+
   );
 }
+
+function SettingsButton() {
+  return  (
+    <Button 
+      className='position-absolute top-0 end-0 p-4' 
+      variant='none'
+      data-bs-toogle='modal'
+      data-bs-target='#exampleModal'
+    >
+      <FontAwesomeIcon icon={faCog} size='2x' />
+    </Button>
+  )
+}
+
+// Das muss noch in eine andere Komponente
+

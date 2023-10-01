@@ -1,5 +1,8 @@
+import { Row, Col, Button } from "react-bootstrap";
 import { MiddlePartProps, GoToLastQuoteProps, OutputsProps, GoToNextQuoteProps, RemoveButtonProps } from "../../types/middlePartTypes";
-import { useState, useEffect } from "react";
+import { EditProps } from "../../types/headerTypes";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 export function MiddlePart({ 
   editedQuote,
@@ -17,17 +20,27 @@ export function MiddlePart({
   currentQIndex,
   feedbackDom,
   changeDomFeedback,
-  isOutputVisible }: MiddlePartProps) {
-
+  isOutputVisible,
+  setIsEditing}: MiddlePartProps) {
+    const toggleEdit = () => {
+      setIsEditing(!isEditing);
+    };
+  
 
   return (
     <>
       {isOutputVisible && (
-        <div className="middle-part">
-          <div className="quote-container">
+      
+        <Row 
+          className="mx-1 mt-5 py-5"
+          style={{background: '#f5f5f5'}}
+        >
+          <Col md={1}>
             <GoToLastQuote lastQuote={lastQuote} />
+          </Col>
+          <Col md={6}>
             {isEditing ? (
-              <div className="edit-field">
+              <div>
                 <input 
                   type="text"
                   placeholder={outputQuote}
@@ -53,13 +66,27 @@ export function MiddlePart({
                 currentQIndex={currentQIndex}
               />
             )}
+          </Col>
+          <Col md={1}>
             <GoToNextQuote nextQuote={nextQuote} />
+          </Col>
+          <Col className="mx-2" md={1}>
+          <Edit 
+            feedbackDom={feedbackDom}
+            changeDomFeedback={changeDomFeedback}
+            isEditing={isEditing}
+            toggleEdit={toggleEdit} 
+            saveChanges={() => {
+              saveChanges(editedQuote, editedAuthor);
+            }} />
+          </Col>
+          <Col md={1}>
             <RemoveButton 
               removeQuote={removeQuote}
               changeDomFeedback={changeDomFeedback} />
-            <div>{feedbackDom}</div>
-          </div>
-        </div>
+          </Col>
+        </Row>
+      
       )}    
     </>
   )
@@ -68,14 +95,13 @@ export function MiddlePart({
 function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   
   return (
-    <div className="nested-layout">
-      <button 
-        className="last-quote last-quote-js"
-        onClick={lastQuote}
-      >
-        <img className="backward-arrow-img" src="src/components/styles/pictures/backward_arrow.png"></img>
-      </button>
-    </div>
+    <Button 
+      variant="light"
+      onClick={lastQuote}
+    >
+      <FontAwesomeIcon icon={faArrowLeft} />
+    </Button>
+
   )
 }
 
@@ -98,32 +124,36 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
   }
   
  return (
-  <div  className="nested-layout">
-    <div id="output-quote">{outputQuote}</div>
-    <div id="output-author">{outputAuthor}</div>
-    <div>
-      <label>favorite?</label>
-        <input 
-          type="checkbox" 
-          checked={object.fav}
-          onChange={sendCheckboxState}
-        />
-    </div>
-  </div>
+  <>
+    <div>{outputQuote}</div>
+    <div>{outputAuthor}</div>
+    <span >
+      <FontAwesomeIcon 
+        className='mt-3 text-danger'
+        icon={faHeartBroken}
+        size='2x' />
+    </span>
+    {/* <label>favorite?</label>
+    <input 
+      type="checkbox" 
+      checked={object.fav}
+      onChange={sendCheckboxState}
+    />  */}
+  </>
+
  )
 }
 
 
 function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
  
-  return (
-    <div  className="nested-layout">
-      <button 
-        className="next-quote next-quote-js" 
-        onClick={nextQuote}>
-        <img className="forward-arrow-img" src="src\components\styles\pictures\forward_arrow.png"></img>
-      </button>
-    </div>
+  return ( 
+    <Button 
+      variant="light" 
+      onClick={nextQuote}>
+       <FontAwesomeIcon icon={faArrowRight}/>
+    </Button>
+
   )
 }
 
@@ -131,15 +161,40 @@ function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
 function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
  
   return (
-    <div  className="nested-layout">
-      <button 
-      className="remove-button"
+    <Button 
       onClick={ () => {
         removeQuote();
         changeDomFeedback();
-      }}>
-        Remove
-      </button>
-    </div>
+      }}
+      variant="danger">
+      Entfernen
+    </Button>
+  
   )
 }
+
+
+
+
+  function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
+
+    return (
+      <>
+        <Button 
+          variant="secondary"
+          onClick={() => {
+            if (isEditing) {
+              saveChanges(); // Call the saveChanges function when editing
+              changeDomFeedback();
+            }
+            toggleEdit(); // Toggle the edit mode
+          }}
+        >  
+          {isEditing ? 'Save' : 'Edit'}
+        </Button>
+        <div>{feedbackDom}</div>
+      </>
+    
+    );
+  }
+  

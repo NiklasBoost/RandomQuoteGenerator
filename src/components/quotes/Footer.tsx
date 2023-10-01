@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { FooterProps, InputStuffProps } from "../../types/footerTypes";
-
+import { Container, Row, Col, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faArrowRight, faArrowLeft, faPlus, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
   const [newQuote, setNewQuote] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
 
   return (
-    <div className="footer">
-      <div className="input-container">
+    <Row className="px-3 py-3 fixed-bottom">
+      <Col>
         <InputStuff
           newQuote={newQuote}
           newAuthor={newAuthor}
@@ -16,9 +18,8 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
           setNewAuthor={setNewAuthor}
           addQuote={addQuote}
         />
-      </div>
-      
-    </div>
+      </Col>
+    </Row>
   );
 }
 
@@ -57,47 +58,33 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
   return (
     <>
       <div>{feedback}</div>
-      <input 
-        placeholder="the quote" 
-        className="input-field-quote"
-        value={newQuote}
-        onChange={handleNewQuoteChange}
-        onKeyDown={(event) => {
-          console.log(event.key);
-          if(event.key === 'Enter') {
-            handleAddButtonClick();
-          }
-        }}
-      ></input>
-      <input
-        placeholder="the author"
-        className="input-field-author"
-        value={newAuthor}
-        onChange={handleNewAuthorChange}
-        onKeyDown={(event) => {
-          if(event.key === 'Enter') {
-            handleAddButtonClick();
-          }
-        }}
-      ></input>
-      <button className="add-button" onClick={handleAddButtonClick}>
-        <img 
-          className="add-button-img" src="src\components\styles\pictures\plus-symbol-button.png"
-          alt="Add Quote"
-        ></img>
-      </button>
+      <InputGroup className="mt-2">
+        <FormControl 
+          placeholder="Zitat" 
+          value={newQuote}
+          onChange={handleNewQuoteChange}
+          onKeyDown={(event) => {
+            console.log(event.key);
+            if(event.key === 'Enter') {
+              handleAddButtonClick();
+            }
+          }}
+        ></FormControl>
+        <FormControl
+          placeholder="Autor"
+          value={newAuthor}
+          onChange={handleNewAuthorChange}
+          onKeyDown={(event) => {
+            if(event.key === 'Enter') {
+              handleAddButtonClick();
+            }
+          }}
+        ></FormControl>
+        <Button variant="success" onClick={handleAddButtonClick}>
+          <FontAwesomeIcon icon={faPlus} />
+        </Button>
+      </InputGroup>
     </>
   )
 }
 
-// function HelpingButton({ allQuotesObjects }: { allQuotesObjects: QuoteObject[] }) {
-//   const handleClick = () => {
-//     console.log(allQuotesObjects);
-//   }
-  
-//   return (
-//     <button className="help-button" onClick={handleClick}>
-//       show all Quotes
-//     </button>
-//   )
-// }

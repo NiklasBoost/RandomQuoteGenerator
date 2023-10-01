@@ -5,7 +5,7 @@ import AppTest from "./App-Test";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <AppTest />
+    <App />
+    {/* <AppTest /> */}
   </React.StrictMode>
 );

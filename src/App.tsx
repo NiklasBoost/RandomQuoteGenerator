@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Container } from 'react-bootstrap';
 import { Header } from "./components/quotes/Header.tsx";
 import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
 import { Footer } from "./components/quotes/Footer.tsx";
@@ -240,14 +241,13 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
+    <Container fluid style={{ minHeight: '100vh' }}>
       <Header
         feedbackDom={feedbackDom}
         setFeedbackDom={setFeedbackDom}
         changeDomFeedback={changeDomFeedback}
         saveChanges={saveChanges}
         isEditing={isEditing}
-        setIsEditing={setIsEditing}
         editedQuote={editedQuote}
         editedAuthor={editedAuthor}
         allQuotesObjects={allQuotesObjects}
@@ -287,12 +287,14 @@ function App() {
         setEditedQuote={setEditedQuote} // Pass the setters for edited quote and author
         setEditedAuthor={setEditedAuthor}
         isOutputVisible={isOutputVisible}
+        setIsEditing={setIsEditing}
       />
       <Footer 
         addQuote={addQuote} 
         allQuotesObjects={allQuotesObjects} 
       />
-    </div>
+    </Container>
+    
   );
 }
 

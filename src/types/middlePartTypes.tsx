@@ -1,6 +1,7 @@
 import { QuoteObject } from "./types";
 
 export type MiddlePartProps = {
+  setIsEditing: (value: boolean) => void;
   outputQuote: string;
   outputAuthor: string;
   allQuotesObjects: QuoteObject[];
