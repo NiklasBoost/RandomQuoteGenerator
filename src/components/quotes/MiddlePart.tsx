@@ -127,18 +127,14 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
   <>
     <div>{outputQuote}</div>
     <div>{'- '+ outputAuthor}</div>
-    <span >
+    <span 
+      onClick={sendCheckboxState}
+      className='mt-3 text-danger'
+    >
       <FontAwesomeIcon 
-        className='mt-3 text-danger'
-        icon={faHeartBroken}
+        icon={object.fav ? faHeart : faHeartBroken}
         size='2x' />
     </span>
-    {/* <label>favorite?</label>
-    <input 
-      type="checkbox" 
-      checked={object.fav}
-      onChange={sendCheckboxState}
-    />  */}
   </>
 
  )
