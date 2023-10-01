@@ -126,7 +126,7 @@ function Outputs({outputQuote, outputAuthor, allQuotesObjects, currentQIndex}: O
  return (
   <>
     <div>{outputQuote}</div>
-    <div>{outputAuthor}</div>
+    <div>{'- '+ outputAuthor}</div>
     <span >
       <FontAwesomeIcon 
         className='mt-3 text-danger'
