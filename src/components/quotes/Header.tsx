@@ -1,14 +1,14 @@
 import { useState} from "react";
-import { Container, Row, Col, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
+import { Row, Col, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faArrowRight, faArrowLeft, faPlus, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { HeaderProps, SearchbarProps, EditProps, FavQuotesProps } from "../../types/headerTypes";
 import { AllQuotesProps } from "../../types/headerTypes";
 
+
 export function Header({ 
   saveChanges,
   isEditing,
-  setIsEditing,
   editedQuote,
   editedAuthor,
   allQuotesObjects,
@@ -125,7 +125,7 @@ function SettingsButton() {
     <Button 
       className='position-absolute top-0 end-0 p-4' 
       variant='none'
-      data-bs-toogle='modal'
+      data-bs-toggle='modal'
       data-bs-target='#exampleModal'
     >
       <FontAwesomeIcon icon={faCog} size='2x' />
@@ -133,5 +133,5 @@ function SettingsButton() {
   )
 }
 
-// Das muss noch in eine andere Komponente
+
 
