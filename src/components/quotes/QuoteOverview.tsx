@@ -65,8 +65,8 @@ function QuoteOverviewElement({ arr, removeQuote, changeDomFeedback, feedbackDom
     <div>
       {arr.map((quoteObject, index) => (
         <div key={index}>
-          <p>Quote: {quoteObject.quote}</p>
-          <p>Author: {quoteObject.author}</p>
+          <p>{quoteObject.quote}</p>
+          <p>- {quoteObject.author}</p>
           <RemoveButton 
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
