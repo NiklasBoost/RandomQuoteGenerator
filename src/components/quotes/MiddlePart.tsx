@@ -154,7 +154,7 @@ function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
 }
 
 
-function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
+export function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
  
   return (
     <Button 
@@ -172,7 +172,7 @@ function RemoveButton({ removeQuote, changeDomFeedback }:RemoveButtonProps) {
 
 
 
-  function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
+  export function Edit({isEditing, toggleEdit, saveChanges, feedbackDom, changeDomFeedback} : EditProps) {
 
     return (
       <>

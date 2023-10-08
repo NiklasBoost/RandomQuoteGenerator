@@ -265,6 +265,8 @@ function App() {
         isFavQuotesVisible={isFavQuotesVisible}
         isSearchQuotesVisible={isSearchQuotesVisible}
         searchResult={searchResult}
+        removeQuote={removeQuote}
+        changeDomFeedback={changeDomFeedback}
       />
       <SettingsModal
         automaticStatus={automaticStatus}
