@@ -33,15 +33,15 @@ function InputStuff({ newQuote, newAuthor, setNewQuote, setNewAuthor, addQuote }
     }, 2500);
   };
   
-  const handleNewQuoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleNewQuoteChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNewQuote(event.target.value);
   };
 
-  const handleNewAuthorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleNewAuthorChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNewAuthor(event.target.value);
   };
 
-  const handleAddButtonClick = () => {
+  function handleAddButtonClick() {
     if (newQuote.trim() === "" || newAuthor.trim() === "") {
       // Handle empty input fields, you can show an error message here
       console.log("Both quote and author must be provided.");

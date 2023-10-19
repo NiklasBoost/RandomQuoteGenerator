@@ -85,7 +85,7 @@ function App() {
     }
   }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible])
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  function handleKeyDown (event: KeyboardEvent) {
     if (event.key === "ArrowRight") {
       nextQuote();
     } else if (event.key === "ArrowLeft") {

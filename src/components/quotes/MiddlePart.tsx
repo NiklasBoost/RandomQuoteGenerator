@@ -22,7 +22,7 @@ export function MiddlePart({
   changeDomFeedback,
   isOutputVisible,
   setIsEditing}: MiddlePartProps) {
-    const toggleEdit = () => {
+    function toggleEdit() {
       setIsEditing(!isEditing);
     };
   

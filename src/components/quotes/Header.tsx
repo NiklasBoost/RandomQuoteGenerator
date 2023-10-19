@@ -86,7 +86,7 @@ function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, s
   const [searchbarInput, setSearchbarInput] = useState('');
   
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleInputChange (event: React.ChangeEvent<HTMLInputElement>) {
     setSearchbarInput(event.target.value);
   };
 
