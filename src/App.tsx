@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Container } from 'react-bootstrap';
-import { Header } from "./components/quotes/Header.tsx";
-import { MiddlePart } from "./components/quotes/MiddlePart.tsx";
-import { Footer } from "./components/quotes/Footer.tsx";
+import { Container } from "react-bootstrap";
+import { Header } from "./components/Header.tsx";
+import { MiddlePart } from "./components/MiddlePart.tsx";
+import { Footer } from "./components/Footer.tsx";
 import { QuoteObject } from "./types/types.tsx";
-import { QuoteOverview } from "./components/quotes/QuoteOverview.tsx";
-import { SettingsModal } from "./components/quotes/settings.tsx";
+import { QuoteOverview } from "./components/QuoteOverview.tsx";
+import { SettingsModal } from "./components/settings.tsx";
 
 const pastIndexList: number[] = [];
 let pastIndexCounter: number;
@@ -16,14 +16,14 @@ function App() {
 
   const [outputQuote, setOutputQuote] = useState("");
   const [outputAuthor, setOutputAuthor] = useState("");
-  
+
   const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
   const [isEditing, setIsEditing] = useState(false); // Add an edit mode state
-  const [editedQuote, setEditedQuote] = useState('');
-  const [editedAuthor, setEditedAuthor] = useState('');
+  const [editedQuote, setEditedQuote] = useState("");
+  const [editedAuthor, setEditedAuthor] = useState("");
 
   const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [feedbackDom, setFeedbackDom] = useState('');
+  const [feedbackDom, setFeedbackDom] = useState("");
 
   const [isOutputVisible, setIsOutputVisisble] = useState(true);
   const [isAllQuotesVisible, setIsAllQuotesVisible] = useState(false);
@@ -31,67 +31,73 @@ function App() {
   const [isSearchQuotesVisible, setIsSearchQuotesVisible] = useState(false);
   const [searchResult, setSearchResult] = useState<QuoteObject[]>([]);
 
-  const [automaticStatus, setAutomaticStatus] = useState('Ausgeschaltet');
+  const [automaticStatus, setAutomaticStatus] = useState("Ausgeschaltet");
 
-  function toggleQuotesContainer(stateSetter: React.Dispatch<React.SetStateAction<boolean>>) {
-    stateSetter(prev => !prev);
+  function toggleQuotesContainer(
+    stateSetter: React.Dispatch<React.SetStateAction<boolean>>
+  ) {
+    stateSetter((prev) => !prev);
   }
 
   useEffect(() => {
     let quoteInterval;
-    if(automaticStatus === '1 min') {
+    if (automaticStatus === "1 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 60000);
-    } else if (automaticStatus === '2 min') {
+    } else if (automaticStatus === "2 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 120000);
-    } else if (automaticStatus === '5 min') {
+    } else if (automaticStatus === "5 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 300000);
-    } else if (automaticStatus === '10 min') {
+    } else if (automaticStatus === "10 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 600000);
-    } else if (automaticStatus === '20 min') {
+    } else if (automaticStatus === "20 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 1200000);
-    } else if (automaticStatus === '40 min') {
+    } else if (automaticStatus === "40 min") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 2400000);
-    } else if (automaticStatus === '1 h') {
+    } else if (automaticStatus === "1 h") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 3600000);
-    } else if (automaticStatus === '2 h') {
+    } else if (automaticStatus === "2 h") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 7200000);
-    } else if (automaticStatus === '4 h') {
+    } else if (automaticStatus === "4 h") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 14400000);
-    } else if (automaticStatus === '8 h') {
+    } else if (automaticStatus === "8 h") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 28800000);
-    } else if (automaticStatus === '1 d') {
+    } else if (automaticStatus === "1 d") {
       clearInterval(quoteInterval);
       quoteInterval = setInterval(nextQuote, 86400000);
-    } else if (automaticStatus === 'Ausgeschaltet') {
+    } else if (automaticStatus === "Ausgeschaltet") {
       clearInterval(quoteInterval);
     }
-  }, [automaticStatus])
+  }, [automaticStatus]);
 
   useEffect(() => {
-    if(isAllQuotesVisible || isFavQuotesVisible || isSearchQuotesVisible) {
+    if (isAllQuotesVisible || isFavQuotesVisible || isSearchQuotesVisible) {
       toggleQuotesContainer(setIsOutputVisisble);
-    } else if(!isAllQuotesVisible && !isFavQuotesVisible && !isSearchQuotesVisible) {
+    } else if (
+      !isAllQuotesVisible &&
+      !isFavQuotesVisible &&
+      !isSearchQuotesVisible
+    ) {
       setIsOutputVisisble(true);
     }
-  }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible])
+  }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible]);
 
-  function handleKeyDown (event: KeyboardEvent) {
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === "ArrowRight") {
       nextQuote();
     } else if (event.key === "ArrowLeft") {
       lastQuote();
     }
-  };
+  }
 
   // Load saved quotes from local storage on component mount
   useEffect(() => {
@@ -107,13 +113,12 @@ function App() {
   useEffect(() => {
     // Füge den Event-Listener hinzu, nachdem die Zitate geladen wurden
     document.addEventListener("keydown", handleKeyDown);
-  
+
     // Event-Listener entfernen, wenn die Komponente unmontiert wird
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [savedQuotes]);
-
 
   // Display the current quote
   useEffect(() => {
@@ -170,8 +175,8 @@ function App() {
 
   // Function to navigate to the last quote
   function lastQuote() {
-    if (( pastIndexCounter-1 ) >= 1) {
-      console.log(pastIndexCounter)
+    if (pastIndexCounter - 1 >= 1) {
+      console.log(pastIndexCounter);
       removeLastIndex();
       setCurrentQIndex(pastIndex);
       displayQuote();
@@ -200,7 +205,6 @@ function App() {
     }
   }
 
-
   // Function to save edited quote
   function saveChanges(editedQuote: string, editedAuthor: string) {
     const updatedQuotes = [...savedQuotes];
@@ -216,32 +220,32 @@ function App() {
 
   function pushIndex(i: number) {
     pastIndexList.push(i);
-    pastIndexCounter = pastIndexList.length
+    pastIndexCounter = pastIndexList.length;
     pastIndex = pastIndexList[pastIndexCounter - 1];
-  
+
     // console.log('past Index: ' + pastIndex);
-    console.log('Past Index Array: ' + pastIndexList);
+    console.log("Past Index Array: " + pastIndexList);
     // console.log('Counter: ' + pastIndexCounter);
   }
-  
+
   function removeLastIndex() {
     pastIndexList.pop();
-    pastIndexCounter = pastIndexList.length
+    pastIndexCounter = pastIndexList.length;
     pastIndex = pastIndexList[pastIndexCounter - 1];
-    console.log(pastIndexList)
+    console.log(pastIndexList);
   }
 
   function changeDomFeedback() {
-    if(isEditing) {
-      setFeedbackDom('Gespeichert!');
+    if (isEditing) {
+      setFeedbackDom("Gespeichert!");
       setTimeout(() => {
-        setFeedbackDom('');
+        setFeedbackDom("");
       }, 2500);
     }
   }
 
   return (
-    <Container fluid style={{ minHeight: '100vh' }}>
+    <Container fluid style={{ minHeight: "100vh" }}>
       <Header
         feedbackDom={feedbackDom}
         setFeedbackDom={setFeedbackDom}
@@ -291,12 +295,8 @@ function App() {
         isOutputVisible={isOutputVisible}
         setIsEditing={setIsEditing}
       />
-      <Footer 
-        addQuote={addQuote} 
-        allQuotesObjects={allQuotesObjects} 
-      />
+      <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />
     </Container>
-    
   );
 }
 

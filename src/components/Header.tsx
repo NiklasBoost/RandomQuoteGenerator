@@ -1,12 +1,30 @@
-import { useState} from "react";
-import { Row, Col, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faArrowRight, faArrowLeft, faPlus, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
-import { HeaderProps, SearchbarProps, EditProps, FavQuotesProps } from "../../types/headerTypes";
-import { AllQuotesProps } from "../../types/headerTypes";
+import { useState } from "react";
+import {
+  Row,
+  Col,
+  Button,
+  InputGroup,
+  FormControl,
+  Form,
+} from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCog,
+  faArrowRight,
+  faArrowLeft,
+  faPlus,
+  faHeart,
+  faHeartBroken,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  HeaderProps,
+  SearchbarProps,
+  EditProps,
+  FavQuotesProps,
+} from "../types/headerTypes";
+import { AllQuotesProps } from "../types/headerTypes";
 
-
-export function Header({ 
+export function Header({
   saveChanges,
   isEditing,
   editedQuote,
@@ -21,8 +39,8 @@ export function Header({
   isFavQuotesVisible,
   setIsFavQuotesVisible,
   setSearchResult,
-  setIsSearchQuotesVisible}: HeaderProps) {
- 
+  setIsSearchQuotesVisible,
+}: HeaderProps) {
   return (
     <Row className="mt-4">
       <Col>
@@ -38,7 +56,7 @@ export function Header({
         />
       </Col>
       <Col md={6}>
-        <Searchbar 
+        <Searchbar
           allQuotesObjects={allQuotesObjects}
           setSearchResult={setSearchResult}
           toggleQuotesContainer={toggleQuotesContainer}
@@ -46,63 +64,74 @@ export function Header({
         />
       </Col>
       <Col>
-        <SettingsButton/>
+        <SettingsButton />
       </Col>
     </Row>
-
-   
   );
 }
 
-function AllQuotes({toggleQuotesContainer, isAllQuotesVisible, setIsAllQuotesVisible}: AllQuotesProps) {
-  
-  return ( 
-    <Button 
-      className="mx-1" variant="primary"
+function AllQuotes({
+  toggleQuotesContainer,
+  isAllQuotesVisible,
+  setIsAllQuotesVisible,
+}: AllQuotesProps) {
+  return (
+    <Button
+      className="mx-1"
+      variant="primary"
       onClick={() => {
-        toggleQuotesContainer(setIsAllQuotesVisible)}
-      }
+        toggleQuotesContainer(setIsAllQuotesVisible);
+      }}
     >
       Deine Zitate
     </Button>
-  )
+  );
 }
 
-function FavQuotes({toggleQuotesContainer, isFavQuotesVisible, setIsFavQuotesVisible}: FavQuotesProps) {
+function FavQuotes({
+  toggleQuotesContainer,
+  isFavQuotesVisible,
+  setIsFavQuotesVisible,
+}: FavQuotesProps) {
   return (
     <Button
       onClick={() => {
-        toggleQuotesContainer(setIsFavQuotesVisible)
-      }}  
+        toggleQuotesContainer(setIsFavQuotesVisible);
+      }}
       variant="primary"
     >
       Deine Favoriten
     </Button>
-
-  )
+  );
 }
 
-function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, setIsSearchQuotesVisible }: SearchbarProps ) {
-  const [searchbarInput, setSearchbarInput] = useState('');
-  
+function Searchbar({
+  allQuotesObjects,
+  setSearchResult,
+  toggleQuotesContainer,
+  setIsSearchQuotesVisible,
+}: SearchbarProps) {
+  const [searchbarInput, setSearchbarInput] = useState("");
 
-  function handleInputChange (event: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchbarInput(event.target.value);
-  };
-
+  }
 
   function searchInput() {
     setSearchResult([]);
     const lowercaseInput = searchbarInput.toLowerCase();
-    
+
     const resultArray = allQuotesObjects.filter((quoteObject) => {
       const lowercaseQuote = quoteObject.quote.toLowerCase();
       const lowercaseAuthor = quoteObject.author.toLowerCase();
-      return lowercaseQuote.includes(lowercaseInput) || lowercaseAuthor.includes(lowercaseInput);
+      return (
+        lowercaseQuote.includes(lowercaseInput) ||
+        lowercaseAuthor.includes(lowercaseInput)
+      );
     });
-    setSearchResult(resultArray);  
-  }  
-  return (    
+    setSearchResult(resultArray);
+  }
+  return (
     <InputGroup>
       <FormControl
         className="searchbar"
@@ -110,28 +139,25 @@ function Searchbar({ allQuotesObjects, setSearchResult, toggleQuotesContainer, s
         value={searchbarInput}
         onChange={handleInputChange}
         onKeyPress={(event) => {
-          if (event.key === 'Enter') {
+          if (event.key === "Enter") {
             searchInput();
             toggleQuotesContainer(setIsSearchQuotesVisible);
           }
-        }} />
+        }}
+      />
     </InputGroup>
-
   );
 }
 
 function SettingsButton() {
-  return  (
-    <Button 
-      className='position-absolute top-0 end-0 p-4' 
-      variant='none'
-      data-bs-toggle='modal'
-      data-bs-target='#exampleModal'
+  return (
+    <Button
+      className="position-absolute top-0 end-0 p-4"
+      variant="none"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
     >
-      <FontAwesomeIcon icon={faCog} size='2x' />
+      <FontAwesomeIcon icon={faCog} size="2x" />
     </Button>
-  )
+  );
 }
-
-
-

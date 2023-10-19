@@ -1,17 +1,33 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { QuoteOverviewElementProps, QuoteOverviewProps } from "../../types/overviewTypes"
-import { QuoteObject } from '../../types/types';
-import { RemoveButton, Edit } from './MiddlePart';
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  QuoteOverviewElementProps,
+  QuoteOverviewProps,
+} from "../types/overviewTypes";
+import { QuoteObject } from "../types/types";
+import { RemoveButton, Edit } from "./MiddlePart";
 
-export function QuoteOverview({ allQuotesObjects, isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible, searchResult, removeQuote, changeDomFeedback, feedbackDom, isEditing, toggleEdit, saveChanges, editedQuote, editedAuthor }: QuoteOverviewProps) {
+export function QuoteOverview({
+  allQuotesObjects,
+  isAllQuotesVisible,
+  isFavQuotesVisible,
+  isSearchQuotesVisible,
+  searchResult,
+  removeQuote,
+  changeDomFeedback,
+  feedbackDom,
+  isEditing,
+  toggleEdit,
+  saveChanges,
+  editedQuote,
+  editedAuthor,
+}: QuoteOverviewProps) {
+  const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
 
-  const onlyFavs = allQuotesObjects.filter(item => item.fav === true);
-  
   return (
     <div className="m-5 flex-grow-1 overflow-auto">
       {isAllQuotesVisible && (
         <div>
-          <QuoteOverviewElement 
+          <QuoteOverviewElement
             arr={allQuotesObjects}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -27,7 +43,7 @@ export function QuoteOverview({ allQuotesObjects, isAllQuotesVisible, isFavQuote
 
       {isFavQuotesVisible && (
         <div>
-          <QuoteOverviewElement 
+          <QuoteOverviewElement
             arr={onlyFavs}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -40,10 +56,10 @@ export function QuoteOverview({ allQuotesObjects, isAllQuotesVisible, isFavQuote
           />
         </div>
       )}
-      
+
       {isSearchQuotesVisible && (
         <div>
-          <QuoteOverviewElement 
+          <QuoteOverviewElement
             arr={searchResult}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -57,17 +73,27 @@ export function QuoteOverview({ allQuotesObjects, isAllQuotesVisible, isFavQuote
         </div>
       )}
     </div>
-  )
+  );
 }
 
-function QuoteOverviewElement({ arr, removeQuote, changeDomFeedback, feedbackDom, isEditing, toggleEdit, saveChanges, editedQuote, editedAuthor }: QuoteOverviewElementProps) {
+function QuoteOverviewElement({
+  arr,
+  removeQuote,
+  changeDomFeedback,
+  feedbackDom,
+  isEditing,
+  toggleEdit,
+  saveChanges,
+  editedQuote,
+  editedAuthor,
+}: QuoteOverviewElementProps) {
   return (
     <div>
       {arr.map((quoteObject, index) => (
         <div key={index}>
           <p>{quoteObject.quote}</p>
           <p>- {quoteObject.author}</p>
-          <RemoveButton 
+          <RemoveButton
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
           />
@@ -75,13 +101,13 @@ function QuoteOverviewElement({ arr, removeQuote, changeDomFeedback, feedbackDom
             feedbackDom={feedbackDom}
             changeDomFeedback={changeDomFeedback}
             isEditing={isEditing}
-            toggleEdit={toggleEdit} 
+            toggleEdit={toggleEdit}
             saveChanges={() => {
               saveChanges(editedQuote, editedAuthor);
-          }} />
+            }}
+          />
         </div>
       ))}
     </div>
-  
-  )
+  );
 }
