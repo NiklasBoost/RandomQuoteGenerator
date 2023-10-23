@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FooterProps, InputStuffProps } from "../../types/footerTypes";
 import {
   Row,
@@ -38,6 +38,8 @@ function InputNewQuotesForm({
   addQuote,
 }: InputStuffProps) {
   const [feedback, setFeedback] = useState("");
+  const quoteInputRef = useRef(null);
+
   function tempFeedbackChange(value: string) {
     setFeedback(value);
     setTimeout(() => {
@@ -63,6 +65,7 @@ function InputNewQuotesForm({
       tempFeedbackChange("Das neue Zitat wurde hinzugefügt!");
       setNewQuote(""); 
       setNewAuthor(""); 
+      quoteInputRef.current.focus();
     }
   }
 
@@ -73,6 +76,7 @@ function InputNewQuotesForm({
         <FormControl
           placeholder="Zitat"
           value={newQuote}
+          ref={quoteInputRef}
           onChange={handleNewQuoteChange}
           onKeyDown={(event) => {
             console.log(event.key);
