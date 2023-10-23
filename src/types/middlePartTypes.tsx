@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { QuoteObject } from "./types";
 
 export type MiddlePartProps = {
@@ -18,6 +19,10 @@ export type MiddlePartProps = {
   feedbackDom:  string;
   changeDomFeedback: () => void;
   isOutputVisible: boolean;
+  automaticStatus: string;
+  savedQuotes: QuoteObject[];
+  setCurrentQIndex: Dispatch<SetStateAction<number>>;
+  toggleEdit: () => void;
 };
 
 

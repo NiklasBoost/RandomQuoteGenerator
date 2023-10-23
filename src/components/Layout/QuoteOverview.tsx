@@ -1,10 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  QuoteOverviewElementProps,
   QuoteOverviewProps,
-} from "../types/overviewTypes";
-import { QuoteObject } from "../types/types";
-import { RemoveButton, Edit } from "./MiddlePart";
+} from "../../types/overviewTypes";
+import { QuoteOverviewElement } from "../Elements/QuoteOverviewElements";
 
 export function QuoteOverview({
   allQuotesObjects,
@@ -16,10 +14,10 @@ export function QuoteOverview({
   changeDomFeedback,
   feedbackDom,
   isEditing,
-  toggleEdit,
   saveChanges,
   editedQuote,
   editedAuthor,
+  toggleEdit,
 }: QuoteOverviewProps) {
   const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
 
@@ -32,8 +30,8 @@ export function QuoteOverview({
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
             feedbackDom={feedbackDom}
-            isEditing={isEditing}
             toggleEdit={toggleEdit}
+            isEditing={isEditing}
             saveChanges={saveChanges}
             editedQuote={editedQuote}
             editedAuthor={editedAuthor}
@@ -48,8 +46,8 @@ export function QuoteOverview({
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
             feedbackDom={feedbackDom}
-            isEditing={isEditing}
             toggleEdit={toggleEdit}
+            isEditing={isEditing}
             saveChanges={saveChanges}
             editedQuote={editedQuote}
             editedAuthor={editedAuthor}
@@ -76,38 +74,4 @@ export function QuoteOverview({
   );
 }
 
-function QuoteOverviewElement({
-  arr,
-  removeQuote,
-  changeDomFeedback,
-  feedbackDom,
-  isEditing,
-  toggleEdit,
-  saveChanges,
-  editedQuote,
-  editedAuthor,
-}: QuoteOverviewElementProps) {
-  return (
-    <div>
-      {arr.map((quoteObject, index) => (
-        <div key={index}>
-          <p>{quoteObject.quote}</p>
-          <p>- {quoteObject.author}</p>
-          <RemoveButton
-            removeQuote={removeQuote}
-            changeDomFeedback={changeDomFeedback}
-          />
-          <Edit
-            feedbackDom={feedbackDom}
-            changeDomFeedback={changeDomFeedback}
-            isEditing={isEditing}
-            toggleEdit={toggleEdit}
-            saveChanges={() => {
-              saveChanges(editedQuote, editedAuthor);
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
+

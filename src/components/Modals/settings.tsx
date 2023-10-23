@@ -1,4 +1,4 @@
-import { settingsProps } from "../types/settingsTypes";
+import { settingsProps } from "../../types/settingsTypes";
 
 export function SettingsModal({
   automaticStatus,

@@ -1,32 +1,24 @@
 import { useState } from "react";
-import { FooterProps, InputStuffProps } from "../types/footerTypes";
+import { FooterProps, InputStuffProps } from "../../types/footerTypes";
 import {
-  Container,
   Row,
   Col,
-  Button,
   InputGroup,
   FormControl,
-  Form,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCog,
-  faArrowRight,
-  faArrowLeft,
   faPlus,
-  faHeart,
-  faHeartBroken,
 } from "@fortawesome/free-solid-svg-icons";
 
-export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
+export function Footer({ addQuote }: FooterProps) {
   const [newQuote, setNewQuote] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
 
   return (
     <Row className="px-3 py-3 fixed-bottom">
       <Col>
-        <InputStuff
+        <InputNewQuotesForm
           newQuote={newQuote}
           newAuthor={newAuthor}
           setNewQuote={setNewQuote}
@@ -38,7 +30,7 @@ export function Footer({ addQuote, allQuotesObjects }: FooterProps) {
   );
 }
 
-function InputStuff({
+function InputNewQuotesForm({
   newQuote,
   newAuthor,
   setNewQuote,
@@ -63,15 +55,14 @@ function InputStuff({
 
   function handleAddButtonClick() {
     if (newQuote.trim() === "" || newAuthor.trim() === "") {
-      // Handle empty input fields, you can show an error message here
       console.log("Both quote and author must be provided.");
       tempFeedbackChange("Beide Felder müssen ausgefüllt sein!");
     } else {
       addQuote(newQuote, newAuthor);
       console.log("New Quote was added: " + newQuote + " -" + newAuthor);
       tempFeedbackChange("Das neue Zitat wurde hinzugefügt!");
-      setNewQuote(""); // Clear the input field after adding
-      setNewAuthor(""); // Clear the input field after adding
+      setNewQuote(""); 
+      setNewAuthor(""); 
     }
   }
 
@@ -100,9 +91,9 @@ function InputStuff({
             }
           }}
         ></FormControl>
-        <Button variant="success" onClick={handleAddButtonClick}>
+        <button className="btn btn-success" onClick={handleAddButtonClick}>
           <FontAwesomeIcon icon={faPlus} />
-        </Button>
+        </button>
       </InputGroup>
     </>
   );
