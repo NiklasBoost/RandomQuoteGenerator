@@ -2,17 +2,12 @@ import { Dispatch, SetStateAction } from "react";
 import { QuoteObject } from "./types";
 
 export type MiddlePartProps = {
-  setIsEditing: (value: boolean) => void;
-  outputQuote: string;
-  outputAuthor: string;
   allQuotesObjects: QuoteObject[];
-  nextQuote: () => void;
-  lastQuote: () => void;
   removeQuote: () => void;
-  isEditing: boolean; // Added the isEditing prop
-  editedQuote: string; // Added the edited quote and author props
+  isEditing: boolean;
+  editedQuote: string; 
   editedAuthor: string;
-  setEditedQuote: (value: string) => void; // Added setters for edited quote and author
+  setEditedQuote: (value: string) => void; 
   setEditedAuthor: (value: string) => void;
   saveChanges: (editedQuote: string, editedAuthor: string) => void;
   currentQIndex: number;

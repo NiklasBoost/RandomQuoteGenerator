@@ -22,7 +22,6 @@ export type FavQuotesProps = {
 export interface SearchbarProps {
     allQuotesObjects: QuoteObject[];
     setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
-    toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
     setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
   }
   

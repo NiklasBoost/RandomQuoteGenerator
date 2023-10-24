@@ -123,7 +123,6 @@ function App() {
         setIsAllQuotesVisible={setIsAllQuotesVisible}
         setIsFavQuotesVisible={setIsFavQuotesVisible}
         setSearchResult={setSearchResult}
-        isSearchQuotesVisible={isSearchQuotesVisible}
         setIsSearchQuotesVisible={setIsSearchQuotesVisible}
       />
       <QuoteOverview
@@ -161,8 +160,7 @@ function App() {
         editedAuthor={editedAuthor}
         setEditedQuote={setEditedQuote}
         setEditedAuthor={setEditedAuthor}
-        isOutputVisible={isOutputVisible}
-        setIsEditing={setIsEditing}
+        isOutputVisible={isOutputVisible} 
       />
       <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />
     </Container>
