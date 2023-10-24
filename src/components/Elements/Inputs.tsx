@@ -1,11 +1,10 @@
 import { SearchbarProps } from "../../types/headerTypes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
 
 export function Searchbar({
   allQuotesObjects,
   setSearchResult,
-  toggleQuotesContainer,
   setIsSearchQuotesVisible,
 }: SearchbarProps) {
   const [searchbarInput, setSearchbarInput] = useState("");
@@ -13,34 +12,33 @@ export function Searchbar({
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchbarInput(event.target.value);
   }
-
-  function searchInput() {
-    setSearchResult([]);
+  
+  useEffect(() => {
     const lowercaseInput = searchbarInput.toLowerCase();
-
     const resultArray = allQuotesObjects.filter((quoteObject) => {
       const lowercaseQuote = quoteObject.quote.toLowerCase();
       const lowercaseAuthor = quoteObject.author.toLowerCase();
       return (
         lowercaseQuote.includes(lowercaseInput) ||
         lowercaseAuthor.includes(lowercaseInput)
-      );
+        );
     });
     setSearchResult(resultArray);
-  }
+
+    if(searchbarInput === '') {
+      setIsSearchQuotesVisible(false);
+    } else {
+      setIsSearchQuotesVisible(true);
+    }
+  }, [searchbarInput])
+
   return (
     <InputGroup>
       <FormControl
         className="searchbar"
-        placeholder="Suche nach Zitaten - einfach Enter drücken"
+        placeholder="Suche nach Zitaten"
         value={searchbarInput}
         onChange={handleInputChange}
-        onKeyPress={(event) => {
-          if (event.key === "Enter") {
-            searchInput();
-            toggleQuotesContainer(setIsSearchQuotesVisible);
-          }
-        }}
       />
     </InputGroup>
   );

@@ -123,6 +123,7 @@ function App() {
         setIsAllQuotesVisible={setIsAllQuotesVisible}
         setIsFavQuotesVisible={setIsFavQuotesVisible}
         setSearchResult={setSearchResult}
+        isSearchQuotesVisible={isSearchQuotesVisible}
         setIsSearchQuotesVisible={setIsSearchQuotesVisible}
       />
       <QuoteOverview

@@ -9,6 +9,7 @@ export function Header({
   setIsAllQuotesVisible,
   setIsFavQuotesVisible,
   setSearchResult,
+  isSearchQuotesVisible,
   setIsSearchQuotesVisible,
 }: HeaderProps) {
   return (
@@ -28,6 +29,7 @@ export function Header({
           allQuotesObjects={allQuotesObjects}
           setSearchResult={setSearchResult}
           toggleQuotesContainer={toggleQuotesContainer}
+          isSearchQuotesVisible={isSearchQuotesVisible}
           setIsSearchQuotesVisible={setIsSearchQuotesVisible}
         />
       </Col>

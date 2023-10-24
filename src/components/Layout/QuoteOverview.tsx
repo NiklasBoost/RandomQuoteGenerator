@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  QuoteOverviewProps,
-} from "../../types/overviewTypes";
+import { QuoteOverviewProps } from "../../types/overviewTypes";
 import { QuoteOverviewElement } from "../Elements/QuoteOverviewElements";
 
 export function QuoteOverview({
