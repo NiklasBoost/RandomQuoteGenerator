@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AllQuotesProps, FavQuotesProps } from "../../types/headerTypes";
 import { RemoveButtonProps } from "../../types/middlePartTypes";
 import { EditButtonProps } from "../../types/headerTypes";
@@ -56,17 +57,30 @@ export function RemoveButton({
   removeQuote,
   changeDomFeedback,
 }: RemoveButtonProps) {
+  const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({display: 'none'});
+
+  function showBtnFeedback() {
+    setBtnFeedbackStyle({display: 'block'});
+
+    setTimeout(() => {
+      setBtnFeedbackStyle({display: 'none'});
+    }, 1000)
+  }
+
   return (
-    <button
-      className="btn btn-danger"
-      onClick={() => {
-        removeQuote();
-        changeDomFeedback();
-      }}
-      
-    >
-      Entfernen
-    </button>
+    <>
+      <button
+        className="btn btn-danger"
+        onClick={() => {
+          removeQuote();
+          showBtnFeedback();
+        }}
+        
+        >
+        Entfernen
+      </button>
+      <div className="ms-2" style={btnFeedbackStyle}>Entfernt!</div>
+    </>
   );
       
 }
