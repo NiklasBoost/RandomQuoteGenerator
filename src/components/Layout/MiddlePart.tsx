@@ -228,12 +228,14 @@ function Outputs({
   currentQIndex,
 }: OutputsProps) {
   const object = allQuotesObjects[currentQIndex];
+  const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
 
   function sendCheckboxState() {
     if (object) {
-      const checked = object.fav;
-      const newValue = !checked;
+      const newValue = !isFavorited;
+      setIsFavorited(newValue);
       allQuotesObjects[currentQIndex].fav = newValue;
+      console.log(allQuotesObjects);
       return;
     }
     return sendCheckboxState;
@@ -247,9 +249,14 @@ function Outputs({
     <>
       <div>{outputQuote}</div>
       <div>{"- " + outputAuthor}</div>
-      <span onClick={sendCheckboxState} className="mt-3 text-danger">
+      <span 
+        
+        onClick={sendCheckboxState}
+        className="mt-3 text-danger"
+        style={{ cursor: "pointer" }}
+      >
         <FontAwesomeIcon
-          icon={object.fav ? faHeart : faHeartBroken}
+          icon={isFavorited ? faHeart : faHeartBroken}
           size="2x"
         />
       </span>
