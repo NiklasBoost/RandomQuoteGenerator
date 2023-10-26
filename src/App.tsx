@@ -29,12 +29,15 @@ function App() {
   function toggleQuotesContainer(
     stateSetter: React.Dispatch<React.SetStateAction<boolean>>
   ) {
+    setIsAllQuotesVisible(false);
+    setIsFavQuotesVisible(false);
+    setIsSearchQuotesVisible(false);
     stateSetter((prev) => !prev);
   }
 
   useEffect(() => {
     if (isAllQuotesVisible || isFavQuotesVisible || isSearchQuotesVisible) {
-      toggleQuotesContainer(setIsOutputVisisble);
+      setIsOutputVisisble(false);
     } else if (
       !isAllQuotesVisible &&
       !isFavQuotesVisible &&
