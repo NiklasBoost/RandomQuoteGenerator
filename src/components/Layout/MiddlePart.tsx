@@ -229,6 +229,10 @@ function Outputs({
 }: OutputsProps) {
   const object = allQuotesObjects[currentQIndex];
   const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
+  
+  useEffect(() => {
+    setIsFavorited(object.fav);
+  }, [currentQIndex])
 
   function sendCheckboxState() {
     if (object) {
