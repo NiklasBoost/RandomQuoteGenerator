@@ -1,4 +1,5 @@
 import { QuoteOverviewElementProps } from "../../types/overviewTypes";
+import { Row, Col } from "react-bootstrap";
 import { RemoveButton, EditButton } from "./Buttons";
 
 
@@ -14,26 +15,29 @@ export function QuoteOverviewElement({
   toggleEdit,
 }: QuoteOverviewElementProps) {
   return (
-    <div>
+    <>
       {arr.map((quoteObject, index) => (
-        <div key={index}>
-          <p>{quoteObject.quote}</p>
-          <p>- {quoteObject.author}</p>
-          <RemoveButton
-            removeQuote={removeQuote}
-            changeDomFeedback={changeDomFeedback}
-          />
-          <EditButton
-            feedbackDom={feedbackDom}
-            changeDomFeedback={changeDomFeedback}
-            isEditing={isEditing}
-            toggleEdit={toggleEdit}
-            saveChanges={() => {
-              saveChanges(editedQuote, editedAuthor);
-            }}
-          />
-        </div>
+        <Row 
+          key={index}
+          className="mb-5 p-3"
+          style={{
+            backgroundColor: 'rgb(240, 240, 240)',
+            width: '50%'            
+          }}
+        >
+          <Col md={6}>
+            <p>{quoteObject.quote}</p>
+            <p>- {quoteObject.author}</p>
+          </Col>
+          <Col md={6}>
+            <RemoveButton
+              removeQuote={removeQuote}
+              changeDomFeedback={changeDomFeedback}
+            />
+          </Col>
+          <Col></Col>
+        </Row>
       ))}
-    </div>
+    </>
   );
 }

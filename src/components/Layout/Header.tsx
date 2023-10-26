@@ -52,6 +52,7 @@ export function Header({
         ) : null}
       </Col>
       <Col>
+        <p>Zitate: {allQuotesObjects.length}</p> 
         <SettingsButton />
       </Col>
     </Row>

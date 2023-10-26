@@ -231,7 +231,9 @@ function Outputs({
   const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
   
   useEffect(() => {
-    setIsFavorited(object.fav);
+    if(object) {
+      setIsFavorited(object.fav);
+    }
   }, [currentQIndex])
 
   function sendCheckboxState() {
