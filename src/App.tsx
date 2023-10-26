@@ -32,7 +32,7 @@ function App() {
     setIsAllQuotesVisible(false);
     setIsFavQuotesVisible(false);
     setIsSearchQuotesVisible(false);
-    stateSetter((prev) => !prev);
+    stateSetter(true);
   }
 
   useEffect(() => {
@@ -123,6 +123,9 @@ function App() {
       <Header
         allQuotesObjects={allQuotesObjects}
         toggleQuotesContainer={toggleQuotesContainer}
+        isAllQuotesVisible={isAllQuotesVisible}
+        isFavQuotesVisible={isFavQuotesVisible}
+        isSearchQuotesVisible={isSearchQuotesVisible}
         setIsAllQuotesVisible={setIsAllQuotesVisible}
         setIsFavQuotesVisible={setIsFavQuotesVisible}
         setSearchResult={setSearchResult}

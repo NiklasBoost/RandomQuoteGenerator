@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
 
 export function Searchbar({
+  toggleQuotesContainer,
   allQuotesObjects,
   setSearchResult,
   setIsSearchQuotesVisible,
@@ -28,7 +29,7 @@ export function Searchbar({
     if(searchbarInput === '') {
       setIsSearchQuotesVisible(false);
     } else {
-      setIsSearchQuotesVisible(true);
+      toggleQuotesContainer(setIsSearchQuotesVisible);
     }
   }, [searchbarInput])
 

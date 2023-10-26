@@ -1,6 +1,9 @@
 import { QuoteObject } from "./types";
 
 export type HeaderProps = {
+  isAllQuotesVisible: boolean;
+  isFavQuotesVisible: boolean;
+  isSearchQuotesVisible: boolean;
   allQuotesObjects: QuoteObject[];
   toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
   setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +23,7 @@ export type FavQuotesProps = {
 }
 
 export interface SearchbarProps {
+    toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
     allQuotesObjects: QuoteObject[];
     setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
     setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
