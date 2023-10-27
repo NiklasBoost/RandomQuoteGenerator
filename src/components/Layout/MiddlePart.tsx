@@ -99,14 +99,14 @@ export const MiddlePart = ({
   }
 
   useEffect(() => {
-    // Füge den Event-Listener hinzu, nachdem die Zitate geladen wurden
-    document.addEventListener("keydown", handleKeyDown);
-
-    // Event-Listener entfernen, wenn die Komponente unmontiert wird
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [savedQuotes]);
+    if(!isEditing) {
+      document.addEventListener("keydown", handleKeyDown);
+  
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [savedQuotes, isEditing]);
 
   useEffect(() => {
     let quoteInterval;
