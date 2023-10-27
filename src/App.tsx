@@ -12,9 +12,7 @@ const App = () => {
 
   const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
   const [isEditing, setIsEditing] = useState(false); // Add an edit mode state
-  const [editedQuote, setEditedQuote] = useState("");
-  const [editedAuthor, setEditedAuthor] = useState("");
-
+  
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [feedbackDom, setFeedbackDom] = useState("");
 
@@ -93,10 +91,10 @@ const App = () => {
   }
 
   // Function to save edited quote
-  function saveChanges(editedQuote: string, editedAuthor: string) {
+  function saveChanges(quote: string, author: string) {
     const updatedQuotes = [...savedQuotes];
-    updatedQuotes[currentQIndex].quote = editedQuote;
-    updatedQuotes[currentQIndex].author = editedAuthor;
+    updatedQuotes[currentQIndex].quote = quote;
+    updatedQuotes[currentQIndex].author = author;
     setSavedQuotes(updatedQuotes);
     setAllQuotesObjects(updatedQuotes);
     setIsEditing(false);
@@ -143,8 +141,6 @@ const App = () => {
         feedbackDom={feedbackDom}
         isEditing={isEditing}
         saveChanges={saveChanges}
-        editedQuote={editedQuote}
-        editedAuthor={editedAuthor}
       />
       <SettingsModal
         automaticStatus={automaticStatus}
@@ -163,10 +159,6 @@ const App = () => {
         toggleEdit={toggleEdit}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
-        editedQuote={editedQuote}
-        editedAuthor={editedAuthor}
-        setEditedQuote={setEditedQuote}
-        setEditedAuthor={setEditedAuthor}
         isOutputVisible={isOutputVisible}
       />
       <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />

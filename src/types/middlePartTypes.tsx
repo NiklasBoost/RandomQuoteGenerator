@@ -5,11 +5,7 @@ export interface MiddlePartProps {
   allQuotesObjects: QuoteObject[];
   removeQuote: () => void;
   isEditing: boolean;
-  editedQuote: string; 
-  editedAuthor: string;
-  setEditedQuote: (value: string) => void; 
-  setEditedAuthor: (value: string) => void;
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
+  saveChanges: (quote: string, author: string) => void;
   currentQIndex: number;
   feedbackDom:  string;
   changeDomFeedback: () => void;

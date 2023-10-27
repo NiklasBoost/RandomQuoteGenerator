@@ -22,8 +22,6 @@ import {
 import { EditButton, RemoveButton } from "../Elements/Buttons";
 
 export const MiddlePart = ({
-  editedQuote,
-  editedAuthor,
   saveChanges,
   automaticStatus,
   savedQuotes,
@@ -31,8 +29,6 @@ export const MiddlePart = ({
   setCurrentQIndex,
   isEditing,
   setIsEditing,
-  setEditedQuote,
-  setEditedAuthor,
   allQuotesObjects,
   currentQIndex,
   feedbackDom,
@@ -170,8 +166,8 @@ export const MiddlePart = ({
                     marginBottom: '5px'
                   }}
                 
-                  placeholder={outputQuote}
-                  onChange={(e) => setEditedQuote(e.target.value)}
+                  value={outputQuote}
+                  onChange={(e) => setOutputQuote(e.target.value)}
                 />
                 <input
                   style={{
@@ -179,11 +175,11 @@ export const MiddlePart = ({
                     display: 'block'
                   }}
                   type="text"
-                  placeholder={outputAuthor}
-                  onChange={(e) => setEditedAuthor(e.target.value)}
+                  value={outputAuthor}
+                  onChange={(e) => setOutputAuthor(e.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === "Enter") {
-                      saveChanges(editedQuote, editedAuthor);
+                      saveChanges(outputQuote, outputAuthor);
                       changeDomFeedback();
                     }
                   }}
@@ -214,7 +210,7 @@ export const MiddlePart = ({
               isEditing={isEditing}
               toggleEdit={toggleEdit}
               saveChanges={() => {
-                saveChanges(editedQuote, editedAuthor);
+                saveChanges(outputQuote, outputAuthor);
               }}
             />
           </Col>

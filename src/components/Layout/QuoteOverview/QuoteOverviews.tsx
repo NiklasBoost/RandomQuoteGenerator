@@ -13,8 +13,6 @@ export const QuoteOverviews = ({
   feedbackDom,
   isEditing,
   saveChanges,
-  editedQuote,
-  editedAuthor,
   toggleEdit,
 }: QuoteOverviewsProps) => {
   const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
@@ -31,8 +29,6 @@ export const QuoteOverviews = ({
             toggleEdit={toggleEdit}
             isEditing={isEditing}
             saveChanges={saveChanges}
-            editedQuote={editedQuote}
-            editedAuthor={editedAuthor}
           />
         </div>
       )}
@@ -47,8 +43,6 @@ export const QuoteOverviews = ({
             toggleEdit={toggleEdit}
             isEditing={isEditing}
             saveChanges={saveChanges}
-            editedQuote={editedQuote}
-            editedAuthor={editedAuthor}
           />
         </div>
       )}
@@ -63,8 +57,6 @@ export const QuoteOverviews = ({
             isEditing={isEditing}
             toggleEdit={toggleEdit}
             saveChanges={saveChanges}
-            editedQuote={editedQuote}
-            editedAuthor={editedAuthor}
           />
         </div>
       )}

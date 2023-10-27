@@ -11,9 +11,7 @@ export interface QuoteOverviewsProps {
   feedbackDom: string;
   isEditing: boolean;
   toggleEdit: () => void;
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
-  editedQuote: string;
-  editedAuthor: string;
+  saveChanges: (quote: string, author: string) => void;
 }
 
 export interface QuoteOverviewProps {
@@ -23,7 +21,5 @@ export interface QuoteOverviewProps {
   feedbackDom: string;
   isEditing: boolean;
   toggleEdit: () => void;
-  saveChanges: (editedQuote: string, editedAuthor: string) => void;
-  editedQuote: string;
-  editedAuthor: string;
+  saveChanges: (quote: string, author: string) => void;
 }

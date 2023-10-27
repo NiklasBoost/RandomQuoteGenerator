@@ -10,8 +10,6 @@ export const QuoteOverview = ({
   feedbackDom,
   isEditing,
   saveChanges,
-  editedQuote,
-  editedAuthor,
   toggleEdit,
 }: QuoteOverviewProps) => {
   return (
