@@ -162,6 +162,7 @@ const App = () => {
         removeQuote={removeQuote}
         toggleEdit={toggleEdit}
         isEditing={isEditing}
+        setIsEditing={setIsEditing}
         editedQuote={editedQuote}
         editedAuthor={editedAuthor}
         setEditedQuote={setEditedQuote}

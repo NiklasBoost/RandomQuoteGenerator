@@ -30,6 +30,7 @@ export const MiddlePart = ({
   removeQuote,
   setCurrentQIndex,
   isEditing,
+  setIsEditing,
   setEditedQuote,
   setEditedAuthor,
   allQuotesObjects,
@@ -161,12 +162,22 @@ export const MiddlePart = ({
           <Col md={6}>
             {isEditing ? (
               <div>
-                <input
-                  type="text"
+                <textarea
+                  style={{
+                    width: '600px',
+                    height: '50px',
+                    display: 'block',
+                    marginBottom: '5px'
+                  }}
+                
                   placeholder={outputQuote}
                   onChange={(e) => setEditedQuote(e.target.value)}
                 />
                 <input
+                  style={{
+                    width: '250px',
+                    display: 'block'
+                  }}
                   type="text"
                   placeholder={outputAuthor}
                   onChange={(e) => setEditedAuthor(e.target.value)}
@@ -177,6 +188,12 @@ export const MiddlePart = ({
                     }
                   }}
                 />
+                <button 
+                  className="btn btn-outline-secondary mt-1"
+                  onClick={() => setIsEditing(false)}
+                >
+                  Abbruch
+                </button>
               </div>
             ) : (
               <QuoteOutput
