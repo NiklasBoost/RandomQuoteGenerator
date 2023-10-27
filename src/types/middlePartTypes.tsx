@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { QuoteObject } from "./types";
 
-export type MiddlePartProps = {
+export interface MiddlePartProps {
   allQuotesObjects: QuoteObject[];
   removeQuote: () => void;
   isEditing: boolean;
@@ -21,23 +21,23 @@ export type MiddlePartProps = {
 };
 
 
-export type GoToLastQuoteProps = {
+export interface LastQuoteArrowProps {
   lastQuote: () => void;
 }
 
-export type OutputsProps = {
+export interface QuoteOutputProps {
   outputQuote: string;
   outputAuthor: string;
   allQuotesObjects: QuoteObject[];
   currentQIndex: number;
 }
 
-export type GoToNextQuoteProps = {
+export interface NextQuoteArrowProps {
   nextQuote: () => void;
 }
 
 
-export type RemoveButtonProps = {
+export interface RemoveButtonProps {
   removeQuote: () => void;
   changeDomFeedback: () => void;
 }

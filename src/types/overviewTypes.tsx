@@ -1,6 +1,6 @@
 import { QuoteObject } from "./types";
 
-export interface QuoteOverviewProps {
+export interface QuoteOverviewsProps {
   allQuotesObjects: QuoteObject[];
   isAllQuotesVisible: boolean;
   isFavQuotesVisible: boolean;
@@ -16,7 +16,7 @@ export interface QuoteOverviewProps {
   editedAuthor: string;
 }
 
-export interface QuoteOverviewElementProps {
+export interface QuoteOverviewProps {
   arr: QuoteObject[];
   removeQuote: () => void;
   changeDomFeedback: () => void;

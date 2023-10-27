@@ -5,7 +5,7 @@ export interface FooterProps {
   allQuotesObjects: QuoteObject[];
 }
 
-export type InputStuffProps = {
+export interface InputStuffProps {
   newQuote: string;
   newAuthor: string;
   setNewQuote: (value: string) => void;

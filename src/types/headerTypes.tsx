@@ -1,6 +1,6 @@
 import { QuoteObject } from "./types";
 
-export type HeaderProps = {
+export interface HeaderProps {
   isAllQuotesVisible: boolean;
   isFavQuotesVisible: boolean;
   isSearchQuotesVisible: boolean;
@@ -12,12 +12,12 @@ export type HeaderProps = {
   setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
 };
 
-export type AllQuotesProps = {
+export interface AllQuotesProps {
   toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
   setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
 }
 
-export type FavQuotesProps = {
+export interface FavQuotesProps {
   toggleQuotesContainer: (stateSetter: React.Dispatch<React.SetStateAction<boolean>>) => void;
   setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>; 
 }
@@ -29,7 +29,7 @@ export interface SearchbarProps {
     setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
   }
   
-export type EditButtonProps = {
+export interface EditButtonProps {
   isEditing: boolean;
   toggleEdit: () => void;
   saveChanges: () => void;
