@@ -4,7 +4,7 @@ import { Header } from "./components/Layout/Header.tsx";
 import { MiddlePart } from "./components/Layout/MiddlePart.tsx";
 import { Footer } from "./components/Layout/Footer.tsx";
 import { QuoteObject } from "./types/types.tsx";
-import { QuoteOverview } from "./components/Layout/QuoteOverview.tsx";
+import { QuoteOverviews } from "./components/Layout/QuoteOverview/QuoteOverviews.tsx";
 import { SettingsModal } from "./components/Modals/settings.tsx";
 
 const App = () => {
@@ -131,7 +131,7 @@ const App = () => {
         setSearchResult={setSearchResult}
         setIsSearchQuotesVisible={setIsSearchQuotesVisible}
       />
-      <QuoteOverview
+      <QuoteOverviews
         allQuotesObjects={allQuotesObjects}
         isAllQuotesVisible={isAllQuotesVisible}
         isFavQuotesVisible={isFavQuotesVisible}
@@ -166,11 +166,11 @@ const App = () => {
         editedAuthor={editedAuthor}
         setEditedQuote={setEditedQuote}
         setEditedAuthor={setEditedAuthor}
-        isOutputVisible={isOutputVisible} 
+        isOutputVisible={isOutputVisible}
       />
       <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />
     </Container>
   );
-}
+};
 
 export default App;

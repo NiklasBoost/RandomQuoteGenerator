@@ -8,9 +8,9 @@ import {
 import { Row, Col, Button } from "react-bootstrap";
 import {
   MiddlePartProps,
-  GoToLastQuoteProps,
-  OutputsProps,
-  GoToNextQuoteProps,
+  LastQuoteArrowProps,
+  QuoteOutputProps,
+  NextQuoteArrowProps,
 } from "../../types/middlePartTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -156,7 +156,7 @@ export const MiddlePart = ({
       {isOutputVisible && (
         <Row className="mx-1 mt-5 py-5" style={{ background: "#f5f5f5" }}>
           <Col md={1}>
-            <GoToLastQuote lastQuote={lastQuote} />
+            <LastQuoteArrow lastQuote={lastQuote} />
           </Col>
           <Col md={6}>
             {isEditing ? (
@@ -179,7 +179,7 @@ export const MiddlePart = ({
                 />
               </div>
             ) : (
-              <Outputs
+              <QuoteOutput
                 outputQuote={outputQuote}
                 outputAuthor={outputAuthor}
                 allQuotesObjects={allQuotesObjects}
@@ -188,7 +188,7 @@ export const MiddlePart = ({
             )}
           </Col>
           <Col md={1}>
-            <GoToNextQuote nextQuote={nextQuote} />
+            <NextQuoteArrow nextQuote={nextQuote} />
           </Col>
           <Col className="mx-2" md={1}>
             <EditButton
@@ -213,7 +213,7 @@ export const MiddlePart = ({
   );
 }
 
-const GoToLastQuote = ({ lastQuote }: GoToLastQuoteProps) => {
+const LastQuoteArrow = ({ lastQuote }: LastQuoteArrowProps) => {
   return (
     <Button variant="light" onClick={lastQuote}>
       <FontAwesomeIcon icon={faArrowLeft} />
@@ -221,12 +221,12 @@ const GoToLastQuote = ({ lastQuote }: GoToLastQuoteProps) => {
   );
 }
 
-const Outputs = ({
+const QuoteOutput = ({
   outputQuote,
   outputAuthor,
   allQuotesObjects,
   currentQIndex,
-}: OutputsProps) => {
+}: QuoteOutputProps) => {
   const object = allQuotesObjects[currentQIndex];
   const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
   
@@ -270,7 +270,7 @@ const Outputs = ({
   );
 }
 
-const GoToNextQuote = ({ nextQuote }: GoToNextQuoteProps) => {
+const NextQuoteArrow = ({ nextQuote }: NextQuoteArrowProps) => {
   return (
     <Button variant="light" onClick={nextQuote}>
       <FontAwesomeIcon icon={faArrowRight} />
