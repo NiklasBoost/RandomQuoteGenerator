@@ -2,12 +2,12 @@ import { SearchbarProps } from "../../types/headerTypes";
 import { useState, useEffect } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
 
-export function Searchbar({
+export const Searchbar = ({
   toggleQuotesContainer,
   allQuotesObjects,
   setSearchResult,
   setIsSearchQuotesVisible,
-}: SearchbarProps) {
+}: SearchbarProps) => {
   const [searchbarInput, setSearchbarInput] = useState("");
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {

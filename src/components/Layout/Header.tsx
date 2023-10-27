@@ -3,7 +3,7 @@ import { HeaderProps } from "../../types/headerTypes";
 import { AllQuotesButton, FavQuotesButton, SettingsButton } from "../Elements/Buttons";
 import { Searchbar } from "../Elements/Inputs";
 
-export function Header({
+export const Header = ({
   allQuotesObjects,
   toggleQuotesContainer,
   isAllQuotesVisible,
@@ -13,7 +13,7 @@ export function Header({
   setIsFavQuotesVisible,
   setSearchResult,
   setIsSearchQuotesVisible,
-}: HeaderProps) {
+}: HeaderProps) => {
   function resetView() {
     setIsAllQuotesVisible(false);
     setIsFavQuotesVisible(false);

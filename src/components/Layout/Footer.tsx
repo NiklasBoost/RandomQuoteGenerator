@@ -11,7 +11,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-export function Footer({ addQuote }: FooterProps) {
+export const Footer = ({ addQuote }: FooterProps) => {
   const [newQuote, setNewQuote] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
 
@@ -30,13 +30,13 @@ export function Footer({ addQuote }: FooterProps) {
   );
 }
 
-function InputNewQuotesForm({
+const InputNewQuotesForm = ({
   newQuote,
   newAuthor,
   setNewQuote,
   setNewAuthor,
   addQuote,
-}: InputStuffProps) {
+}: InputStuffProps) => {
   const [feedback, setFeedback] = useState("");
   const quoteInputRef = useRef(null);
 

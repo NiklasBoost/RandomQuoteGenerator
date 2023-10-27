@@ -5,10 +5,10 @@ import { EditButtonProps } from "../../types/headerTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
-export function AllQuotesButton({
+export const AllQuotesButton = ({
   toggleQuotesContainer,
   setIsAllQuotesVisible,
-}: AllQuotesProps) {
+}: AllQuotesProps) => {
   return (
     <button
       className="btn btn-primary mx-1"
@@ -21,10 +21,10 @@ export function AllQuotesButton({
   );
 }
 
-export function FavQuotesButton({
+export const FavQuotesButton = ({
   toggleQuotesContainer,
   setIsFavQuotesVisible,
-}: FavQuotesProps) {
+}: FavQuotesProps) => {
   return (
     <button
       className="btn btn-primary"
@@ -37,7 +37,7 @@ export function FavQuotesButton({
   );
 }
 
-export function SettingsButton() {
+export const SettingsButton = () => {
   return (
       <button
         className="position-absolute top-0 end-0 p-4"
@@ -53,10 +53,10 @@ export function SettingsButton() {
   );
 }
 
-export function RemoveButton({
+export const RemoveButton= ({
   removeQuote,
   changeDomFeedback,
-}: RemoveButtonProps) {
+}: RemoveButtonProps) => {
   const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({display: 'none'});
 
   function showBtnFeedback() {
@@ -85,12 +85,12 @@ export function RemoveButton({
       
 }
 
-export function EditButton({
+export const EditButton = ({
   isEditing,
   toggleEdit,
   saveChanges,
   feedbackDom,
-  changeDomFeedback }: EditButtonProps) {
+  changeDomFeedback }: EditButtonProps) => {
 
   return (
     <>

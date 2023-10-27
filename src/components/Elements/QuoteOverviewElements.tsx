@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { RemoveButton, EditButton } from "./Buttons";
 
 
-export function QuoteOverviewElement({
+export const QuoteOverviewElement = ({
   arr,
   removeQuote,
   changeDomFeedback,
@@ -13,7 +13,7 @@ export function QuoteOverviewElement({
   editedQuote,
   editedAuthor,
   toggleEdit,
-}: QuoteOverviewElementProps) {
+}: QuoteOverviewElementProps) => {
   return (
     <>
       {arr.map((quoteObject, index) => (

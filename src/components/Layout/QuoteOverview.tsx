@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { QuoteOverviewProps } from "../../types/overviewTypes";
 import { QuoteOverviewElement } from "../Elements/QuoteOverviewElements";
 
-export function QuoteOverview({
+export const QuoteOverview = ({
   allQuotesObjects,
   isAllQuotesVisible,
   isFavQuotesVisible,
@@ -16,7 +16,7 @@ export function QuoteOverview({
   editedQuote,
   editedAuthor,
   toggleEdit,
-}: QuoteOverviewProps) {
+}: QuoteOverviewProps) => {
   const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
 
   return (

@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { EditButton, RemoveButton } from "../Elements/Buttons";
 
-export function MiddlePart({
+export const MiddlePart = ({
   editedQuote,
   editedAuthor,
   saveChanges,
@@ -38,7 +38,7 @@ export function MiddlePart({
   changeDomFeedback,
   isOutputVisible,
   toggleEdit,
-}: MiddlePartProps) {
+}: MiddlePartProps) => {
   const [outputQuote, setOutputQuote] = useState("");
   const [outputAuthor, setOutputAuthor] = useState("");
 
@@ -213,7 +213,7 @@ export function MiddlePart({
   );
 }
 
-function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
+const GoToLastQuote = ({ lastQuote }: GoToLastQuoteProps) => {
   return (
     <Button variant="light" onClick={lastQuote}>
       <FontAwesomeIcon icon={faArrowLeft} />
@@ -221,12 +221,12 @@ function GoToLastQuote({ lastQuote }: GoToLastQuoteProps) {
   );
 }
 
-function Outputs({
+const Outputs = ({
   outputQuote,
   outputAuthor,
   allQuotesObjects,
   currentQIndex,
-}: OutputsProps) {
+}: OutputsProps) => {
   const object = allQuotesObjects[currentQIndex];
   const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
   
@@ -270,7 +270,7 @@ function Outputs({
   );
 }
 
-function GoToNextQuote({ nextQuote }: GoToNextQuoteProps) {
+const GoToNextQuote = ({ nextQuote }: GoToNextQuoteProps) => {
   return (
     <Button variant="light" onClick={nextQuote}>
       <FontAwesomeIcon icon={faArrowRight} />

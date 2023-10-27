@@ -7,7 +7,7 @@ import { QuoteObject } from "./types/types.tsx";
 import { QuoteOverview } from "./components/Layout/QuoteOverview.tsx";
 import { SettingsModal } from "./components/Modals/settings.tsx";
 
-function App() {
+const App = () => {
   const [allQuotesObjects, setAllQuotesObjects] = useState<QuoteObject[]>([]);
 
   const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
