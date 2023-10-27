@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { QuoteOverviewProps } from "../../types/overviewTypes";
-import { QuoteOverviewElement } from "../Elements/QuoteOverviewElements";
+import { QuoteOverviewsProps } from "../../../types/overviewTypes";
+import { QuoteOverview } from "./QuoteOverview";
 
-export const QuoteOverview = ({
+export const QuoteOverviews = ({
   allQuotesObjects,
   isAllQuotesVisible,
   isFavQuotesVisible,
@@ -16,14 +16,14 @@ export const QuoteOverview = ({
   editedQuote,
   editedAuthor,
   toggleEdit,
-}: QuoteOverviewProps) => {
+}: QuoteOverviewsProps) => {
   const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
 
   return (
     <div className="m-5 flex-grow-1 overflow-auto">
       {isAllQuotesVisible && (
         <div>
-          <QuoteOverviewElement
+          <QuoteOverview
             arr={allQuotesObjects}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -39,7 +39,7 @@ export const QuoteOverview = ({
 
       {isFavQuotesVisible && (
         <div>
-          <QuoteOverviewElement
+          <QuoteOverview
             arr={onlyFavs}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -55,7 +55,7 @@ export const QuoteOverview = ({
 
       {isSearchQuotesVisible && (
         <div>
-          <QuoteOverviewElement
+          <QuoteOverview
             arr={searchResult}
             removeQuote={removeQuote}
             changeDomFeedback={changeDomFeedback}
@@ -70,6 +70,4 @@ export const QuoteOverview = ({
       )}
     </div>
   );
-}
-
-
+};

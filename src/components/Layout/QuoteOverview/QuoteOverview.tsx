@@ -1,9 +1,9 @@
-import { QuoteOverviewElementProps } from "../../types/overviewTypes";
+import { QuoteOverviewProps } from "../../../types/overviewTypes";
 import { Row, Col } from "react-bootstrap";
-import { RemoveButton, EditButton } from "./Buttons";
+import { RemoveButton } from "../../Elements/Buttons";
 
 
-export const QuoteOverviewElement = ({
+export const QuoteOverview = ({
   arr,
   removeQuote,
   changeDomFeedback,
@@ -13,7 +13,7 @@ export const QuoteOverviewElement = ({
   editedQuote,
   editedAuthor,
   toggleEdit,
-}: QuoteOverviewElementProps) => {
+}: QuoteOverviewProps) => {
   return (
     <>
       {arr.map((quoteObject, index) => (
