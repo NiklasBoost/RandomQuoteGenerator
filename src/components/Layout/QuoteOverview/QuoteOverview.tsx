@@ -29,6 +29,7 @@ export const QuoteOverview = ({
           </Col>
           <Col md={6}>
             <RemoveButton
+              index={index}
               removeQuote={removeQuote}
               changeDomFeedback={changeDomFeedback}
             />

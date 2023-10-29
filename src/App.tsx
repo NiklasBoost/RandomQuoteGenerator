@@ -71,16 +71,16 @@ const App = () => {
   }
 
   // Function to remove a quote
-  function removeQuote() {
+  function removeQuote(i) {
     if (savedQuotes.length <= 3) {
       console.log("Add more quotes first");
     } else {
       const updatedQuotes = [...savedQuotes];
-      updatedQuotes.splice(currentQIndex, 1);
+      updatedQuotes.splice(i, 1);
       setSavedQuotes(updatedQuotes);
       setAllQuotesObjects(updatedQuotes);
 
-      if (currentQIndex >= updatedQuotes.length) {
+      if (i >= updatedQuotes.length) {
         setCurrentQIndex(updatedQuotes.length - 1);
       }
 

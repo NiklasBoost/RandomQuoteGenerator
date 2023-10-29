@@ -56,7 +56,7 @@ export const SettingsButton = () => {
 export const RemoveButton= ({
   removeQuote,
   changeDomFeedback,
-}: RemoveButtonProps) => {
+  index }: RemoveButtonProps) => {
   const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({display: 'none'});
 
   function showBtnFeedback() {
@@ -72,7 +72,7 @@ export const RemoveButton= ({
       <button
         className="btn btn-danger"
         onClick={() => {
-          removeQuote();
+          removeQuote(index);
           showBtnFeedback();
         }}
         
