@@ -26,7 +26,7 @@ RandomQuotes bietet die Möglichkeit, eine Sammlung von Zitaten aufzubauen, dies
 
 `npm run dev`
 
-## Verwendung (Mit Screenshots befüllen)
+## Verwendung
 
 Die Verwendung von RandomQuotes ist einfach und intuitiv. Hier sind die grundlegenden Schritte:
 
