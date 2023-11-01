@@ -38,7 +38,18 @@ Die Verwendung von RandomQuotes ist einfach und intuitiv. Hier sind die grundleg
 
 ## Abhängigkeiten
 
-Das Projekt verwendet Bootstrap und weitere Abhängigkeiten, die in Zukunft noch dokumentiert werden.
+Die folgenden Abhängigkeiten werden von dieser Anwendung verwendet:
+
+- **@babel/traverse**: Version 7.23.2
+- **@fortawesome/fontawesome-svg-core**: Version 6.4.2
+- **@fortawesome/free-solid-svg-icons**: Version 6.4.2
+- **@fortawesome/react-fontawesome**: Version 0.2.0
+- **bootstrap**: Version 5.3.2
+- **font-awesome**: Version 4.7.0
+- **postcss**: Version 8.4.31
+- **react**: Version 18.2.0
+- **react-bootstrap**: Version 2.9.0
+- **react-dom**: Version 18.2.0
 
 ## Mitwirkung
 
