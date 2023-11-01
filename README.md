@@ -6,7 +6,25 @@ RandomQuotes bietet die Möglichkeit, eine Sammlung von Zitaten aufzubauen, dies
 
 ## Installation
 
-Die Installation des Projekts erfolgt derzeit über Vite, einem schnellen Build-Tool für JavaScript-Projekte. Eine ausführliche Installationsanleitung wird in Zukunft hinzugefügt.
+1. Stelle sicher, dass du Node.js und npm installiert hast. Falls nicht, kannst du sie von [nodejs.org](https://nodejs.org/en) und [npmjs.com](https://www.npmjs.com/) herunterladen und installieren.
+
+2. Kopiere den Projektcode an den Ort deiner Wahl.
+
+`git clone https://github.com/NiklasBoost/RandomQuoteGenerator.git`
+
+
+3. Wechsle in das Projektverzeichnis:
+
+`cd Kopfrechentrainer`
+
+
+4. Installiere die erforderlichen Abhängigkeiten:
+
+`npm install`
+
+5. Starte den Entwicklungsserver:
+
+`npm run dev`
 
 ## Verwendung (Mit Screenshots befüllen)
 
