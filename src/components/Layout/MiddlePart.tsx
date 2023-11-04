@@ -39,7 +39,6 @@ export const MiddlePart = ({
   const [outputQuote, setOutputQuote] = useState("");
   const [outputAuthor, setOutputAuthor] = useState("");
 
-  // Function to display the current quote
   function displayQuote() {
     if (savedQuotes.length > 0) {
       const quote = savedQuotes[currentQIndex];
@@ -48,7 +47,6 @@ export const MiddlePart = ({
     }
   }
 
-  // Function to navigate to the next quote
   function nextQuote() {
     let newIndex;
     do {
@@ -60,7 +58,6 @@ export const MiddlePart = ({
     displayQuote();
   }
 
-  // Function to navigate to the last quote
   function lastQuote() {
     if (pastIndexCounter - 1 >= 1) {
       console.log(pastIndexCounter);
@@ -72,14 +69,12 @@ export const MiddlePart = ({
     }
   }
 
-  // Display the current quote
   useEffect(() => {
     if (outputQuote === "" || outputAuthor === "") {
       displayQuote();
     }
   }, [outputQuote, outputAuthor]);
 
-  // Display a quote when saved quotes change or on component mount
   useEffect(() => {
     if (savedQuotes.length > 0) {
       displayQuote();

@@ -11,7 +11,7 @@ const App = () => {
   const [allQuotesObjects, setAllQuotesObjects] = useState<QuoteObject[]>([]);
 
   const [savedQuotes, setSavedQuotes] = useState<QuoteObject[]>([]);
-  const [isEditing, setIsEditing] = useState(false); // Add an edit mode state
+  const [isEditing, setIsEditing] = useState(false); 
   
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [feedbackDom, setFeedbackDom] = useState("");
@@ -45,7 +45,7 @@ const App = () => {
     }
   }, [isAllQuotesVisible, isFavQuotesVisible, isSearchQuotesVisible]);
 
-  // Load saved quotes from local storage on component mount
+  
   useEffect(() => {
     const savedQuotesJSON = localStorage.getItem("quotes");
     if (savedQuotesJSON !== null) {
@@ -56,7 +56,7 @@ const App = () => {
     }
   }, []);
 
-  // Function to add a new quote
+  
   function addQuote(newQuote: string, newAuthor: string) {
     const updatedQuotes = [
       ...savedQuotes,
@@ -66,11 +66,9 @@ const App = () => {
     setAllQuotesObjects(updatedQuotes);
     setCurrentQIndex(updatedQuotes.length - 1);
 
-    // Save to local storage
     localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
   }
 
-  // Function to remove a quote
   function removeQuote(i) {
     if (savedQuotes.length <= 3) {
       console.log("Add more quotes first");
@@ -84,13 +82,11 @@ const App = () => {
         setCurrentQIndex(updatedQuotes.length - 1);
       }
 
-      // Save to local storage
       localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
       console.log(allQuotesObjects);
     }
   }
 
-  // Function to save edited quote
   function saveChanges(quote: string, author: string) {
     const updatedQuotes = [...savedQuotes];
     updatedQuotes[currentQIndex].quote = quote;
@@ -99,7 +95,6 @@ const App = () => {
     setAllQuotesObjects(updatedQuotes);
     setIsEditing(false);
 
-    // Save to local storage
     localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
   }
 

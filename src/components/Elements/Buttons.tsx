@@ -98,10 +98,10 @@ export const EditButton = ({
         className="btn btn-secondary"
         onClick={() => {
           if (isEditing) {
-            saveChanges(); // Call the saveChanges function when editing
+            saveChanges(); 
             changeDomFeedback();
           }
-          toggleEdit(); // Toggle the edit mode
+          toggleEdit(); 
         }}
       >
         {isEditing ? "Save" : "Edit"}
