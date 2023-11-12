@@ -19,7 +19,7 @@ import {
   faHeart,
   faHeartBroken,
 } from "@fortawesome/free-solid-svg-icons";
-import { EditButton, RemoveButton } from "../Elements/Buttons";
+import { EditQuoteButton, RemoveQuoteButton } from "../Elements/Buttons";
 
 export const MiddlePart = ({
   saveChanges,
@@ -94,9 +94,9 @@ export const MiddlePart = ({
   }
 
   useEffect(() => {
-    if(!isEditing) {
+    if (!isEditing) {
       document.addEventListener("keydown", handleKeyDown);
-  
+
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
       };
@@ -155,19 +155,18 @@ export const MiddlePart = ({
               <div>
                 <textarea
                   style={{
-                    width: '600px',
-                    height: '50px',
-                    display: 'block',
-                    marginBottom: '5px'
+                    width: "600px",
+                    height: "50px",
+                    display: "block",
+                    marginBottom: "5px",
                   }}
-                
                   value={outputQuote}
                   onChange={(e) => setOutputQuote(e.target.value)}
                 />
                 <input
                   style={{
-                    width: '250px',
-                    display: 'block'
+                    width: "250px",
+                    display: "block",
                   }}
                   type="text"
                   value={outputAuthor}
@@ -179,7 +178,7 @@ export const MiddlePart = ({
                     }
                   }}
                 />
-                <button 
+                <button
                   className="btn btn-outline-secondary mt-1"
                   onClick={() => setIsEditing(false)}
                 >
@@ -199,7 +198,7 @@ export const MiddlePart = ({
             <NextQuoteArrow nextQuote={nextQuote} />
           </Col>
           <Col className="mx-2" md={1}>
-            <EditButton
+            <EditQuoteButton
               feedbackDom={feedbackDom}
               changeDomFeedback={changeDomFeedback}
               isEditing={isEditing}
@@ -210,7 +209,7 @@ export const MiddlePart = ({
             />
           </Col>
           <Col md={1}>
-            <RemoveButton
+            <RemoveQuoteButton
               removeQuote={removeQuote}
               changeDomFeedback={changeDomFeedback}
               index={currentQIndex}
@@ -220,7 +219,7 @@ export const MiddlePart = ({
       )}
     </>
   );
-}
+};
 
 const LastQuoteArrow = ({ lastQuote }: LastQuoteArrowProps) => {
   return (
@@ -228,7 +227,7 @@ const LastQuoteArrow = ({ lastQuote }: LastQuoteArrowProps) => {
       <FontAwesomeIcon icon={faArrowLeft} />
     </Button>
   );
-}
+};
 
 const QuoteOutput = ({
   outputQuote,
@@ -238,12 +237,12 @@ const QuoteOutput = ({
 }: QuoteOutputProps) => {
   const object = allQuotesObjects[currentQIndex];
   const [isFavorited, setIsFavorited] = useState(object ? object.fav : false);
-  
+
   useEffect(() => {
-    if(object) {
+    if (object) {
       setIsFavorited(object.fav);
     }
-  }, [currentQIndex])
+  }, [currentQIndex]);
 
   function sendCheckboxState() {
     if (object) {
@@ -264,8 +263,7 @@ const QuoteOutput = ({
     <>
       <div>{outputQuote}</div>
       <div>{"- " + outputAuthor}</div>
-      <span 
-        
+      <span
         onClick={sendCheckboxState}
         className="mt-3 text-danger"
         style={{ cursor: "pointer" }}
@@ -277,7 +275,7 @@ const QuoteOutput = ({
       </span>
     </>
   );
-}
+};
 
 const NextQuoteArrow = ({ nextQuote }: NextQuoteArrowProps) => {
   return (
@@ -285,4 +283,4 @@ const NextQuoteArrow = ({ nextQuote }: NextQuoteArrowProps) => {
       <FontAwesomeIcon icon={faArrowRight} />
     </Button>
   );
-}
+};

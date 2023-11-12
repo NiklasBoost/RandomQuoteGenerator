@@ -64,8 +64,10 @@ const InputNewQuotesForm = ({
       console.log("New Quote was added: " + newQuote + " -" + newAuthor);
       tempFeedbackChange("Das neue Zitat wurde hinzugefügt!");
       setNewQuote(""); 
-      setNewAuthor(""); 
+      setNewAuthor("");   
       quoteInputRef.current.focus();
+
+    
     }
   }
 

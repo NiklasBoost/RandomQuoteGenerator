@@ -33,7 +33,7 @@ export interface NextQuoteArrowProps {
 }
 
 
-export interface RemoveButtonProps {
+export interface RemoveQuoteButtonProps {
   removeQuote: () => void;
   changeDomFeedback: () => void;
 }
