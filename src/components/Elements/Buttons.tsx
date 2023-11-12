@@ -53,7 +53,7 @@ export const SettingsButton = () => {
   );
 }
 
-export const RemoveButton= ({
+export const RemoveButton = ({
   removeQuote,
   changeDomFeedback,
   index }: RemoveButtonProps) => {
