@@ -15,7 +15,7 @@ RandomQuotes bietet die Möglichkeit, eine Sammlung von Zitaten aufzubauen, dies
 
 3. Wechsle in das Projektverzeichnis:
 
-`cd Kopfrechentrainer`
+`cd RandomQuoteGenerator`
 
 
 4. Installiere die erforderlichen Abhängigkeiten:
