@@ -85,7 +85,7 @@ export const MiddlePart = ({
     displayQuote();
   }, [currentQIndex]);
 
-  function handleKeyDown(event: KeyboardEvent) {
+  function handleArrowKeyDown(event: KeyboardEvent) {
     if (event.key === "ArrowRight") {
       nextQuote();
     } else if (event.key === "ArrowLeft") {
@@ -95,10 +95,10 @@ export const MiddlePart = ({
 
   useEffect(() => {
     if (!isEditing) {
-      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("keydown", handleArrowKeyDown);
 
       return () => {
-        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("keydown", handleArrowKeyDown);
       };
     }
   }, [savedQuotes, isEditing]);
@@ -244,7 +244,7 @@ const QuoteOutput = ({
     }
   }, [currentQIndex]);
 
-  function sendCheckboxState() {
+  function sendFavState() {
     if (object) {
       const newValue = !isFavorited;
       setIsFavorited(newValue);
@@ -252,7 +252,7 @@ const QuoteOutput = ({
       console.log(allQuotesObjects);
       return;
     }
-    return sendCheckboxState;
+    return sendFavState;
   }
 
   if (!object) {
@@ -264,7 +264,7 @@ const QuoteOutput = ({
       <div>{outputQuote}</div>
       <div>{"- " + outputAuthor}</div>
       <span
-        onClick={sendCheckboxState}
+        onClick={sendFavState}
         className="mt-3 text-danger"
         style={{ cursor: "pointer" }}
       >
