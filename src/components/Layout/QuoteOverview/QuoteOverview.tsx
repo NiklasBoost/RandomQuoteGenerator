@@ -1,6 +1,6 @@
 import { QuoteOverviewProps } from "../../../types/overviewTypes";
 import { Row, Col } from "react-bootstrap";
-import { RemoveButton } from "../../Elements/Buttons";
+import { RemoveQuoteButton } from "../../Elements/Buttons";
 
 
 export const QuoteOverview = ({
@@ -28,7 +28,7 @@ export const QuoteOverview = ({
             <p>- {quoteObject.author}</p>
           </Col>
           <Col md={6}>
-            <RemoveButton
+            <RemoveQuoteButton
               index={index}
               removeQuote={removeQuote}
               changeDomFeedback={changeDomFeedback}

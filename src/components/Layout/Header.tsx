@@ -14,6 +14,7 @@ export const Header = ({
   setSearchResult,
   setIsSearchQuotesVisible,
 }: HeaderProps) => {
+  
   function resetView() {
     setIsAllQuotesVisible(false);
     setIsFavQuotesVisible(false);

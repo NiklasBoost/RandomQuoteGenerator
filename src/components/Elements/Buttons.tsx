@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AllQuotesProps, FavQuotesProps } from "../../types/headerTypes";
-import { RemoveButtonProps } from "../../types/middlePartTypes";
-import { EditButtonProps } from "../../types/headerTypes";
+import { RemoveQuoteButtonProps } from "../../types/middlePartTypes";
+import { EditQuoteButtonProps } from "../../types/headerTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +19,7 @@ export const AllQuotesButton = ({
       Deine Zitate
     </button>
   );
-}
+};
 
 export const FavQuotesButton = ({
   toggleQuotesContainer,
@@ -35,36 +35,37 @@ export const FavQuotesButton = ({
       Deine Favoriten
     </button>
   );
-}
+};
 
 export const SettingsButton = () => {
   return (
-      <button
-        className="position-absolute top-0 end-0 p-4"
-        style={{ 
-          border: 'none',
-          backgroundColor: 'white',
-        }}
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <FontAwesomeIcon icon={faCog} size="2x" />
-      </button>
+    <button
+      className="position-absolute top-0 end-0 p-4"
+      style={{
+        border: "none",
+        backgroundColor: "white",
+      }}
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      <FontAwesomeIcon icon={faCog} size="2x" />
+    </button>
   );
-}
+};
 
-export const RemoveButton= ({
+export const RemoveQuoteButton = ({
   removeQuote,
   changeDomFeedback,
-  index }: RemoveButtonProps) => {
-  const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({display: 'none'});
+  index,
+}: RemoveQuoteButtonProps) => {
+  const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({ display: "none" });
 
   function showBtnFeedback() {
-    setBtnFeedbackStyle({display: 'block'});
+    setBtnFeedbackStyle({ display: "block" });
 
     setTimeout(() => {
-      setBtnFeedbackStyle({display: 'none'});
-    }, 1000)
+      setBtnFeedbackStyle({ display: "none" });
+    }, 1000);
   }
 
   return (
@@ -75,33 +76,33 @@ export const RemoveButton= ({
           removeQuote(index);
           showBtnFeedback();
         }}
-        
-        >
+      >
         Entfernen
       </button>
-      <div className="ms-2" style={btnFeedbackStyle}>Entfernt!</div>
+      <div className="ms-2" style={btnFeedbackStyle}>
+        Entfernt!
+      </div>
     </>
   );
-      
-}
+};
 
-export const EditButton = ({
+export const EditQuoteButton = ({
   isEditing,
   toggleEdit,
   saveChanges,
   feedbackDom,
-  changeDomFeedback }: EditButtonProps) => {
-
+  changeDomFeedback,
+}: EditQuoteButtonProps) => {
   return (
     <>
       <button
         className="btn btn-secondary"
         onClick={() => {
           if (isEditing) {
-            saveChanges(); 
+            saveChanges();
             changeDomFeedback();
           }
-          toggleEdit(); 
+          toggleEdit();
         }}
       >
         {isEditing ? "Save" : "Edit"}
@@ -109,4 +110,4 @@ export const EditButton = ({
       <div>{feedbackDom}</div>
     </>
   );
-}
+};
