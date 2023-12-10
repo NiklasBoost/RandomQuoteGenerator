@@ -3,8 +3,9 @@ import { QuoteObject } from "./types";
 
 export interface MiddlePartProps {
   allQuotesObjects: QuoteObject[];
-  removeQuote: () => void;
+  removeQuote: (i:number) => void;
   isEditing: boolean;
+  setIsEditing: Dispatch<SetStateAction<boolean>>
   saveChanges: (quote: string, author: string) => void;
   currentQIndex: number;
   feedbackDom:  string;
@@ -34,6 +35,6 @@ export interface NextQuoteArrowProps {
 
 
 export interface RemoveQuoteButtonProps {
-  removeQuote: () => void;
-  changeDomFeedback: () => void;
+  removeQuote: (i:number) => void;
+  index: number;
 }

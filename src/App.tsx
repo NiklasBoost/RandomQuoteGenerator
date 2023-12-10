@@ -69,7 +69,7 @@ const App = () => {
     localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
   }
 
-  function removeQuote(i) {
+  function removeQuote(i:number) {
     if (savedQuotes.length <= 3) {
       console.log("Add more quotes first");
     } else {

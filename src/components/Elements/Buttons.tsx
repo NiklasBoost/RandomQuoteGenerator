@@ -55,7 +55,6 @@ export const SettingsButton = () => {
 
 export const RemoveQuoteButton = ({
   removeQuote,
-  changeDomFeedback,
   index,
 }: RemoveQuoteButtonProps) => {
   const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({ display: "none" });

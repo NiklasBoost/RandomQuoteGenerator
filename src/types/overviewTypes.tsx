@@ -6,7 +6,7 @@ export interface QuoteOverviewsProps {
   isFavQuotesVisible: boolean;
   isSearchQuotesVisible: boolean;
   searchResult: QuoteObject[];
-  removeQuote: () => void;
+  removeQuote: (i:number) => void;
   changeDomFeedback: () => void;
   feedbackDom: string;
   isEditing: boolean;
@@ -16,7 +16,7 @@ export interface QuoteOverviewsProps {
 
 export interface QuoteOverviewProps {
   arr: QuoteObject[];
-  removeQuote: () => void;
+  removeQuote: (i:number) => void;
   changeDomFeedback: () => void;
   feedbackDom: string;
   isEditing: boolean;
