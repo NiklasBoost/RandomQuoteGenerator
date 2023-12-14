@@ -5,12 +5,7 @@ import { RemoveQuoteButton } from "../../Elements/Buttons";
 
 export const QuoteOverview = ({
   arr,
-  removeQuote,
-  changeDomFeedback,
-  feedbackDom,
-  isEditing,
-  saveChanges,
-  toggleEdit,
+  removeQuote
 }: QuoteOverviewProps) => {
   return (
     <>
@@ -31,7 +26,6 @@ export const QuoteOverview = ({
             <RemoveQuoteButton
               index={index}
               removeQuote={removeQuote}
-              changeDomFeedback={changeDomFeedback}
             />
           </Col>
           <Col></Col>

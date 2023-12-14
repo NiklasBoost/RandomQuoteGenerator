@@ -64,7 +64,7 @@ const App = () => {
     ];
     setSavedQuotes(updatedQuotes);
     setAllQuotesObjects(updatedQuotes);
-    setCurrentQIndex(updatedQuotes.length - 1);
+    setCurrentQIndex(0);
 
     localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
   }
@@ -79,7 +79,7 @@ const App = () => {
       setAllQuotesObjects(updatedQuotes);
 
       if (i >= updatedQuotes.length) {
-        setCurrentQIndex(updatedQuotes.length - 1);
+        setCurrentQIndex(0);
       }
 
       localStorage.setItem("quotes", JSON.stringify(updatedQuotes));
@@ -131,11 +131,6 @@ const App = () => {
         isSearchQuotesVisible={isSearchQuotesVisible}
         searchResult={searchResult}
         removeQuote={removeQuote}
-        changeDomFeedback={changeDomFeedback}
-        toggleEdit={toggleEdit}
-        feedbackDom={feedbackDom}
-        isEditing={isEditing}
-        saveChanges={saveChanges}
       />
       <SettingsModal
         automaticStatus={automaticStatus}

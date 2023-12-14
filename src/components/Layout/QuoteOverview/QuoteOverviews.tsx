@@ -8,12 +8,7 @@ export const QuoteOverviews = ({
   isFavQuotesVisible,
   isSearchQuotesVisible,
   searchResult,
-  removeQuote,
-  changeDomFeedback,
-  feedbackDom,
-  isEditing,
-  saveChanges,
-  toggleEdit,
+  removeQuote
 }: QuoteOverviewsProps) => {
   const onlyFavs = allQuotesObjects.filter((item) => item.fav === true);
 
@@ -24,11 +19,6 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={allQuotesObjects}
             removeQuote={removeQuote}
-            changeDomFeedback={changeDomFeedback}
-            feedbackDom={feedbackDom}
-            toggleEdit={toggleEdit}
-            isEditing={isEditing}
-            saveChanges={saveChanges}
           />
         </div>
       )}
@@ -38,11 +28,6 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={onlyFavs}
             removeQuote={removeQuote}
-            changeDomFeedback={changeDomFeedback}
-            feedbackDom={feedbackDom}
-            toggleEdit={toggleEdit}
-            isEditing={isEditing}
-            saveChanges={saveChanges}
           />
         </div>
       )}
@@ -52,11 +37,6 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={searchResult}
             removeQuote={removeQuote}
-            changeDomFeedback={changeDomFeedback}
-            feedbackDom={feedbackDom}
-            isEditing={isEditing}
-            toggleEdit={toggleEdit}
-            saveChanges={saveChanges}
           />
         </div>
       )}
