@@ -56,15 +56,18 @@ export const SettingsButton = () => {
 export const RemoveQuoteButton = ({
   removeQuote,
   index,
+  allQuotesObjects
 }: RemoveQuoteButtonProps) => {
   const [btnFeedbackStyle, setBtnFeedbackStyle] = useState({ display: "none" });
 
   function showBtnFeedback() {
-    setBtnFeedbackStyle({ display: "block" });
-
-    setTimeout(() => {
-      setBtnFeedbackStyle({ display: "none" });
-    }, 1000);
+    if(allQuotesObjects.length > 3) {
+      setBtnFeedbackStyle({ display: "block" });
+  
+      setTimeout(() => {
+        setBtnFeedbackStyle({ display: "none" });
+      }, 1000);
+    }
   }
 
   return (
