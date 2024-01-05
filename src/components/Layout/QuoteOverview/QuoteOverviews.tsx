@@ -19,6 +19,7 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={allQuotesObjects}
             removeQuote={removeQuote}
+            allQuotesObjects={allQuotesObjects}
           />
         </div>
       )}
@@ -28,6 +29,7 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={onlyFavs}
             removeQuote={removeQuote}
+            allQuotesObjects={allQuotesObjects}
           />
         </div>
       )}
@@ -37,6 +39,7 @@ export const QuoteOverviews = ({
           <QuoteOverview
             arr={searchResult}
             removeQuote={removeQuote}
+            allQuotesObjects={allQuotesObjects}
           />
         </div>
       )}

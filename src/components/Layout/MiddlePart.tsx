@@ -212,6 +212,7 @@ export const MiddlePart = ({
             <RemoveQuoteButton
               removeQuote={removeQuote}
               index={currentQIndex}
+              allQuotesObjects={allQuotesObjects}
             />
           </Col>
         </Row>
