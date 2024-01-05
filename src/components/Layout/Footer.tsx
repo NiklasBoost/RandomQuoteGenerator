@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { FooterProps, InputStuffProps } from "../../types/footerTypes";
+import { InputStuffProps } from "../../types/footerTypes";
 import {
   Row,
   Col,
@@ -10,6 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+
+interface FooterProps {
+  addQuote: (quote: string, author: string) => void;
+}
 
 export const Footer = ({ addQuote }: FooterProps) => {
   const [newQuote, setNewQuote] = useState("");
@@ -28,6 +32,14 @@ export const Footer = ({ addQuote }: FooterProps) => {
       </Col>
     </Row>
   );
+}
+
+interface InputStuffProps {
+  newQuote: string;
+  newAuthor: string;
+  setNewQuote: (value: string) => void;
+  setNewAuthor: (value: string) => void;
+  addQuote: (quote: string, author: string) => void;
 }
 
 const InputNewQuotesForm = ({

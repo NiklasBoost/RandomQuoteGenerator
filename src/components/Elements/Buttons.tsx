@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { AllQuotesProps, FavQuotesProps } from "../../types/headerTypes";
-import { RemoveQuoteButtonProps } from "../../types/middlePartTypes";
-import { EditQuoteButtonProps } from "../../types/headerTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { QuoteObject } from "../../types/types";
+
+interface AllQuotesProps {
+  toggleQuotesContainer: (
+    stateSetter: React.Dispatch<React.SetStateAction<boolean>>
+  ) => void;
+  setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const AllQuotesButton = ({
   toggleQuotesContainer,
@@ -20,6 +25,14 @@ export const AllQuotesButton = ({
     </button>
   );
 };
+
+interface FavQuotesProps {
+  toggleQuotesContainer: (
+    stateSetter: React.Dispatch<React.SetStateAction<boolean>>
+  ) => void;
+  setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 
 export const FavQuotesButton = ({
   toggleQuotesContainer,
@@ -52,6 +65,12 @@ export const SettingsButton = () => {
     </button>
   );
 };
+
+interface RemoveQuoteButtonProps {
+  removeQuote: (i:number) => void;
+  index: number;
+  allQuotesObjects: QuoteObject[];
+}
 
 export const RemoveQuoteButton = ({
   removeQuote,
@@ -87,6 +106,14 @@ export const RemoveQuoteButton = ({
     </>
   );
 };
+
+interface EditQuoteButtonProps {
+  isEditing: boolean;
+  toggleEdit: () => void;
+  saveChanges: () => void;
+  feedbackDom: string;
+  changeDomFeedback: () => void;
+}
 
 export const EditQuoteButton = ({
   isEditing,

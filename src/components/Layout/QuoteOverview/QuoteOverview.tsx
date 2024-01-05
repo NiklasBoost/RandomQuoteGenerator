@@ -1,7 +1,13 @@
-import { QuoteOverviewProps } from "../../../types/overviewTypes";
+import { QuoteObject } from "../../../types/types";
 import { Row, Col } from "react-bootstrap";
 import { RemoveQuoteButton } from "../../Elements/Buttons";
 
+
+interface QuoteOverviewProps {
+  arr: QuoteObject[];
+  removeQuote: (i:number) => void;
+  allQuotesObjects: QuoteObject[];
+}
 
 export const QuoteOverview = ({
   arr,

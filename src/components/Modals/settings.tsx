@@ -1,4 +1,7 @@
-import { settingsProps } from "../../types/settingsTypes";
+interface settingsProps {
+  automaticStatus: string;
+  setAutomaticStatus: (value: string) => void;
+}
 
 export const SettingsModal = ({
   automaticStatus,

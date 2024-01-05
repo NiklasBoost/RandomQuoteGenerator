@@ -1,7 +1,22 @@
 import { Row, Col } from "react-bootstrap";
-import { HeaderProps } from "../../types/headerTypes";
 import { AllQuotesButton, FavQuotesButton, SettingsButton } from "../Elements/Buttons";
 import { Searchbar } from "../Elements/Inputs";
+import { QuoteObject } from "../../types/types";
+
+interface HeaderProps {
+  allQuotesObjects: QuoteObject[];
+  toggleQuotesContainer: (
+    stateSetter: React.Dispatch<React.SetStateAction<boolean>>
+  ) => void;
+  isAllQuotesVisible: boolean;
+  isFavQuotesVisible: boolean;
+  isSearchQuotesVisible: boolean;
+  setIsAllQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsFavQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
+  setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 
 export const Header = ({
   allQuotesObjects,

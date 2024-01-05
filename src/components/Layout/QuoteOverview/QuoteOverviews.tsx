@@ -1,6 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { QuoteOverviewsProps } from "../../../types/overviewTypes";
+import { QuoteObject } from "../../../types/types";
 import { QuoteOverview } from "./QuoteOverview";
+
+interface QuoteOverviewsProps {
+  allQuotesObjects: QuoteObject[];
+  isAllQuotesVisible: boolean;
+  isFavQuotesVisible: boolean;
+  isSearchQuotesVisible: boolean;
+  searchResult: QuoteObject[];
+  removeQuote: (i:number) => void;
+}
 
 export const QuoteOverviews = ({
   allQuotesObjects,

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import {
   pastIndexCounter,
   pastIndex,
@@ -6,12 +6,7 @@ import {
   removeLastIndex,
 } from "../../utils/TempFunctionFile";
 import { Row, Col, Button } from "react-bootstrap";
-import {
-  MiddlePartProps,
-  LastQuoteArrowProps,
-  QuoteOutputProps,
-  NextQuoteArrowProps,
-} from "../../types/middlePartTypes";
+import { QuoteObject } from "../../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -21,20 +16,37 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { EditQuoteButton, RemoveQuoteButton } from "../Elements/Buttons";
 
+
+interface MiddlePartProps {
+  allQuotesObjects: QuoteObject[];
+  savedQuotes: QuoteObject[];
+  isEditing: boolean;
+  isOutputVisible: boolean;
+  automaticStatus: string;
+  feedbackDom:  string;
+  currentQIndex: number;
+  changeDomFeedback: () => void;
+  toggleEdit: () => void;
+  removeQuote: (i:number) => void;
+  setIsEditing: Dispatch<SetStateAction<boolean>>
+  setCurrentQIndex: Dispatch<SetStateAction<number>>;
+  saveChanges: (quote: string, author: string) => void;
+};
+
 export const MiddlePart = ({
-  saveChanges,
-  automaticStatus,
-  savedQuotes,
-  removeQuote,
-  setCurrentQIndex,
-  isEditing,
-  setIsEditing,
   allQuotesObjects,
-  currentQIndex,
-  feedbackDom,
-  changeDomFeedback,
+  savedQuotes,
+  isEditing,
   isOutputVisible,
+  automaticStatus,
+  feedbackDom,
+  currentQIndex,
+  changeDomFeedback,
   toggleEdit,
+  removeQuote,
+  setIsEditing,
+  setCurrentQIndex,
+  saveChanges,
 }: MiddlePartProps) => {
   const [outputQuote, setOutputQuote] = useState("");
   const [outputAuthor, setOutputAuthor] = useState("");
@@ -221,6 +233,10 @@ export const MiddlePart = ({
   );
 };
 
+interface LastQuoteArrowProps {
+  lastQuote: () => void;
+}
+
 const LastQuoteArrow = ({ lastQuote }: LastQuoteArrowProps) => {
   return (
     <Button variant="light" onClick={lastQuote}>
@@ -228,6 +244,13 @@ const LastQuoteArrow = ({ lastQuote }: LastQuoteArrowProps) => {
     </Button>
   );
 };
+
+interface QuoteOutputProps {
+  outputQuote: string;
+  outputAuthor: string;
+  allQuotesObjects: QuoteObject[];
+  currentQIndex: number;
+}
 
 const QuoteOutput = ({
   outputQuote,
@@ -276,6 +299,11 @@ const QuoteOutput = ({
     </>
   );
 };
+
+interface NextQuoteArrowProps {
+  nextQuote: () => void;
+}
+
 
 const NextQuoteArrow = ({ nextQuote }: NextQuoteArrowProps) => {
   return (

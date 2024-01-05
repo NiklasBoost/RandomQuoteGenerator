@@ -1,6 +1,16 @@
-import { SearchbarProps } from "../../types/headerTypes";
+import { QuoteObject } from "../../types/types";
 import { useState, useEffect } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
+
+interface SearchbarProps {
+  toggleQuotesContainer: (
+    stateSetter: React.Dispatch<React.SetStateAction<boolean>>
+  ) => void;
+  allQuotesObjects: QuoteObject[];
+  setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
+  setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 
 export const Searchbar = ({
   toggleQuotesContainer,
