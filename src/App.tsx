@@ -151,7 +151,7 @@ const App = () => {
         setIsEditing={setIsEditing}
         isOutputVisible={isOutputVisible}
       />
-      <Footer addQuote={addQuote} allQuotesObjects={allQuotesObjects} />
+      <Footer addQuote={addQuote} />
     </Container>
   );
 };
