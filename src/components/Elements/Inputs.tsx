@@ -8,6 +8,7 @@ interface SearchbarProps {
   ) => void;
   allQuotesObjects: QuoteObject[];
   setSearchResult: React.Dispatch<React.SetStateAction<QuoteObject[]>>;
+  isSearchQuotesVisible: boolean;
   setIsSearchQuotesVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -16,13 +17,20 @@ export const Searchbar = ({
   toggleQuotesContainer,
   allQuotesObjects,
   setSearchResult,
-  setIsSearchQuotesVisible,
+  isSearchQuotesVisible,
+  setIsSearchQuotesVisible
 }: SearchbarProps) => {
   const [searchbarInput, setSearchbarInput] = useState("");
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchbarInput(event.target.value);
   }
+
+  useEffect(() => {
+    if(!isSearchQuotesVisible) {
+      setSearchbarInput('')
+    }
+  }, [isSearchQuotesVisible])
   
   useEffect(() => {
     const lowercaseInput = searchbarInput.toLowerCase();

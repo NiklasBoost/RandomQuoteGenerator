@@ -53,6 +53,7 @@ export const Header = ({
           toggleQuotesContainer={toggleQuotesContainer}
           allQuotesObjects={allQuotesObjects}
           setSearchResult={setSearchResult}
+          isSearchQuotesVisible={isSearchQuotesVisible}
           setIsSearchQuotesVisible={setIsSearchQuotesVisible}
         />
       </Col>
